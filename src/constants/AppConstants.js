@@ -1,7 +1,8 @@
 export const CustomFonts = {
-  light: 'Fredoka-Light',
-  regular: 'Fredoka-Regular',
-  medium: 'Fredoka-Medium',
-  semibold: 'Fredoka-SemiBold',
-  bold: 'Fredoka-Bold',
+  light: 'LeagueSpartan-Light',
+  regular: 'LeagueSpartan-Regular',
+  medium: 'LeagueSpartan-Medium',
+  semibold: 'LeagueSpartan-SemiBold',
+  bold: 'LeagueSpartan-Bold',
+  black: 'LeagueSpartan-Black',
 };

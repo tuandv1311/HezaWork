@@ -69,20 +69,20 @@ import AppRoot from './src/AppRoot';
 
 const theme = extendTheme({
   fontConfig: {
-    light: 'Fredoka-Light',
-    regular: 'Fredoka-Regular',
-    medium: 'Fredoka-Medium',
-    semibold: 'Fredoka-SemiBold',
-    bold: 'Fredoka-Bold',
+    light: 'LeagueSpartan-Light',
+    regular: 'LeagueSpartan-Regular',
+    medium: 'LeagueSpartan-Medium',
+    semibold: 'LeagueSpartan-SemiBold',
+    bold: 'LeagueSpartan-Bold',
   },
 
   // Make sure values below matches any of the keys in `fontConfig`
   fonts: {
-    light: 'Fredoka-Light',
-    regular: 'Fredoka-Regular',
-    medium: 'Fredoka-Medium',
-    semibold: 'Fredoka-SemiBold',
-    bold: 'Fredoka-Bold',
+    light: 'LeagueSpartan-Light',
+    regular: 'LeagueSpartan-Regular',
+    medium: 'LeagueSpartan-Medium',
+    semibold: 'LeagueSpartan-SemiBold',
+    bold: 'LeagueSpartan-Bold',
   },
 });
 

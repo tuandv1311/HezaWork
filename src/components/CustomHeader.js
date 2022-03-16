@@ -22,7 +22,7 @@ const CustomHeader = ({ title, logo, avatar, search, icon, backIcon }) => {
         w="100%"
         maxW="100%">
         <HStack alignItems="center" my={3}>
-          <Text fontFamily="semibold" fontSize="24">
+          <Text fontFamily="bold" fontSize="24">
             {title}
           </Text>
           {logo && <FastImage
@@ -30,11 +30,11 @@ const CustomHeader = ({ title, logo, avatar, search, icon, backIcon }) => {
             source={require('../assets/images/heza_logo.png')}
             resizeMode={FastImage.resizeMode.contain}
           />}
-          <Text fontFamily="semibold" fontSize="24">{' '}</Text>
+          <Text fontFamily="bold" fontSize="24">{' '}</Text>
 
         </HStack>
         <HStack alignItems="center">
-          {search && <Box alignSelf="center" bg="#6b47ba" p="2.5" mr="2" style={{ borderRadius: 10 }}>
+          {search && <Box alignSelf="center" bg="#8951f8" p="2.5" mr="2" style={{ borderRadius: 10 }}>
             <Icon
               as={Ionicons}
               name={'search'}
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontSize: 24,
     // fontWeight: '700',
-    fontFamily: CustomFonts.semibold,
+    fontFamily: CustomFonts.medium,
   },
 });
 

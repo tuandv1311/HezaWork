@@ -23,19 +23,19 @@ function BottomTab() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           let iconColor;
-          if (route.name === 'Jobs') {
-            iconName = 'briefcase-outline';
-            iconColor = focused ? '#6b47ba' : '#A7A7A7';
-          } else if (route.name === 'Discovery') {
-            iconName = 'md-compass-outline';
-            iconColor = focused ? '#6b47ba' : '#A7A7A7';
+          if (route.name === 'Home') {
+            iconName = 'home';
+            iconColor = focused ? '#7936ff' : '#A7A7A7';
+          } else if (route.name === 'Jobs') {
+            iconName = 'briefcase';
+            iconColor = focused ? '#7936ff' : '#A7A7A7';
           } else {
             iconName = 'settings-outline';
-            iconColor = focused ? '#6b47ba' : '#A7A7A7';
+            iconColor = focused ? '#7936ff' : '#A7A7A7';
           }
           return <Ionicons name={iconName} size={24} color={iconColor} />;
         },
-        tabBarActiveTintColor: '#6b47ba',
+        tabBarActiveTintColor: '#7936ff',
         tabBarInactiveTintColor: '#A7A7A7',
         tabBarStyle: {
           height: '10%',
@@ -71,7 +71,7 @@ function BottomTab() {
         // ),
         tabBarLabelStyle: {
           fontFamily: CustomFonts.semibold,
-          fontSize: 12,
+          fontSize: 13,
           marginBottom: Platform.OS === 'ios' && hasNotch ? undefined : 12,
         },
         style: {
@@ -83,14 +83,14 @@ function BottomTab() {
         options={{
           headerShown: false,
         }}
-        name="Jobs"
+        name="Home"
         component={HomeScreen}
       />
       <Tab.Screen
         options={{
           headerShown: false,
         }}
-        name="Discovery"
+        name="Jobs"
         component={JobSearch}
       />
     </Tab.Navigator>
