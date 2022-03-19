@@ -20,6 +20,7 @@ import {
   Code,
   Box,
   extendTheme,
+  StatusBar,
 } from 'native-base';
 import AppRoot from './src/AppRoot';
 
@@ -68,27 +69,32 @@ import AppRoot from './src/AppRoot';
 // };
 
 const theme = extendTheme({
-  fontConfig: {
-    light: 'LeagueSpartan-Light',
-    regular: 'LeagueSpartan-Regular',
-    medium: 'LeagueSpartan-Medium',
-    semibold: 'LeagueSpartan-SemiBold',
-    bold: 'LeagueSpartan-Bold',
-  },
+  // fontConfig: {
+  //   light: 'Nunito-Light',
+  //   regular: 'Nunito-Regular',
+  //   medium: 'Nunito-Medium',
+  //   semibold: 'Nunito-SemiBold',
+  //   bold: 'Nunito-Bold',
+  //   extrabold: 'Nunito-ExtraBold',
+  //   black: 'Nunito-Black',
+  // },
 
   // Make sure values below matches any of the keys in `fontConfig`
   fonts: {
-    light: 'LeagueSpartan-Light',
-    regular: 'LeagueSpartan-Regular',
-    medium: 'LeagueSpartan-Medium',
-    semibold: 'LeagueSpartan-SemiBold',
-    bold: 'LeagueSpartan-Bold',
+    light: 'Nunito-Light',
+    regular: 'Nunito-Regular',
+    medium: 'Nunito-Medium',
+    semibold: 'Nunito-SemiBold',
+    bold: 'Nunito-Bold',
+    extrabold: 'Nunito-ExtraBold',
+    black: 'Nunito-Black',
   },
 });
 
 const App = () => {
   return (
     <NativeBaseProvider theme={theme}>
+      <StatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
       <AppRoot />
     </NativeBaseProvider>
   );

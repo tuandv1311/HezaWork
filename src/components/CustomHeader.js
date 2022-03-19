@@ -1,14 +1,22 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { CustomFonts } from '../constants/AppConstants';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { Box, HStack, Icon, IconButton, StatusBar, Text, Avatar } from 'native-base';
+import {StyleSheet} from 'react-native';
+import {CustomFonts} from '../constants/AppConstants';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
+import {
+  Box,
+  HStack,
+  Icon,
+  IconButton,
+  StatusBar,
+  Text,
+  Avatar,
+} from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 
 const safeAreaHeight = getStatusBarHeight();
 
-const CustomHeader = ({ title, logo, avatar, search, icon, backIcon }) => {
+const CustomHeader = ({title, logo, avatar, search, icon, backIcon}) => {
   return (
     <>
       <StatusBar bg="#FFFFFF" barStyle="light-content" />
@@ -25,28 +33,37 @@ const CustomHeader = ({ title, logo, avatar, search, icon, backIcon }) => {
           <Text fontFamily="bold" fontSize="24">
             {title}
           </Text>
-          {logo && <FastImage
-            style={{ width: 170, height: 80, position: 'absolute' }}
-            source={require('../assets/images/heza_logo.png')}
-            resizeMode={FastImage.resizeMode.contain}
-          />}
-          <Text fontFamily="bold" fontSize="24">{' '}</Text>
-
+          {logo && (
+            <FastImage
+              style={{width: 170, height: 80, position: 'absolute'}}
+              source={require('../assets/images/heza_logo.png')}
+              resizeMode={FastImage.resizeMode.contain}
+            />
+          )}
+          <Text fontFamily="bold" fontSize="24">
+            {' '}
+          </Text>
         </HStack>
         <HStack alignItems="center">
-          {search && <Box alignSelf="center" bg="#8951f8" p="2.5" mr="2" style={{ borderRadius: 10 }}>
-            <Icon
-              as={Ionicons}
-              name={'search'}
-              size="25"
-              color="#FFFFFF"
-            />
-          </Box>}
-          {avatar && <Avatar bg="green.500" source={{
-            uri: "https://scontent.fhan2-4.fna.fbcdn.net/v/t1.6435-9/145775551_3261099993996131_3501307941742539165_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=IFOij_1MMmgAX-u8VF0&_nc_ht=scontent.fhan2-4.fna&oh=00_AT_0bNLHIOIFRGxzPEg10vPOqn5rVAZfx3YBniCWOzBJtg&oe=6255D11F"
-          }}>
-            VT
-          </Avatar>}
+          {search && (
+            <Box
+              alignSelf="center"
+              bg="#8951f8"
+              p="2.5"
+              mr="2"
+              style={{borderRadius: 10}}>
+              <Icon as={Ionicons} name={'search'} size="25" color="#FFFFFF" />
+            </Box>
+          )}
+          {avatar && (
+            <Avatar
+              bg="green.500"
+              source={{
+                uri: 'https://scontent.fhan2-4.fna.fbcdn.net/v/t1.6435-9/145775551_3261099993996131_3501307941742539165_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=IFOij_1MMmgAX-u8VF0&_nc_ht=scontent.fhan2-4.fna&oh=00_AT_0bNLHIOIFRGxzPEg10vPOqn5rVAZfx3YBniCWOzBJtg&oe=6255D11F',
+              }}>
+              VT
+            </Avatar>
+          )}
         </HStack>
       </HStack>
     </>

@@ -1,8 +1,9 @@
 export const CustomFonts = {
-  light: 'LeagueSpartan-Light',
-  regular: 'LeagueSpartan-Regular',
-  medium: 'LeagueSpartan-Medium',
-  semibold: 'LeagueSpartan-SemiBold',
-  bold: 'LeagueSpartan-Bold',
-  black: 'LeagueSpartan-Black',
+  light: 'Nunito-Light',
+  regular: 'Nunito-Regular',
+  medium: 'Nunito-Medium',
+  semibold: 'Nunito-SemiBold',
+  bold: 'Nunito-Bold',
+  extrabold: 'Nunito-ExtraBold',
+  black: 'Nunito-Black',
 };
