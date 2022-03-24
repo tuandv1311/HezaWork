@@ -23,6 +23,9 @@ import {
   StatusBar,
 } from 'native-base';
 import AppRoot from './src/AppRoot';
+import {LogBox} from 'react-native';
+
+LogBox.ignoreAllLogs();
 
 // Color Switch Component
 // function ToggleDarkMode() {
@@ -70,24 +73,24 @@ import AppRoot from './src/AppRoot';
 
 const theme = extendTheme({
   // fontConfig: {
-  //   light: 'Nunito-Light',
-  //   regular: 'Nunito-Regular',
-  //   medium: 'Nunito-Medium',
-  //   semibold: 'Nunito-SemiBold',
-  //   bold: 'Nunito-Bold',
-  //   extrabold: 'Nunito-ExtraBold',
-  //   black: 'Nunito-Black',
+  //   light: 'LexendDeca-Light',
+  //   regular: 'LexendDeca-Regular',
+  //   medium: 'LexendDeca-Medium',
+  //   semibold: 'LexendDeca-SemiBold',
+  //   bold: 'LexendDeca-Bold',
+  //   extrabold: 'LexendDeca-ExtraBold',
+  //   black: 'LexendDeca-Black',
   // },
 
   // Make sure values below matches any of the keys in `fontConfig`
   fonts: {
-    light: 'Nunito-Light',
-    regular: 'Nunito-Regular',
-    medium: 'Nunito-Medium',
-    semibold: 'Nunito-SemiBold',
-    bold: 'Nunito-Bold',
-    extrabold: 'Nunito-ExtraBold',
-    black: 'Nunito-Black',
+    light: 'LexendDeca-Light',
+    regular: 'LexendDeca-Regular',
+    medium: 'LexendDeca-Medium',
+    semibold: 'LexendDeca-SemiBold',
+    bold: 'LexendDeca-Bold',
+    extrabold: 'LexendDeca-ExtraBold',
+    black: 'LexendDeca-Black',
   },
 });
 

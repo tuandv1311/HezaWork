@@ -1,9 +1,9 @@
 export const CustomFonts = {
-  light: 'Nunito-Light',
-  regular: 'Nunito-Regular',
-  medium: 'Nunito-Medium',
-  semibold: 'Nunito-SemiBold',
-  bold: 'Nunito-Bold',
-  extrabold: 'Nunito-ExtraBold',
-  black: 'Nunito-Black',
+  light: 'LexendDeca-Light',
+  regular: 'LexendDeca-Regular',
+  medium: 'LexendDeca-Medium',
+  semibold: 'LexendDeca-SemiBold',
+  bold: 'LexendDeca-Bold',
+  extrabold: 'LexendDeca-ExtraBold',
+  black: 'LexendDeca-Black',
 };

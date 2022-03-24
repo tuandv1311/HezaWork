@@ -338,10 +338,10 @@ const HomeScreen = ({navigation}) => {
       contentContainerStyle={{paddingBottom: tabbarHeight + 50}}>
       <View style={styles.header}>
         <View style={{flex: 1}}>
-          <Text fontFamily="black" fontSize="24">
+          <Text fontFamily="bold" fontSize="24">
             {'Welcome back !'}
           </Text>
-          <Text fontFamily="bold" fontSize="18" color="#00000090">
+          <Text fontFamily="medium" fontSize="20" color="#00000090">
             {'Chào, Tuan Dinh'}
           </Text>
         </View>
@@ -440,7 +440,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
   },
   search: {
-    fontFamily: CustomFonts.medium,
+    fontFamily: CustomFonts.regular,
     fontSize: 16,
     borderRadius: 10,
     paddingHorizontal: 20,
