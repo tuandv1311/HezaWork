@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
-import {Text} from 'native-base';
+import {StatusBar, Text} from 'native-base';
 import JobTabView from './components/JobTabView';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -26,6 +26,11 @@ const JobDetail = ({navigation, route}) => {
         // paddingBottom: 100,
         backgroundColor: '#FFFFFF',
       }}>
+      {/* <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent={true}
+      /> */}
       <View style={styles.container}>
         <View
           style={{
