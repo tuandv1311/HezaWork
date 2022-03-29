@@ -48,7 +48,7 @@ function BottomTab() {
         tabBarActiveTintColor: '#8054ef',
         tabBarInactiveTintColor: '#A7A7A7',
         tabBarStyle: {
-          height: '8%',
+          height: '10%',
           // height: 90,
           paddingTop: 10,
           // backgroundColor: 'rgba(196, 196, 196, 0.01)',

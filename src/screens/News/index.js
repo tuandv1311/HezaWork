@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View, TouchableOpacity, Dimensions} from 'react-native';
 import React from 'react';
 import dummyNews from './data';
@@ -152,7 +153,7 @@ const News = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text mx={30} fontFamily="black" fontSize="24">
+      <Text mx={30} fontFamily="bold" fontSize="24">
         {'Tin tức'}
       </Text>
       <View>
@@ -191,7 +192,8 @@ export default News;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 30,
+    paddingTop: 50,
+    paddingBottom: 30,
     backgroundColor: '#ffffff',
   },
   latestNew: {

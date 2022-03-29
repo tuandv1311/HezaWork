@@ -6,63 +6,54 @@ import {
   Dimensions,
   TouchableOpacity,
   Linking,
+  ImageBackground,
+  StatusBar,
 } from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
-import {StatusBar, Text} from 'native-base';
+import {Text} from 'native-base';
 import JobTabView from './components/JobTabView';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const {width} = Dimensions.get('screen');
 
 const JobDetail = ({navigation, route}) => {
   const {item} = route.params;
   return (
-    <ScrollView
-      style={{flex: 1}}
-      contentContainerStyle={{
-        flexGrow: 1,
-        paddingTop: 30,
-        // paddingBottom: 100,
-        backgroundColor: '#FFFFFF',
-      }}>
-      {/* <StatusBar
-        barStyle="dark-content"
+    <View style={styles.container}>
+      <StatusBar
+        barStyle="light-content"
         backgroundColor="transparent"
+        // backgroundColor="red"
         translucent={true}
-      /> */}
-      <View style={styles.container}>
-        <View
-          style={{
-            marginHorizontal: 30,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <FastImage
-              style={{
-                width: 40,
-                height: 40,
-              }}
-              source={require('../../assets/icons/ic_back.png')}
-              resizeMode={FastImage.resizeMode.contain}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <FastImage
-              style={{
-                width: 40,
-                height: 40,
-                tintColor: 'red',
-                marginBottom: 5,
-              }}
-              source={require('../../assets/icons/ic_save.png')}
-              resizeMode={FastImage.resizeMode.contain}
+      />
+      <ImageBackground
+        source={require('../../assets/images/bg_detail.png')}
+        resizeMode="cover"
+        style={styles.bgImage}>
+        <View style={{marginTop: 50, paddingHorizontal: 25}}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 20,
+              backgroundColor: '#FFFFFF90',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Ionicons
+              name={'md-chevron-back'}
+              size={27}
+              color={'#FFFFFF'}
+              style={{marginRight: 1, marginTop: 2}}
             />
           </TouchableOpacity>
         </View>
-        <View style={styles.mainContent}>
+      </ImageBackground>
+      <View style={{marginTop: -30, paddingHorizontal: 25}}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View style={styles.logo}>
             <FastImage
               style={{
@@ -73,63 +64,29 @@ const JobDetail = ({navigation, route}) => {
               resizeMode={FastImage.resizeMode.contain}
             />
           </View>
-          <Text
-            mx={30}
-            numberOfLines={1}
-            fontFamily="bold"
-            fontSize="24"
-            style={{textAlign: 'center'}}>
-            {item.job_name}
-          </Text>
-          <Text
-            mx={30}
-            numberOfLines={1}
-            fontFamily="medium"
-            fontSize="20"
-            color="#6a676a">
-            Đăng bởi: {item.enterprise}
-          </Text>
-          <View
-            style={{marginTop: 15, flexDirection: 'row', alignItems: 'center'}}>
-            <FontAwesome5 name={'calendar-alt'} size={20} color={'#8054ef'} />
+          <View style={{marginLeft: 10, flex: 1}}>
             <Text
+              style={{}}
+              numberOfLines={1}
+              fontFamily="medium"
+              fontSize="15"
+              color={'#FFFFFF'}>
+              {'Công ty TNHH Đóng tàu Bình An'}
+            </Text>
+            <Text
+              style={{marginTop: 5}}
+              numberOfLines={2}
               fontFamily="regular"
-              fontSize="18"
-              color="#6a676a"
-              ml={2.5}
-              mb={0.5}>
-              8-03-2022
+              fontSize="12"
+              color={'#6a676a'}>
+              {
+                'Km 92/QL5, hường Hùng Vương, quận Hồng Bàng, thành phố Hải Phòng'
+              }
             </Text>
           </View>
-          <View style={{}}>
-            <JobTabView item={item} />
-          </View>
         </View>
-        <TouchableOpacity
-          onPress={() => {
-            Linking.openURL('https://work.thiendd.com/').catch(err =>
-              console.error("Couldn't load page", err),
-            );
-          }}
-          style={{
-            position: 'absolute',
-            alignSelf: 'center',
-            paddingTop: 10,
-            paddingBottom: 12,
-            paddingHorizontal: 40,
-            borderRadius: 15,
-            backgroundColor: '#8054ef',
-            bottom: 70,
-          }}>
-          <Text fontFamily="semibold" fontSize="20" color="#FFFFFF">
-            {'Ứng Tuyển Ngay'}
-          </Text>
-        </TouchableOpacity>
       </View>
-      {/* <Text fontFamily="regular" fontSize="20" color="#6a676a">
-        {item?.description}
-      </Text> */}
-    </ScrollView>
+    </View>
   );
 };
 
@@ -137,23 +94,28 @@ export default JobDetail;
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     // paddingHorizontal: 30,
+    // paddingTop: 40,
     paddingBottom: 100,
     backgroundColor: '#FFFFFF',
+  },
+  bgImage: {
+    width: '100%',
+    height: 160,
   },
   mainContent: {
     height: '100%',
     alignItems: 'center',
   },
   logo: {
-    margin: 30,
-    width: 100,
-    height: 100,
-    padding: 5,
+    width: 70,
+    height: 70,
+    padding: 10,
+    backgroundColor: '#f1f0f7',
+
     overflow: 'hidden',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 50,
+    borderRadius: 15,
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
@@ -161,6 +123,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.46,
     shadowRadius: 11.14,
-    elevation: 25,
+    elevation: 5,
   },
 });

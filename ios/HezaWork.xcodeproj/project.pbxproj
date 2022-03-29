@@ -8,67 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* HezaWorkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HezaWorkTests.m */; };
-		04AEB4D39BDB41A9890D0843 /* Fredoka-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B50FE14BD73442AB5D7B29E /* Fredoka-SemiBold.ttf */; };
-		09AE7DE1EDD1471F850ED723 /* LeagueSpartan-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49A23682692541A99D86D343 /* LeagueSpartan-ExtraBold.ttf */; };
-		114340F383BE4247927CBE9F /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78FB16884D584D988AB154D7 /* Nunito-SemiBold.ttf */; };
+		0BDEC5DFCE3E4DE5AA6FC284 /* LexendDeca-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F03CE7EA47DA4DF18FEEA741 /* LexendDeca-Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		182E28C8241243C8AED39299 /* LeagueSpartan-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F492A118AD24592BA8B9C00 /* LeagueSpartan-Regular.ttf */; };
-		1988D5E4311C44F19CE8BCF5 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 362AC282CE714C26B19DAA76 /* Nunito-Black.ttf */; };
-		29F1746FF93D4A539C29BEE0 /* LeagueSpartan-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB1AF026E44A4CCE8F602028 /* LeagueSpartan-Thin.ttf */; };
-		38C1967E21044D1B99129F8B /* Fredoka-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F120EB4D23BF44AB8E48FE53 /* Fredoka-Regular.ttf */; };
-		4141A5EEF659497FAF33321C /* LeagueSpartan-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4703EC63CA849EF9F6BB377 /* LeagueSpartan-Bold.ttf */; };
-		4A40573E70134B34920103EC /* Fredoka-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A16B734B0B2D4A639008BDA8 /* Fredoka-Bold.ttf */; };
-		542B940C55854534B7013ED4 /* LeagueSpartan-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C757C792E2BC4FFBAD591A80 /* LeagueSpartan-Medium.ttf */; };
-		5F853ABEBD4049BDA789FA59 /* Nunito-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A802CF52EE2642A783B8C8D4 /* Nunito-MediumItalic.ttf */; };
-		63A76FC1EF3B482585010F09 /* LeagueSpartan-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCFEAE7B4083432BB49D9820 /* LeagueSpartan-SemiBold.ttf */; };
-		649441B97CF547CE98ACD720 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 635827642CFE403BBF3E6338 /* Nunito-Bold.ttf */; };
-		6507D5BF52044314938DFF28 /* Fredoka-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62C6CD8394B04464A15B4312 /* Fredoka-Light.ttf */; };
-		68262A3C4DA84D3E9B9BBFFC /* Nunito-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 704FC7AEDF784D6B8F33FEA5 /* Nunito-ExtraBoldItalic.ttf */; };
-		689BEFD3EA5540DD93D020F1 /* LeagueSpartan-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2B063F76AC34EB9B367C231 /* LeagueSpartan-Light.ttf */; };
-		74C11358DA254F0BB37EA3FA /* Fredoka-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B54D27815994618A67F3C7B /* Fredoka-Medium.ttf */; };
-		7E258C1375B543C89736D1E1 /* Nunito-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C61BE99A416F4E0CB9BF0B59 /* Nunito-LightItalic.ttf */; };
-		80E80CFFE2DB4FC996CB163F /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18001A523C35476B81B77FDB /* Nunito-Regular.ttf */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		83292420E9EB46B4BEFBA92A /* LeagueSpartan-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DA20D4205B84A2A97082EBB /* LeagueSpartan-ExtraLight.ttf */; };
-		8654EE971E9243F9ADB04E5F /* Nunito-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA2BBE825B434D0B9FB6B5F8 /* Nunito-ExtraLightItalic.ttf */; };
-		8BFDACDBE6BA4C5E985EC587 /* Nunito-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C51F1026DADD4F94B7692ABE /* Nunito-ExtraLight.ttf */; };
-		97ABF84B1DBE7278DA4C3049 /* libPods-HezaWork-HezaWorkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA58660B00CE9B7D405A1F0 /* libPods-HezaWork-HezaWorkTests.a */; };
-		9DF807E2E29D41D7ABD2453E /* Nunito-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30171BF855CD4035BD70281F /* Nunito-SemiBoldItalic.ttf */; };
-		A29B9B1A9E1B45F88EC4CBB1 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 542C6B49935C4175ABCA2A60 /* Nunito-Medium.ttf */; };
-		AF3D5ED70CB3767207F40964 /* libPods-HezaWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F21E345EB720200BC3F7102 /* libPods-HezaWork.a */; };
-		BBDDF6B43325473FBAECB860 /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB367A1AD37840AC9E8B89AA /* Nunito-ExtraBold.ttf */; };
-		C24D3B7C913D46A6849CB703 /* Nunito-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 476DA33989AE4BA58554795E /* Nunito-BoldItalic.ttf */; };
-		D0252CCCDC5243659EE81FBA /* Nunito-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F57503A16C1542D889D175BE /* Nunito-Italic.ttf */; };
-		D02EEECE29C94464B35DA172 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0249C54915124890B40D996D /* Nunito-Light.ttf */; };
-		E0CE00C355594E9CA48B3BA3 /* Nunito-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E3A13125B6143699DE4F9F8 /* Nunito-BlackItalic.ttf */; };
-		FF52CAAE7394405F9A5292F8 /* LeagueSpartan-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C53240974E04F52898DC131 /* LeagueSpartan-Black.ttf */; };
-		AD91FAA3E5F44996B5BDF86F /* Mulish-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50C040EAB6DB4DF38048EF52 /* Mulish-Black.ttf */; };
-		6B71026E4DEA46D5A3136D54 /* Mulish-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4AA7233715CE4419AFBBA4AB /* Mulish-BlackItalic.ttf */; };
-		CFE4DC0202BC468F8435EC8D /* Mulish-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A876824A251C4BB6BE646E4C /* Mulish-Bold.ttf */; };
-		7A8934BC2F73494392DEB0BA /* Mulish-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97AF0846CA9B4B09A6FF5E56 /* Mulish-BoldItalic.ttf */; };
-		FDC577F1C682423E9CBDCAC6 /* Mulish-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0649086DD844E1682269435 /* Mulish-ExtraBold.ttf */; };
-		77529E28DC594971B2D716C0 /* Mulish-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 326688B6C0C546C39270968A /* Mulish-ExtraBoldItalic.ttf */; };
-		17575ADBFB354843B6D3CDBE /* Mulish-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4179B5C353FD44209C47FA6B /* Mulish-ExtraLight.ttf */; };
-		FA7EF3A3B6FB48B783C07E48 /* Mulish-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3B9F146BBF44E3DA109EB4B /* Mulish-ExtraLightItalic.ttf */; };
-		C1DB188B41794F1399743452 /* Mulish-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C35D0C62AC1243B481B69275 /* Mulish-Italic.ttf */; };
-		B27673B2F5A14F74A3D85CD0 /* Mulish-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9046F2ADA750433386C5429D /* Mulish-Light.ttf */; };
-		EF8505EEBF1B4F41835B858B /* Mulish-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDCB18A345714BD7B1F928CD /* Mulish-LightItalic.ttf */; };
-		05CDC7A5DDC7465CB5B4632E /* Mulish-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C07C158999A464CB6812D59 /* Mulish-Medium.ttf */; };
-		146B12CB9B1C4913ADF3F49C /* Mulish-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 555A292C6633488A8FB9938C /* Mulish-MediumItalic.ttf */; };
-		774A9EE9A5FD490DBA7F0565 /* Mulish-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB226528444D4949A270D71E /* Mulish-Regular.ttf */; };
-		BF71E55CA43840B797334E1F /* Mulish-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12AB4E248892457F85E557F1 /* Mulish-SemiBold.ttf */; };
-		01EA8DC42DCF476184A0DA53 /* Mulish-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E172045AA3A40F398EC856B /* Mulish-SemiBoldItalic.ttf */; };
-		A5943C8687B4434D8681BE8D /* LexendDeca-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3993E1FC0B2F44BC933FFD22 /* LexendDeca-Black.ttf */; };
-		ECCFF9BBB3724F16900EEA01 /* LexendDeca-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B513C905368D4A7A896E49DD /* LexendDeca-Bold.ttf */; };
-		7BCBA840EBE044F08B8C720A /* LexendDeca-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 392930EB983D42D1A1C8B156 /* LexendDeca-ExtraBold.ttf */; };
 		2517AD81FCDC4627B7641894 /* LexendDeca-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3DE656DAB6A42BBAA21D24A /* LexendDeca-ExtraLight.ttf */; };
+		7BCBA840EBE044F08B8C720A /* LexendDeca-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 392930EB983D42D1A1C8B156 /* LexendDeca-ExtraBold.ttf */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		97ABF84B1DBE7278DA4C3049 /* libPods-HezaWork-HezaWorkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA58660B00CE9B7D405A1F0 /* libPods-HezaWork-HezaWorkTests.a */; };
+		A5943C8687B4434D8681BE8D /* LexendDeca-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3993E1FC0B2F44BC933FFD22 /* LexendDeca-Black.ttf */; };
 		A5B728B4EC944DAABAD236C1 /* LexendDeca-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8D359FB5BB648A381D2816F /* LexendDeca-Light.ttf */; };
-		FFEB7AB5FB5848A5993DEA9D /* LexendDeca-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 455260EE4AEB40CE8B4CBD75 /* LexendDeca-Medium.ttf */; };
-		0BDEC5DFCE3E4DE5AA6FC284 /* LexendDeca-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F03CE7EA47DA4DF18FEEA741 /* LexendDeca-Regular.ttf */; };
+		AF3D5ED70CB3767207F40964 /* libPods-HezaWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F21E345EB720200BC3F7102 /* libPods-HezaWork.a */; };
 		E8A37779E8FC4BFDAAFE99EC /* LexendDeca-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C3821CFDEC54495B06F00B2 /* LexendDeca-SemiBold.ttf */; };
+		ECCFF9BBB3724F16900EEA01 /* LexendDeca-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B513C905368D4A7A896E49DD /* LexendDeca-Bold.ttf */; };
 		F85DE642DE2B419D861721F1 /* LexendDeca-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A1026ECE3B140E584695935 /* LexendDeca-Thin.ttf */; };
+		FFEB7AB5FB5848A5993DEA9D /* LexendDeca-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 455260EE4AEB40CE8B4CBD75 /* LexendDeca-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +43,7 @@
 		05DBE313CFBF49A18152CCCD /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		0698B44998F94F8991C073A2 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		09A451EBFD044594960C9144 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		12AB4E248892457F85E557F1 /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-SemiBold.ttf"; path = "../src/assets/fonts/Mulish-SemiBold.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* HezaWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HezaWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HezaWork/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = HezaWork/AppDelegate.m; sourceTree = "<group>"; };
@@ -98,14 +53,24 @@
 		169C5DA8329C4B4CB6F9CB26 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		18001A523C35476B81B77FDB /* Nunito-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Regular.ttf"; path = "../src/assets/fonts/Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		1B54D27815994618A67F3C7B /* Fredoka-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Fredoka-Medium.ttf"; path = "../src/assets/fonts/Fredoka-Medium.ttf"; sourceTree = "<group>"; };
+		1E172045AA3A40F398EC856B /* Mulish-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-SemiBoldItalic.ttf"; path = "../src/assets/fonts/Mulish-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		2AA58660B00CE9B7D405A1F0 /* libPods-HezaWork-HezaWorkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HezaWork-HezaWorkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30171BF855CD4035BD70281F /* Nunito-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-SemiBoldItalic.ttf"; path = "../src/assets/fonts/Nunito-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		326688B6C0C546C39270968A /* Mulish-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/Mulish-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		362AC282CE714C26B19DAA76 /* Nunito-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Black.ttf"; path = "../src/assets/fonts/Nunito-Black.ttf"; sourceTree = "<group>"; };
+		392930EB983D42D1A1C8B156 /* LexendDeca-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-ExtraBold.ttf"; path = "../src/assets/fonts/LexendDeca-ExtraBold.ttf"; sourceTree = "<group>"; };
+		3993E1FC0B2F44BC933FFD22 /* LexendDeca-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-Black.ttf"; path = "../src/assets/fonts/LexendDeca-Black.ttf"; sourceTree = "<group>"; };
+		4179B5C353FD44209C47FA6B /* Mulish-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-ExtraLight.ttf"; path = "../src/assets/fonts/Mulish-ExtraLight.ttf"; sourceTree = "<group>"; };
+		455260EE4AEB40CE8B4CBD75 /* LexendDeca-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-Medium.ttf"; path = "../src/assets/fonts/LexendDeca-Medium.ttf"; sourceTree = "<group>"; };
 		476DA33989AE4BA58554795E /* Nunito-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-BoldItalic.ttf"; path = "../src/assets/fonts/Nunito-BoldItalic.ttf"; sourceTree = "<group>"; };
 		49A23682692541A99D86D343 /* LeagueSpartan-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LeagueSpartan-ExtraBold.ttf"; path = "../src/assets/fonts/LeagueSpartan-ExtraBold.ttf"; sourceTree = "<group>"; };
+		4AA7233715CE4419AFBBA4AB /* Mulish-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-BlackItalic.ttf"; path = "../src/assets/fonts/Mulish-BlackItalic.ttf"; sourceTree = "<group>"; };
 		4C53240974E04F52898DC131 /* LeagueSpartan-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LeagueSpartan-Black.ttf"; path = "../src/assets/fonts/LeagueSpartan-Black.ttf"; sourceTree = "<group>"; };
 		4E3A13125B6143699DE4F9F8 /* Nunito-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-BlackItalic.ttf"; path = "../src/assets/fonts/Nunito-BlackItalic.ttf"; sourceTree = "<group>"; };
+		50C040EAB6DB4DF38048EF52 /* Mulish-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-Black.ttf"; path = "../src/assets/fonts/Mulish-Black.ttf"; sourceTree = "<group>"; };
 		542C6B49935C4175ABCA2A60 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Medium.ttf"; path = "../src/assets/fonts/Nunito-Medium.ttf"; sourceTree = "<group>"; };
+		555A292C6633488A8FB9938C /* Mulish-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-MediumItalic.ttf"; path = "../src/assets/fonts/Mulish-MediumItalic.ttf"; sourceTree = "<group>"; };
+		5A1026ECE3B140E584695935 /* LexendDeca-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-Thin.ttf"; path = "../src/assets/fonts/LexendDeca-Thin.ttf"; sourceTree = "<group>"; };
 		5DA20D4205B84A2A97082EBB /* LeagueSpartan-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LeagueSpartan-ExtraLight.ttf"; path = "../src/assets/fonts/LeagueSpartan-ExtraLight.ttf"; sourceTree = "<group>"; };
 		5F21E345EB720200BC3F7102 /* libPods-HezaWork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HezaWork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F492A118AD24592BA8B9C00 /* LeagueSpartan-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LeagueSpartan-Regular.ttf"; path = "../src/assets/fonts/LeagueSpartan-Regular.ttf"; sourceTree = "<group>"; };
@@ -118,58 +83,47 @@
 		7E5FA25B9851472AB95D3D5F /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HezaWork/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		841A8F62E550559A63AE17A8 /* Pods-HezaWork-HezaWorkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HezaWork-HezaWorkTests.release.xcconfig"; path = "Target Support Files/Pods-HezaWork-HezaWorkTests/Pods-HezaWork-HezaWorkTests.release.xcconfig"; sourceTree = "<group>"; };
+		8C3821CFDEC54495B06F00B2 /* LexendDeca-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-SemiBold.ttf"; path = "../src/assets/fonts/LexendDeca-SemiBold.ttf"; sourceTree = "<group>"; };
 		8F8314B725C6678861B0E6FB /* Pods-HezaWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HezaWork.release.xcconfig"; path = "Target Support Files/Pods-HezaWork/Pods-HezaWork.release.xcconfig"; sourceTree = "<group>"; };
+		9046F2ADA750433386C5429D /* Mulish-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-Light.ttf"; path = "../src/assets/fonts/Mulish-Light.ttf"; sourceTree = "<group>"; };
 		93E682304C6B4325B900639B /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		97AF0846CA9B4B09A6FF5E56 /* Mulish-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-BoldItalic.ttf"; path = "../src/assets/fonts/Mulish-BoldItalic.ttf"; sourceTree = "<group>"; };
 		97C2247C23534D6482668E4E /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		98E91E50E4B26C038E31EBF4 /* Pods-HezaWork-HezaWorkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HezaWork-HezaWorkTests.debug.xcconfig"; path = "Target Support Files/Pods-HezaWork-HezaWorkTests/Pods-HezaWork-HezaWorkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9AAB2BF66C323F2A05B84097 /* Pods-HezaWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HezaWork.debug.xcconfig"; path = "Target Support Files/Pods-HezaWork/Pods-HezaWork.debug.xcconfig"; sourceTree = "<group>"; };
+		9C07C158999A464CB6812D59 /* Mulish-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-Medium.ttf"; path = "../src/assets/fonts/Mulish-Medium.ttf"; sourceTree = "<group>"; };
 		A16B734B0B2D4A639008BDA8 /* Fredoka-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Fredoka-Bold.ttf"; path = "../src/assets/fonts/Fredoka-Bold.ttf"; sourceTree = "<group>"; };
 		A4703EC63CA849EF9F6BB377 /* LeagueSpartan-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LeagueSpartan-Bold.ttf"; path = "../src/assets/fonts/LeagueSpartan-Bold.ttf"; sourceTree = "<group>"; };
 		A560125BB3634B88AABADCBB /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		A802CF52EE2642A783B8C8D4 /* Nunito-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-MediumItalic.ttf"; path = "../src/assets/fonts/Nunito-MediumItalic.ttf"; sourceTree = "<group>"; };
+		A876824A251C4BB6BE646E4C /* Mulish-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-Bold.ttf"; path = "../src/assets/fonts/Mulish-Bold.ttf"; sourceTree = "<group>"; };
 		AA2BBE825B434D0B9FB6B5F8 /* Nunito-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraLightItalic.ttf"; path = "../src/assets/fonts/Nunito-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		B281789005BE494CBA267C0D /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		B3B9F146BBF44E3DA109EB4B /* Mulish-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-ExtraLightItalic.ttf"; path = "../src/assets/fonts/Mulish-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		B3C7FC35B27C44CBA98DA581 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		B513C905368D4A7A896E49DD /* LexendDeca-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-Bold.ttf"; path = "../src/assets/fonts/LexendDeca-Bold.ttf"; sourceTree = "<group>"; };
 		BB1AF026E44A4CCE8F602028 /* LeagueSpartan-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LeagueSpartan-Thin.ttf"; path = "../src/assets/fonts/LeagueSpartan-Thin.ttf"; sourceTree = "<group>"; };
 		BB8E7ABA287D4DEA8B1273E4 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		BDCB18A345714BD7B1F928CD /* Mulish-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-LightItalic.ttf"; path = "../src/assets/fonts/Mulish-LightItalic.ttf"; sourceTree = "<group>"; };
+		C35D0C62AC1243B481B69275 /* Mulish-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-Italic.ttf"; path = "../src/assets/fonts/Mulish-Italic.ttf"; sourceTree = "<group>"; };
 		C51F1026DADD4F94B7692ABE /* Nunito-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraLight.ttf"; path = "../src/assets/fonts/Nunito-ExtraLight.ttf"; sourceTree = "<group>"; };
 		C61BE99A416F4E0CB9BF0B59 /* Nunito-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-LightItalic.ttf"; path = "../src/assets/fonts/Nunito-LightItalic.ttf"; sourceTree = "<group>"; };
 		C757C792E2BC4FFBAD591A80 /* LeagueSpartan-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LeagueSpartan-Medium.ttf"; path = "../src/assets/fonts/LeagueSpartan-Medium.ttf"; sourceTree = "<group>"; };
 		CB461B79091B48B2B0E1357E /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		CCFEAE7B4083432BB49D9820 /* LeagueSpartan-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LeagueSpartan-SemiBold.ttf"; path = "../src/assets/fonts/LeagueSpartan-SemiBold.ttf"; sourceTree = "<group>"; };
 		D2B063F76AC34EB9B367C231 /* LeagueSpartan-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LeagueSpartan-Light.ttf"; path = "../src/assets/fonts/LeagueSpartan-Light.ttf"; sourceTree = "<group>"; };
+		D3DE656DAB6A42BBAA21D24A /* LexendDeca-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-ExtraLight.ttf"; path = "../src/assets/fonts/LexendDeca-ExtraLight.ttf"; sourceTree = "<group>"; };
 		D914F2D6E94B481C89438189 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		DB226528444D4949A270D71E /* Mulish-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-Regular.ttf"; path = "../src/assets/fonts/Mulish-Regular.ttf"; sourceTree = "<group>"; };
 		DD2F0B7511CA4DEFA6056212 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		E8D359FB5BB648A381D2816F /* LexendDeca-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-Light.ttf"; path = "../src/assets/fonts/LexendDeca-Light.ttf"; sourceTree = "<group>"; };
 		ED26A7E24040453F84D461FE /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F03CE7EA47DA4DF18FEEA741 /* LexendDeca-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-Regular.ttf"; path = "../src/assets/fonts/LexendDeca-Regular.ttf"; sourceTree = "<group>"; };
+		F0649086DD844E1682269435 /* Mulish-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-ExtraBold.ttf"; path = "../src/assets/fonts/Mulish-ExtraBold.ttf"; sourceTree = "<group>"; };
 		F120EB4D23BF44AB8E48FE53 /* Fredoka-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Fredoka-Regular.ttf"; path = "../src/assets/fonts/Fredoka-Regular.ttf"; sourceTree = "<group>"; };
 		F57503A16C1542D889D175BE /* Nunito-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Italic.ttf"; path = "../src/assets/fonts/Nunito-Italic.ttf"; sourceTree = "<group>"; };
 		FB367A1AD37840AC9E8B89AA /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraBold.ttf"; path = "../src/assets/fonts/Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
-		50C040EAB6DB4DF38048EF52 /* Mulish-Black.ttf */ = {isa = PBXFileReference; name = "Mulish-Black.ttf"; path = "../src/assets/fonts/Mulish-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4AA7233715CE4419AFBBA4AB /* Mulish-BlackItalic.ttf */ = {isa = PBXFileReference; name = "Mulish-BlackItalic.ttf"; path = "../src/assets/fonts/Mulish-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A876824A251C4BB6BE646E4C /* Mulish-Bold.ttf */ = {isa = PBXFileReference; name = "Mulish-Bold.ttf"; path = "../src/assets/fonts/Mulish-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		97AF0846CA9B4B09A6FF5E56 /* Mulish-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Mulish-BoldItalic.ttf"; path = "../src/assets/fonts/Mulish-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F0649086DD844E1682269435 /* Mulish-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Mulish-ExtraBold.ttf"; path = "../src/assets/fonts/Mulish-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		326688B6C0C546C39270968A /* Mulish-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "Mulish-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/Mulish-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4179B5C353FD44209C47FA6B /* Mulish-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Mulish-ExtraLight.ttf"; path = "../src/assets/fonts/Mulish-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B3B9F146BBF44E3DA109EB4B /* Mulish-ExtraLightItalic.ttf */ = {isa = PBXFileReference; name = "Mulish-ExtraLightItalic.ttf"; path = "../src/assets/fonts/Mulish-ExtraLightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C35D0C62AC1243B481B69275 /* Mulish-Italic.ttf */ = {isa = PBXFileReference; name = "Mulish-Italic.ttf"; path = "../src/assets/fonts/Mulish-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9046F2ADA750433386C5429D /* Mulish-Light.ttf */ = {isa = PBXFileReference; name = "Mulish-Light.ttf"; path = "../src/assets/fonts/Mulish-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BDCB18A345714BD7B1F928CD /* Mulish-LightItalic.ttf */ = {isa = PBXFileReference; name = "Mulish-LightItalic.ttf"; path = "../src/assets/fonts/Mulish-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9C07C158999A464CB6812D59 /* Mulish-Medium.ttf */ = {isa = PBXFileReference; name = "Mulish-Medium.ttf"; path = "../src/assets/fonts/Mulish-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		555A292C6633488A8FB9938C /* Mulish-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Mulish-MediumItalic.ttf"; path = "../src/assets/fonts/Mulish-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		DB226528444D4949A270D71E /* Mulish-Regular.ttf */ = {isa = PBXFileReference; name = "Mulish-Regular.ttf"; path = "../src/assets/fonts/Mulish-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		12AB4E248892457F85E557F1 /* Mulish-SemiBold.ttf */ = {isa = PBXFileReference; name = "Mulish-SemiBold.ttf"; path = "../src/assets/fonts/Mulish-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1E172045AA3A40F398EC856B /* Mulish-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "Mulish-SemiBoldItalic.ttf"; path = "../src/assets/fonts/Mulish-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3993E1FC0B2F44BC933FFD22 /* LexendDeca-Black.ttf */ = {isa = PBXFileReference; name = "LexendDeca-Black.ttf"; path = "../src/assets/fonts/LexendDeca-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B513C905368D4A7A896E49DD /* LexendDeca-Bold.ttf */ = {isa = PBXFileReference; name = "LexendDeca-Bold.ttf"; path = "../src/assets/fonts/LexendDeca-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		392930EB983D42D1A1C8B156 /* LexendDeca-ExtraBold.ttf */ = {isa = PBXFileReference; name = "LexendDeca-ExtraBold.ttf"; path = "../src/assets/fonts/LexendDeca-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D3DE656DAB6A42BBAA21D24A /* LexendDeca-ExtraLight.ttf */ = {isa = PBXFileReference; name = "LexendDeca-ExtraLight.ttf"; path = "../src/assets/fonts/LexendDeca-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E8D359FB5BB648A381D2816F /* LexendDeca-Light.ttf */ = {isa = PBXFileReference; name = "LexendDeca-Light.ttf"; path = "../src/assets/fonts/LexendDeca-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		455260EE4AEB40CE8B4CBD75 /* LexendDeca-Medium.ttf */ = {isa = PBXFileReference; name = "LexendDeca-Medium.ttf"; path = "../src/assets/fonts/LexendDeca-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F03CE7EA47DA4DF18FEEA741 /* LexendDeca-Regular.ttf */ = {isa = PBXFileReference; name = "LexendDeca-Regular.ttf"; path = "../src/assets/fonts/LexendDeca-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8C3821CFDEC54495B06F00B2 /* LexendDeca-SemiBold.ttf */ = {isa = PBXFileReference; name = "LexendDeca-SemiBold.ttf"; path = "../src/assets/fonts/LexendDeca-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5A1026ECE3B140E584695935 /* LexendDeca-Thin.ttf */ = {isa = PBXFileReference; name = "LexendDeca-Thin.ttf"; path = "../src/assets/fonts/LexendDeca-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,7 +318,6 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				709A7D5266F3FDC7382850A5 /* [CP] Embed Pods Frameworks */,
 				D2D1F9A61D5498138E1B354E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -387,7 +340,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				986B1E4244950B713634A6BB /* [CP] Embed Pods Frameworks */,
 				1238AF8F97C90CCC7AC7E4C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -449,52 +401,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				4A40573E70134B34920103EC /* Fredoka-Bold.ttf in Resources */,
-				6507D5BF52044314938DFF28 /* Fredoka-Light.ttf in Resources */,
-				74C11358DA254F0BB37EA3FA /* Fredoka-Medium.ttf in Resources */,
-				38C1967E21044D1B99129F8B /* Fredoka-Regular.ttf in Resources */,
-				04AEB4D39BDB41A9890D0843 /* Fredoka-SemiBold.ttf in Resources */,
-				4141A5EEF659497FAF33321C /* LeagueSpartan-Bold.ttf in Resources */,
-				689BEFD3EA5540DD93D020F1 /* LeagueSpartan-Light.ttf in Resources */,
-				542B940C55854534B7013ED4 /* LeagueSpartan-Medium.ttf in Resources */,
-				182E28C8241243C8AED39299 /* LeagueSpartan-Regular.ttf in Resources */,
-				63A76FC1EF3B482585010F09 /* LeagueSpartan-SemiBold.ttf in Resources */,
-				FF52CAAE7394405F9A5292F8 /* LeagueSpartan-Black.ttf in Resources */,
-				09AE7DE1EDD1471F850ED723 /* LeagueSpartan-ExtraBold.ttf in Resources */,
-				83292420E9EB46B4BEFBA92A /* LeagueSpartan-ExtraLight.ttf in Resources */,
-				29F1746FF93D4A539C29BEE0 /* LeagueSpartan-Thin.ttf in Resources */,
-				1988D5E4311C44F19CE8BCF5 /* Nunito-Black.ttf in Resources */,
-				E0CE00C355594E9CA48B3BA3 /* Nunito-BlackItalic.ttf in Resources */,
-				649441B97CF547CE98ACD720 /* Nunito-Bold.ttf in Resources */,
-				C24D3B7C913D46A6849CB703 /* Nunito-BoldItalic.ttf in Resources */,
-				BBDDF6B43325473FBAECB860 /* Nunito-ExtraBold.ttf in Resources */,
-				68262A3C4DA84D3E9B9BBFFC /* Nunito-ExtraBoldItalic.ttf in Resources */,
-				8BFDACDBE6BA4C5E985EC587 /* Nunito-ExtraLight.ttf in Resources */,
-				8654EE971E9243F9ADB04E5F /* Nunito-ExtraLightItalic.ttf in Resources */,
-				D0252CCCDC5243659EE81FBA /* Nunito-Italic.ttf in Resources */,
-				D02EEECE29C94464B35DA172 /* Nunito-Light.ttf in Resources */,
-				7E258C1375B543C89736D1E1 /* Nunito-LightItalic.ttf in Resources */,
-				A29B9B1A9E1B45F88EC4CBB1 /* Nunito-Medium.ttf in Resources */,
-				5F853ABEBD4049BDA789FA59 /* Nunito-MediumItalic.ttf in Resources */,
-				80E80CFFE2DB4FC996CB163F /* Nunito-Regular.ttf in Resources */,
-				114340F383BE4247927CBE9F /* Nunito-SemiBold.ttf in Resources */,
-				9DF807E2E29D41D7ABD2453E /* Nunito-SemiBoldItalic.ttf in Resources */,
-				AD91FAA3E5F44996B5BDF86F /* Mulish-Black.ttf in Resources */,
-				6B71026E4DEA46D5A3136D54 /* Mulish-BlackItalic.ttf in Resources */,
-				CFE4DC0202BC468F8435EC8D /* Mulish-Bold.ttf in Resources */,
-				7A8934BC2F73494392DEB0BA /* Mulish-BoldItalic.ttf in Resources */,
-				FDC577F1C682423E9CBDCAC6 /* Mulish-ExtraBold.ttf in Resources */,
-				77529E28DC594971B2D716C0 /* Mulish-ExtraBoldItalic.ttf in Resources */,
-				17575ADBFB354843B6D3CDBE /* Mulish-ExtraLight.ttf in Resources */,
-				FA7EF3A3B6FB48B783C07E48 /* Mulish-ExtraLightItalic.ttf in Resources */,
-				C1DB188B41794F1399743452 /* Mulish-Italic.ttf in Resources */,
-				B27673B2F5A14F74A3D85CD0 /* Mulish-Light.ttf in Resources */,
-				EF8505EEBF1B4F41835B858B /* Mulish-LightItalic.ttf in Resources */,
-				05CDC7A5DDC7465CB5B4632E /* Mulish-Medium.ttf in Resources */,
-				146B12CB9B1C4913ADF3F49C /* Mulish-MediumItalic.ttf in Resources */,
-				774A9EE9A5FD490DBA7F0565 /* Mulish-Regular.ttf in Resources */,
-				BF71E55CA43840B797334E1F /* Mulish-SemiBold.ttf in Resources */,
-				01EA8DC42DCF476184A0DA53 /* Mulish-SemiBoldItalic.ttf in Resources */,
 				A5943C8687B4434D8681BE8D /* LexendDeca-Black.ttf in Resources */,
 				ECCFF9BBB3724F16900EEA01 /* LexendDeca-Bold.ttf in Resources */,
 				7BCBA840EBE044F08B8C720A /* LexendDeca-ExtraBold.ttf in Resources */,
@@ -563,23 +469,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		709A7D5266F3FDC7382850A5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HezaWork-HezaWorkTests/Pods-HezaWork-HezaWorkTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HezaWork-HezaWorkTests/Pods-HezaWork-HezaWorkTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HezaWork-HezaWorkTests/Pods-HezaWork-HezaWorkTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8296D77DABB55A01ABDEFC01 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -600,23 +489,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		986B1E4244950B713634A6BB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HezaWork/Pods-HezaWork-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HezaWork/Pods-HezaWork-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HezaWork/Pods-HezaWork-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D2D1F9A61D5498138E1B354E /* [CP] Copy Pods Resources */ = {
