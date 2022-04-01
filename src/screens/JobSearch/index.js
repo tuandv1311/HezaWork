@@ -1,11 +1,17 @@
 /* eslint-disable react-native/no-inline-styles */
-import { StyleSheet, TouchableOpacity, View, TextInput } from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  TextInput,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { CustomFonts } from '../../constants/AppConstants';
-import { FlatList, Text } from 'native-base';
+import {CustomFonts} from '../../constants/AppConstants';
+import {FlatList, Text} from 'native-base';
 
 const recommendedJobs = [
   {
@@ -142,11 +148,11 @@ const recommendedJobs = [
   },
 ];
 
-const JobSearch = ({ navigation }) => {
-  const renderItem = ({ item, index }) => {
+const JobSearch = ({navigation}) => {
+  const renderItem = ({item, index}) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('JobDetail', { item: item })}
+        onPress={() => navigation.navigate('JobDetail', {item: item})}
         style={[
           styles.jobItem,
           {
@@ -160,8 +166,8 @@ const JobSearch = ({ navigation }) => {
             marginBottom: 10,
           },
         ]}>
-        <View style={{ flex: 1, flexDirection: 'row' }}>
-          <View style={[styles.logo, { marginRight: 15 }]}>
+        <View style={{flex: 1, flexDirection: 'row'}}>
+          <View style={[styles.logo, {marginRight: 15}]}>
             <FastImage
               style={{
                 width: '100%',
@@ -171,9 +177,9 @@ const JobSearch = ({ navigation }) => {
               resizeMode={FastImage.resizeMode.contain}
             />
           </View>
-          <View style={{ flex: 1 }}>
+          <View style={{flex: 1}}>
             <Text
-              style={{ width: '100%' }}
+              style={{width: '100%'}}
               numberOfLines={2}
               fontFamily="extrabold"
               fontSize="18"
@@ -181,7 +187,7 @@ const JobSearch = ({ navigation }) => {
               {item.job_name}
             </Text>
             <Text
-              style={{ marginTop: 5 }}
+              style={{marginTop: 5}}
               numberOfLines={1}
               fontFamily="medium"
               fontSize="18"
@@ -212,6 +218,13 @@ const JobSearch = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        // backgroundColor="red"
+        translucent={true}
+      />
+
       <View
         style={{
           marginHorizontal: 30,
@@ -219,7 +232,7 @@ const JobSearch = ({ navigation }) => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        {/* <TouchableOpacity onPress={() => navigation.goBack()}>
           <FastImage
             style={{
               width: 40,
@@ -228,22 +241,23 @@ const JobSearch = ({ navigation }) => {
             source={require('../../assets/icons/ic_back.png')}
             resizeMode={FastImage.resizeMode.contain}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        <View style={{ flex: 1, marginLeft: 10 }}>
-          <TextInput placeholder={'Tìm kiếm công việc'} placeholderTextColor={'#cacdd8'} style={styles.search} />
-          <Ionicons
-            name={'search'}
-            size={24}
-            color={'#cacdd8'}
-            style={{ position: 'absolute', right: 20, top: '25%' }}
+        <View style={{flex: 1}}>
+          <TextInput
+            placeholder={'Tìm kiếm công việc'}
+            placeholderTextColor={'#cacdd8'}
+            style={styles.searchBar}
           />
         </View>
-        <View style={styles.menu}>
-          <AntDesign name={'menuunfold'} size={18} color={'#FFFFFF'} />
-        </View>
+        <Ionicons
+          name={'search'}
+          size={24}
+          color={'#cacdd8'}
+          style={{position: 'absolute', left: 10, top: 30}}
+        />
       </View>
-      <View style={{ flex: 1, marginTop: 10 }}>
+      <View style={{flex: 1, marginTop: 10}}>
         <FlatList
           contentContainerStyle={{
             paddingTop: 20,
@@ -266,6 +280,28 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 30,
     backgroundColor: '#FFFFFF',
+  },
+  searchBar: {
+    fontFamily: CustomFonts.regular,
+    fontSize: 16,
+    paddingVertical: 15,
+    paddingLeft: 40,
+    backgroundColor: '#fbf8ff',
+    borderRadius: 30,
+    marginTop: 20,
+    marginBottom: 15,
+    alignItems: 'center',
+    flexDirection: 'row',
+    // marginHorizontal: 30,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   search: {
     fontFamily: CustomFonts.medium,

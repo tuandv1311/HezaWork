@@ -19,6 +19,7 @@
     "react-native-device-info": "^8.5.0",
     "react-native-fast-image": "^8.5.11",
     "react-native-pager-view": "^5.4.15",
+    "react-native-render-html": "^6.3.4",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.13.1",
     "react-native-status-bar-height": "^2.6.0",

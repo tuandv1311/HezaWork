@@ -80,7 +80,7 @@ function BottomTab() {
         //   />
         // ),
         tabBarLabelStyle: {
-          fontFamily: CustomFonts.bold,
+          fontFamily: CustomFonts.semibold,
           fontSize: 13,
           marginBottom: Platform.OS === 'ios' && hasNotch ? undefined : 12,
         },

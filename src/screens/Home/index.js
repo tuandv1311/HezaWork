@@ -303,28 +303,6 @@ const HomeScreen = ({navigation}) => {
             }}>
             <FontAwesome5 name={'coins'} size={22} color={'#FFFFFF'} />
           </View>
-          {/* <Text
-            style={{marginBottom: 1}}
-            fontFamily="medium"
-            fontSize="16"
-            color={'#FFFFFF'}>
-            Mức lương:{' '}
-          </Text> */}
-          {/* <View
-            style={{
-              paddingHorizontal: 5,
-              borderRadius: 10,
-              backgroundColor: '#FFFFFF',
-              marginLeft: 5,
-            }}>
-            <Text
-              style={{marginBottom: 2}}
-              fontFamily="medium"
-              fontSize="16"
-              color={'#8054ef'}>
-              10-15 Triệu
-            </Text>
-          </View> */}
           <View style={{marginLeft: 7}}>
             <Text
               numberOfLines={1}

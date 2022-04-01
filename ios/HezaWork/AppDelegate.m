@@ -30,6 +30,16 @@
 //#ifdef FB_SONARKIT_ENABLED
 //  InitializeFlipper(application);
 //#endif
+  
+  for (NSString* family in [UIFont familyNames])
+    {
+      NSLog(@"CUSTOM family %@", family);
+      for (NSString* name in [UIFont fontNamesForFamilyName: family])
+      {
+        NSLog(@"CUSTOM name %@", name);
+      }
+    }
+
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
