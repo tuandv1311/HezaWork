@@ -10,18 +10,44 @@ import {
   StatusBar,
   Text,
 } from 'react-native';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import FastImage from 'react-native-fast-image';
-import JobTabView from './components/JobTabView';
+// import JobTabView from './components/JobTabView';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import RenderHtml from 'react-native-render-html';
 import {CustomFonts, source} from '../../constants/AppConstants';
+import {getJobDetailApi} from '../../services/api';
+import {addJobData} from '../../services/helpers';
 
 const {width} = Dimensions.get('screen');
 
 const JobDetail = ({navigation, route}) => {
   const {item} = route.params;
+  const [jobDetail, setJobDetail] = useState({});
+
+  useEffect(() => {
+    const onFocus = navigation.addListener('focus', () => {
+      getJobDetail();
+    });
+    return onFocus;
+  }, [navigation]);
+
+  const onAddJobData = async data => {
+    await addJobData(data);
+  };
+
+  const getJobDetail = async () => {
+    try {
+      const data = await getJobDetailApi(item?.id_viec);
+      console.log('getJobDetail', data);
+      setJobDetail(data?.data[0]);
+    } catch (error) {
+      console.log('getJobDetail error', error);
+      setJobDetail({});
+    }
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar
@@ -56,14 +82,14 @@ const JobDetail = ({navigation, route}) => {
         </TouchableOpacity>
         <Text
           style={{
-            marginLeft: 20,
+            marginHorizontal: 20,
             marginBottom: 1,
             fontFamily: CustomFonts.semibold,
             fontSize: 22,
             color: '#000000',
           }}
-          numberOfLines={1}>
-          {'Kỹ thuật viên nhà máy'}
+          numberOfLines={2}>
+          {jobDetail?.ten_cong_viec}
         </Text>
       </View>
       <View style={styles.separator} />
@@ -78,7 +104,7 @@ const JobDetail = ({navigation, route}) => {
                   color: '#000000',
                 }}
                 numberOfLines={1}>
-                {'Công ty TNHH Đóng tàu Bình An'}
+                {item?.ten_dn}
               </Text>
               <Text
                 style={{
@@ -87,10 +113,8 @@ const JobDetail = ({navigation, route}) => {
                   fontSize: 13,
                   color: '#6a676a',
                 }}
-                numberOfLines={2}>
-                {
-                  'Km 92/QL5, hường Hùng Vương, quận Hồng Bàng, thành phố Hải Phòng'
-                }
+                numberOfLines={3}>
+                {jobDetail?.noi_lam_viec}
               </Text>
             </View>
             <View style={styles.logo}>
@@ -99,8 +123,10 @@ const JobDetail = ({navigation, route}) => {
                   width: '100%',
                   height: '100%',
                 }}
-                source={item.logo}
-                resizeMode={FastImage.resizeMode.contain}
+                source={{
+                  uri: `https://tuyendung.haiphong.vn/assets/uploads/${jobDetail?.logo}`,
+                }}
+                resizeMode={FastImage.resizeMode.cover}
               />
             </View>
           </View>
@@ -130,7 +156,7 @@ const JobDetail = ({navigation, route}) => {
                   color: '#8054ef',
                 }}
                 numberOfLines={2}>
-                Thực tập
+                {jobDetail?.ten_loai_viec}
               </Text>
             </View>
             <View
@@ -151,7 +177,7 @@ const JobDetail = ({navigation, route}) => {
                   color: '#8054ef',
                 }}
                 numberOfLines={2}>
-                Giờ hành chính
+                {jobDetail?.loai_tg_lv}
               </Text>
             </View>
             <View
@@ -172,7 +198,7 @@ const JobDetail = ({navigation, route}) => {
                   color: '#8054ef',
                 }}
                 numberOfLines={2}>
-                Trưởng nhóm / Giám sát
+                {jobDetail?.ten_chuc_danh}
               </Text>
             </View>
             <View
@@ -193,7 +219,7 @@ const JobDetail = ({navigation, route}) => {
                   color: '#8054ef',
                 }}
                 numberOfLines={2}>
-                Kỹ thuật cơ khí
+                {jobDetail?.ten_nganh_nghe}
               </Text>
             </View>
           </View>
@@ -231,7 +257,7 @@ const JobDetail = ({navigation, route}) => {
                   color: '#3d3d3d',
                 }}
                 numberOfLines={1}>
-                10-15 Triệu
+                {jobDetail?.ten_muc_luong}
               </Text>
             </View>
           </View>
@@ -269,8 +295,8 @@ const JobDetail = ({navigation, route}) => {
                   fontSize: 15,
                   color: '#3d3d3d',
                 }}
-                numberOfLines={2}>
-                Công ty 4p electronics, khu CN Tràng Duệ, An Dương, Hải phòng
+                numberOfLines={3}>
+                {jobDetail?.noi_lam_viec}
               </Text>
             </View>
           </View>
@@ -292,7 +318,9 @@ const JobDetail = ({navigation, route}) => {
           <View>
             <RenderHtml
               contentWidth={width - 50}
-              source={source}
+              source={{
+                html: jobDetail?.mota_vl,
+              }}
               tagsStyles={{
                 div: {
                   fontSize: 15,
@@ -302,6 +330,11 @@ const JobDetail = ({navigation, route}) => {
                 h3: {
                   fontSize: 16,
                   fontFamily: CustomFonts.bold,
+                },
+                p: {
+                  fontSize: 16,
+                  fontFamily: CustomFonts.regular,
+                  lineHeight: 22,
                 },
               }}
             />
@@ -316,7 +349,7 @@ const JobDetail = ({navigation, route}) => {
           flexDirection: 'row',
           paddingHorizontal: 25,
         }}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => onAddJobData(jobDetail)}>
           <FastImage
             style={{width: 60, height: 60}}
             source={require('../../assets/icons/ic_save.png')}
@@ -324,6 +357,11 @@ const JobDetail = ({navigation, route}) => {
           />
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => {
+            Linking.openURL('https://work.thiendd.com/').catch(err =>
+              console.error("Couldn't load page", err),
+            );
+          }}
           style={{
             flex: 1,
             marginLeft: 15,
@@ -370,9 +408,9 @@ const styles = StyleSheet.create({
   logo: {
     width: 70,
     height: 70,
-    padding: 10,
     backgroundColor: '#f1f0f7',
-
+    borderColor: '#f1f0f7',
+    borderWidth: 2,
     overflow: 'hidden',
     borderRadius: 15,
     shadowColor: '#000000',

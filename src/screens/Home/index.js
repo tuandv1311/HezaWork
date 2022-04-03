@@ -3,30 +3,49 @@ import {
   FlatList,
   ScrollView,
   StyleSheet,
-  TextInput,
   View,
   TouchableOpacity,
   Dimensions,
   StatusBar,
   Text,
 } from 'react-native';
-import React from 'react';
-import {Input, Icon, Avatar} from 'native-base';
+import React, {useEffect, useState} from 'react';
+import {Avatar} from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
-
-import {CustomFonts, popularJobs} from '../../constants/AppConstants';
+import {CustomFonts} from '../../constants/AppConstants';
 import FastImage from 'react-native-fast-image';
+import {getJobsListApi} from '../../services/api';
+import {addJobData, getJobsData} from '../../services/helpers';
 
 const {width} = Dimensions.get('screen');
 
 const HomeScreen = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
+  const [jobsList, setJobsList] = useState([]);
+
+  useEffect(() => {
+    const onFocus = navigation.addListener('focus', () => {
+      getJobsList();
+    });
+    return onFocus;
+  }, [navigation]);
+
+  const getJobsList = async () => {
+    try {
+      const data = await getJobsListApi();
+      console.log('getJobsList', data);
+      setJobsList(data?.data);
+    } catch (error) {
+      console.log('getJobsList error', error);
+      setJobsList([]);
+    }
+  };
+
+  const onAddJobData = async data => {
+    await addJobData(data);
+  };
 
   const renderPopularItem = ({item, index}) => {
     return (
@@ -51,24 +70,12 @@ const HomeScreen = ({navigation}) => {
                 width: '100%',
                 height: '100%',
               }}
-              source={item.logo}
+              source={{
+                uri: `https://tuyendung.haiphong.vn/assets/uploads/${item?.logo}`,
+              }}
               resizeMode={FastImage.resizeMode.contain}
             />
           </View>
-          {/* <TouchableOpacity>
-            <FastImage
-              style={{
-                width: 40,
-                height: 40,
-              }}
-              source={
-                index % 2
-                  ? require('../../assets/icons/ic_save.png')
-                  : require('../../assets/icons/ic_save.png')
-              }
-              resizeMode={FastImage.resizeMode.contain}
-            />
-          </TouchableOpacity> */}
           <Text
             numberOfLines={2}
             style={{
@@ -78,7 +85,7 @@ const HomeScreen = ({navigation}) => {
               fontSize: 17,
               color: '#FFFFFF',
             }}>
-            Công ty TNHH Đóng tàu Bình An
+            {item?.ten_dn}
           </Text>
         </View>
         <View
@@ -94,7 +101,7 @@ const HomeScreen = ({navigation}) => {
             }}>
             <FontAwesome5 name={'briefcase'} size={22} color={'#FFFFFF'} />
           </View>
-          <View style={{marginLeft: 7}}>
+          <View style={{marginHorizontal: 7, flex: 1}}>
             <Text
               numberOfLines={1}
               style={{
@@ -111,7 +118,7 @@ const HomeScreen = ({navigation}) => {
                 fontSize: 15,
                 color: '#FFFFFF',
               }}>
-              Thợ sắt hàn
+              {item?.ten_cong_viec}
             </Text>
           </View>
         </View>
@@ -147,7 +154,7 @@ const HomeScreen = ({navigation}) => {
                 color: '#FFFFFF',
               }}
               numberOfLines={1}>
-              10-15 Triệu
+              {item?.ten_muc_luong}
             </Text>
           </View>
         </View>
@@ -173,10 +180,11 @@ const HomeScreen = ({navigation}) => {
                 fontSize: 14,
                 color: '#FFFFFF',
               }}>
-              Làm chính thức
+              {item?.ten_loai_viec}
             </Text>
           </View>
           <TouchableOpacity
+            onPress={() => onAddJobData(item)}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -227,10 +235,10 @@ const HomeScreen = ({navigation}) => {
             style={[
               styles.logo,
               {
+                borderRadius: 15,
                 marginRight: 10,
                 width: 70,
                 height: 70,
-                padding: 10,
                 backgroundColor: '#f1f0f7',
               },
             ]}>
@@ -239,7 +247,9 @@ const HomeScreen = ({navigation}) => {
                 width: '100%',
                 height: '100%',
               }}
-              source={item.logo}
+              source={{
+                uri: `https://tuyendung.haiphong.vn/assets/uploads/${item?.logo}`,
+              }}
               resizeMode={FastImage.resizeMode.contain}
             />
           </View>
@@ -252,7 +262,7 @@ const HomeScreen = ({navigation}) => {
                 color: '#000000',
               }}
               numberOfLines={1}>
-              {item.job_name}
+              {item.ten_cong_viec}
             </Text>
             <Text
               style={{
@@ -262,7 +272,7 @@ const HomeScreen = ({navigation}) => {
                 color: '#6a676a',
               }}
               numberOfLines={1}>
-              {'Công ty TNHH Đóng tàu Bình An'}
+              {item.ten_dn}
             </Text>
             <View
               style={{
@@ -285,7 +295,7 @@ const HomeScreen = ({navigation}) => {
                     color: '#FFFFFF',
                   }}
                   numberOfLines={1}>
-                  {'10-15 Triệu'}
+                  {item.ten_muc_luong}
                 </Text>
               </View>
               <View
@@ -304,7 +314,7 @@ const HomeScreen = ({navigation}) => {
                     color: '#FFFFFF',
                   }}
                   numberOfLines={1}>
-                  {'Làm chính thức'}
+                  {item.ten_loai_viec}
                 </Text>
               </View>
             </View>
@@ -391,9 +401,9 @@ const HomeScreen = ({navigation}) => {
               paddingLeft: 25,
               // paddingRight: 15,
             }}
-            data={popularJobs}
+            data={jobsList}
             renderItem={renderPopularItem}
-            keyExtractor={item => String(item.id)}
+            keyExtractor={item => String(item.id_viec)}
           />
         </View>
         <View style={{marginTop: 10}}>
@@ -413,9 +423,9 @@ const HomeScreen = ({navigation}) => {
               paddingBottom: 20,
               paddingHorizontal: 25,
             }}
-            data={popularJobs}
+            data={jobsList}
             renderItem={renderRecommendedItem}
-            keyExtractor={item => String(item.id)}
+            keyExtractor={item => String(item.id_viec)}
           />
         </View>
       </View>
@@ -493,10 +503,10 @@ const styles = StyleSheet.create({
   logo: {
     width: 50,
     height: 50,
-    padding: 10,
+    // padding: 10,
     overflow: 'hidden',
     backgroundColor: '#FFFFFF30',
-    borderRadius: 15,
+    borderRadius: 10,
     shadowColor: '#00000010',
     shadowOffset: {
       width: 0,

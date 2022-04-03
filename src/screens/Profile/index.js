@@ -6,18 +6,52 @@ import {
   StatusBar,
   Text,
   FlatList,
+  Alert,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import FastImage from 'react-native-fast-image';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import {CustomFonts, popularJobs} from '../../constants/AppConstants';
+import {CustomFonts} from '../../constants/AppConstants';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {clearAll, getJobsData, removeJobData} from '../../services/helpers';
 
 const Profile = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
+  const [savedJobs, setSavedJobs] = useState([]);
+
+  useEffect(() => {
+    const onFocus = navigation.addListener('focus', () => {
+      getJobsDataLocal();
+    });
+    return onFocus;
+  }, [navigation]);
+
+  const getJobsDataLocal = async () => {
+    const oldData = await getJobsData();
+    setSavedJobs(oldData);
+    console.log('getJobsDataLocal', oldData);
+  };
+
+  const removeJobFromLocal = async data => {
+    Alert.alert(
+      'Xóa công việc?',
+      'Bạn có chắc chắn muốn xóa việc này khỏi danh sách không?',
+      [
+        {
+          text: 'Xóa',
+          onPress: async () => {
+            await removeJobData(data);
+            getJobsDataLocal();
+          },
+          style: 'destructive',
+        },
+        {text: 'Hủy', onPress: () => console.log('Cancel')},
+      ],
+    );
+  };
 
   const renderSavedJobs = ({item, index}) => {
     return (
@@ -32,7 +66,6 @@ const Profile = ({navigation}) => {
                 marginRight: 10,
                 width: 70,
                 height: 70,
-                padding: 10,
                 backgroundColor: '#f1f0f7',
               },
             ]}>
@@ -41,7 +74,9 @@ const Profile = ({navigation}) => {
                 width: '100%',
                 height: '100%',
               }}
-              source={item.logo}
+              source={{
+                uri: `https://tuyendung.haiphong.vn/assets/uploads/${item?.logo}`,
+              }}
               resizeMode={FastImage.resizeMode.contain}
             />
           </View>
@@ -54,7 +89,7 @@ const Profile = ({navigation}) => {
                 color: '#8054ef',
               }}
               numberOfLines={1}>
-              {'Làm chính thức'}
+              {item?.ten_loai_viec}
             </Text>
             <Text
               style={{
@@ -64,7 +99,7 @@ const Profile = ({navigation}) => {
                 color: '#000000',
               }}
               numberOfLines={1}>
-              {item.job_name}
+              {item?.ten_cong_viec}
             </Text>
             <Text
               style={{
@@ -74,7 +109,7 @@ const Profile = ({navigation}) => {
                 color: '#6a676a',
               }}
               numberOfLines={1}>
-              {'Công ty TNHH Đóng tàu Bình An'}
+              {item?.ten_dn}
             </Text>
           </View>
         </View>
@@ -101,10 +136,11 @@ const Profile = ({navigation}) => {
                 color: '#000000',
               }}
               numberOfLines={1}>
-              {'10-15 Triệu'}
+              {item?.ten_muc_luong}
             </Text>
           </View>
           <TouchableOpacity
+            onPress={() => removeJobFromLocal(item)}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -130,6 +166,26 @@ const Profile = ({navigation}) => {
     );
   };
 
+  const renderEmptySavedJobs = () => {
+    return (
+      <View style={{alignItems: 'center'}}>
+        <FastImage
+          style={{
+            width: '100%',
+            height: 200,
+          }}
+          source={require('../../assets/icons/ic_empty.png')}
+          resizeMode={FastImage.resizeMode.contain}
+        />
+        <Text
+          style={{fontFamily: CustomFonts.medium, fontSize: 16, marginTop: -30}}
+          numberOfLines={1}>
+          {'Bạn chưa lưu công việc nào cả'}
+        </Text>
+      </View>
+    );
+  };
+
   return (
     <View style={[styles.container, {paddingBottom: tabbarHeight}]}>
       <StatusBar
@@ -142,7 +198,7 @@ const Profile = ({navigation}) => {
           {'Hồ sơ'}
         </Text>
         <TouchableOpacity
-          onPress={() => navigation.goBack()}
+          onPress={async () => await clearAll()}
           style={styles.logout}>
           <AntDesign
             name={'logout'}
@@ -200,8 +256,9 @@ const Profile = ({navigation}) => {
             paddingBottom: tabbarHeight + 200,
             paddingHorizontal: 25,
           }}
-          data={popularJobs}
+          data={savedJobs}
           renderItem={renderSavedJobs}
+          ListEmptyComponent={renderEmptySavedJobs}
           keyExtractor={item => String(item.id)}
         />
       </View>
@@ -275,9 +332,6 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   logo: {
-    width: 50,
-    height: 50,
-    padding: 10,
     overflow: 'hidden',
     backgroundColor: '#FFFFFF30',
     borderRadius: 15,

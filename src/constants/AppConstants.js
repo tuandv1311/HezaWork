@@ -59,3 +59,5 @@ export const popularJobs = [
     salary: '$40k',
   },
 ];
+
+export const SAVED_JOBS = 'SAVED_JOBS';
