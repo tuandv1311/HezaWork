@@ -72,15 +72,15 @@ LogBox.ignoreAllLogs();
 // };
 
 const theme = extendTheme({
-  // fontConfig: {
-  //   light: 'LexendDeca-Light',
-  //   regular: 'LexendDeca-Regular',
-  //   medium: 'LexendDeca-Medium',
-  //   semibold: 'LexendDeca-SemiBold',
-  //   bold: 'LexendDeca-Bold',
-  //   extrabold: 'LexendDeca-ExtraBold',
-  //   black: 'LexendDeca-Black',
-  // },
+  fontConfig: {
+    light: 'LexendDeca-Light',
+    regular: 'LexendDeca-Regular',
+    medium: 'LexendDeca-Medium',
+    semibold: 'LexendDeca-SemiBold',
+    bold: 'LexendDeca-Bold',
+    extrabold: 'LexendDeca-ExtraBold',
+    black: 'LexendDeca-Black',
+  },
 
   // Make sure values below matches any of the keys in `fontConfig`
   fonts: {

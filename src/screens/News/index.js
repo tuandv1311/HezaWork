@@ -1,10 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, View, TouchableOpacity, Dimensions} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Dimensions,
+  StatusBar,
+  Text,
+} from 'react-native';
 import React from 'react';
 import dummyNews from './data';
-import {FlatList, Text} from 'native-base';
+import {FlatList} from 'native-base';
 import FastImage from 'react-native-fast-image';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {CustomFonts} from '../../constants/AppConstants';
 
 const {width} = Dimensions.get('screen');
 
@@ -25,14 +33,17 @@ const News = ({navigation}) => {
         />
         <Text
           numberOfLines={2}
-          fontFamily="bold"
-          fontSize="14"
-          style={{marginTop: 10}}>
+          style={{
+            marginTop: 10,
+            fontFamily: CustomFonts.medium,
+            fontSize: 14,
+            color: '#000000',
+          }}>
           {item.title}
         </Text>
         <View
           style={{
-            marginTop: 2,
+            marginTop: 7,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -45,11 +56,13 @@ const News = ({navigation}) => {
             }}>
             <FontAwesome5 name={'calendar-alt'} size={14} color={'#8054ef'} />
             <Text
-              fontFamily="light"
-              fontSize="13"
-              color="#6a676a"
-              ml={1.5}
-              mt={0.2}>
+              style={{
+                fontFamily: CustomFonts.light,
+                fontSize: 13,
+                color: '#6a676a',
+                marginTop: 2,
+                marginLeft: 5,
+              }}>
               8-03-2022
             </Text>
           </View>
@@ -60,11 +73,12 @@ const News = ({navigation}) => {
             }}>
             <FontAwesome5 name={'eye'} size={14} color={'#8054ef'} />
             <Text
-              fontFamily="light"
-              fontSize="13"
-              color="#6a676a"
-              ml={1.5}
-              mt={0.2}>
+              style={{
+                fontFamily: CustomFonts.light,
+                fontSize: 13,
+                color: '#6a676a',
+                marginLeft: 5,
+              }}>
               130
             </Text>
           </View>
@@ -83,15 +97,15 @@ const News = ({navigation}) => {
           padding: 15,
           borderRadius: 15,
           marginBottom: 20,
-          shadowColor: '#000',
+          shadowColor: '#000000',
           shadowOffset: {
             width: 0,
             height: 2,
           },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.84,
+          shadowOpacity: 0.2,
+          shadowRadius: 5,
 
-          elevation: 8,
+          elevation: 5,
         }}>
         <FastImage
           style={{
@@ -104,12 +118,18 @@ const News = ({navigation}) => {
           resizeMode={FastImage.resizeMode.cover}
         />
         <View style={{flex: 1}}>
-          <Text numberOfLines={3} fontFamily="bold" fontSize="14" style={{}}>
+          <Text
+            numberOfLines={3}
+            style={{
+              fontFamily: CustomFonts.medium,
+              fontSize: 14,
+              color: '#000000',
+            }}>
             {item.title}
           </Text>
           <View
             style={{
-              marginTop: 2,
+              marginTop: 7,
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -122,11 +142,13 @@ const News = ({navigation}) => {
               }}>
               <FontAwesome5 name={'calendar-alt'} size={14} color={'#8054ef'} />
               <Text
-                fontFamily="light"
-                fontSize="13"
-                color="#6a676a"
-                ml={1.5}
-                mt={0.2}>
+                style={{
+                  fontFamily: CustomFonts.light,
+                  fontSize: 13,
+                  color: '#6a676a',
+                  marginTop: 2,
+                  marginLeft: 5,
+                }}>
                 8-03-2022
               </Text>
             </View>
@@ -137,11 +159,12 @@ const News = ({navigation}) => {
               }}>
               <FontAwesome5 name={'eye'} size={14} color={'#8054ef'} />
               <Text
-                fontFamily="light"
-                fontSize="13"
-                color="#6a676a"
-                ml={1.5}
-                mt={0.2}>
+                style={{
+                  fontFamily: CustomFonts.light,
+                  fontSize: 13,
+                  color: '#6a676a',
+                  marginLeft: 5,
+                }}>
                 130
               </Text>
             </View>
@@ -153,7 +176,12 @@ const News = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text mx={30} fontFamily="bold" fontSize="24">
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent={true}
+      />
+      <Text style={styles.title} numberOfLines={1}>
         {'Tin tức'}
       </Text>
       <View>
@@ -203,14 +231,21 @@ const styles = StyleSheet.create({
     marginRight: 20,
     borderRadius: 15,
 
-    shadowColor: '#000',
+    shadowColor: '#000000',
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
 
-    elevation: 8,
+    elevation: 5,
+  },
+  title: {
+    marginHorizontal: 25,
+    marginBottom: 5,
+    fontFamily: CustomFonts.semibold,
+    fontSize: 22,
+    color: '#000000',
   },
 });

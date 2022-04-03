@@ -1,122 +1,210 @@
-import {StyleSheet, View, TouchableOpacity, Linking} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  StatusBar,
+  Text,
+  FlatList,
+} from 'react-native';
 import React from 'react';
-import {Avatar, Text} from 'native-base';
 import FastImage from 'react-native-fast-image';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const Profile = () => {
-  return (
-    <View style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          backgroundColor: '#FFFFFF',
-          alignItems: 'center',
-          paddingHorizontal: 30,
-        }}>
-        <Avatar
-          size={'xl'}
-          bg="green.500"
-          source={{
-            uri: 'https://scontent.fhan2-4.fna.fbcdn.net/v/t1.6435-9/145775551_3261099993996131_3501307941742539165_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=IFOij_1MMmgAX-u8VF0&_nc_ht=scontent.fhan2-4.fna&oh=00_AT_0bNLHIOIFRGxzPEg10vPOqn5rVAZfx3YBniCWOzBJtg&oe=6255D11F',
-          }}>
-          VT
-        </Avatar>
-        <View style={{marginLeft: 20}}>
-          <Text fontFamily="black" fontSize="20" color="#000000">
-            {'Tuan Dinh'}
-          </Text>
-          <Text mt={1} fontFamily="semibold" fontSize="20" color="#6a676a">
-            {'Ứng viên tìm việc'}
-          </Text>
-        </View>
-      </View>
+import {CustomFonts, popularJobs} from '../../constants/AppConstants';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
-      <View style={{marginTop: 20}}>
-        <View
-          style={{
-            paddingHorizontal: 30,
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <MaterialIcons name={'phone'} size={20} color={'#000000'} />
-          <Text ml={2} fontFamily="semibold" fontSize="18" color="#6a676a90">
-            {'0987654321'}
-          </Text>
-        </View>
-        <View
-          style={{
-            paddingHorizontal: 30,
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <MaterialIcons name={'email'} size={20} color={'#000000'} />
-          <Text
-            ml={2}
-            mb={1}
-            fontFamily="semibold"
-            fontSize="18"
-            color="#6a676a90">
-            {'viettuandinh@gmail.com'}
-          </Text>
-        </View>
-      </View>
+const Profile = ({navigation}) => {
+  const tabbarHeight = useBottomTabBarHeight();
 
-      <View
-        style={{
-          marginVertical: 20,
-          height: 1,
-          backgroundColor: '#00000020',
-          width: '100%',
-        }}
-      />
-
-      <TouchableOpacity style={styles.item}>
-        <AntDesign name={'star'} size={20} color={'#8054ef'} />
-        <Text ml={4} fontFamily="bold" fontSize="18" color="#6a676a">
-          {'Nghề nghiệp quan tâm'}
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        <MaterialIcons name={'auto-fix-high'} size={20} color={'#8054ef'} />
-        <Text ml={4} fontFamily="bold" fontSize="18" color="#6a676a">
-          {'Sửa đổi thông tin'}
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        <MaterialIcons name={'phonelink'} size={20} color={'#8054ef'} />
-        <Text ml={4} fontFamily="bold" fontSize="18" color="#6a676a">
-          {'Liên kết hữu ích'}
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        <MaterialIcons name={'perm-device-info'} size={20} color={'#8054ef'} />
-        <Text ml={4} fontFamily="bold" fontSize="18" color="#6a676a">
-          {'Giới thiệu'}
-        </Text>
-      </TouchableOpacity>
-
+  const renderSavedJobs = ({item, index}) => {
+    return (
       <TouchableOpacity
-        onPress={() => {
-          Linking.openURL('https://work.thiendd.com/').catch(err =>
-            console.error("Couldn't load page", err),
-          );
-        }}
-        style={{
-          position: 'absolute',
-          alignSelf: 'center',
-          paddingTop: 10,
-          paddingBottom: 12,
-          paddingHorizontal: 40,
-          borderRadius: 20,
-          backgroundColor: '#8054ef',
-          bottom: 90,
-        }}>
-        <Text fontFamily="semibold" fontSize="20" color="#FFFFFF">
-          {'Đăng xuất'}
-        </Text>
+        onPress={() => navigation.navigate('JobDetail', {item: item})}
+        style={styles.jobItem}>
+        <View style={{flex: 1, flexDirection: 'row', marginBottom: 10}}>
+          <View
+            style={[
+              styles.logo,
+              {
+                marginRight: 10,
+                width: 70,
+                height: 70,
+                padding: 10,
+                backgroundColor: '#f1f0f7',
+              },
+            ]}>
+            <FastImage
+              style={{
+                width: '100%',
+                height: '100%',
+              }}
+              source={item.logo}
+              resizeMode={FastImage.resizeMode.contain}
+            />
+          </View>
+          <View style={{flex: 1}}>
+            <Text
+              style={{
+                marginBottom: 5,
+                fontFamily: CustomFonts.medium,
+                fontSize: 16,
+                color: '#8054ef',
+              }}
+              numberOfLines={1}>
+              {'Làm chính thức'}
+            </Text>
+            <Text
+              style={{
+                width: '100%',
+                fontFamily: CustomFonts.medium,
+                fontSize: 16,
+                color: '#000000',
+              }}
+              numberOfLines={1}>
+              {item.job_name}
+            </Text>
+            <Text
+              style={{
+                marginTop: 5,
+                fontFamily: CustomFonts.regular,
+                fontSize: 14,
+                color: '#6a676a',
+              }}
+              numberOfLines={1}>
+              {'Công ty TNHH Đóng tàu Bình An'}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.separator2} />
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginTop: 7,
+            marginLeft: 2,
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <FontAwesome5 name={'coins'} size={18} color={'#8054ef'} />
+            <Text
+              style={{
+                marginLeft: 7,
+                fontFamily: CustomFonts.medium,
+                fontSize: 15,
+                color: '#000000',
+              }}
+              numberOfLines={1}>
+              {'10-15 Triệu'}
+            </Text>
+          </View>
+          <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              borderRadius: 7,
+              backgroundColor: '#f5a545',
+              paddingVertical: 5,
+              paddingHorizontal: 10,
+            }}>
+            <FontAwesome name={'star'} size={15} color={'#FFFFFF'} />
+            <Text
+              style={{
+                marginLeft: 7,
+                fontFamily: CustomFonts.medium,
+                fontSize: 14,
+                color: '#FFFFFF',
+              }}
+              numberOfLines={1}>
+              {'Xóa'}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </TouchableOpacity>
+    );
+  };
+
+  return (
+    <View style={[styles.container, {paddingBottom: tabbarHeight}]}>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent={true}
+      />
+      <View style={styles.header}>
+        <Text style={styles.title} numberOfLines={1}>
+          {'Hồ sơ'}
+        </Text>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.logout}>
+          <AntDesign
+            name={'logout'}
+            size={20}
+            color={'#000000'}
+            style={{marginLeft: 2}}
+          />
+        </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          paddingHorizontal: 30,
+          // marginTop: 5,
+          marginBottom: 15,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+        <View>
+          <Text style={styles.name} numberOfLines={1}>
+            {'Đinh Việt Tuấn'}
+          </Text>
+          <Text style={styles.role} numberOfLines={1}>
+            {'Người tìm việc'}
+          </Text>
+        </View>
+        <FastImage
+          style={{
+            backgroundColor: 'red',
+            width: 100,
+            height: 100,
+            borderRadius: 20,
+            overflow: 'hidden',
+          }}
+          source={{
+            uri: 'https://images.unsplash.com/photo-1462804993656-fac4ff489837?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+          }}
+          resizeMode={FastImage.resizeMode.cover}
+        />
+      </View>
+      <View style={styles.separator} />
+      <View style={{marginTop: 15}}>
+        <Text
+          style={[
+            styles.name,
+            {marginHorizontal: 30, marginBottom: 15, color: '#6a676a'},
+          ]}
+          numberOfLines={1}>
+          {'Danh sách công việc đã chú ý'}
+        </Text>
+        <FlatList
+          // scrollEnabled={false}
+          contentContainerStyle={{
+            paddingTop: 5,
+            paddingBottom: tabbarHeight + 200,
+            paddingHorizontal: 25,
+          }}
+          data={popularJobs}
+          renderItem={renderSavedJobs}
+          keyExtractor={item => String(item.id)}
+        />
+      </View>
     </View>
   );
 };
@@ -126,25 +214,80 @@ export default Profile;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 30,
     backgroundColor: '#ffffff',
   },
-  item: {
-    borderRadius: 10,
-    marginHorizontal: 30,
+  header: {
+    marginTop: 60,
+    paddingHorizontal: 30,
     marginBottom: 20,
-    padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fbf8ff',
+    justifyContent: 'space-between',
+  },
+  title: {
+    marginBottom: 1,
+    fontFamily: CustomFonts.semibold,
+    fontSize: 22,
+    color: '#000000',
+  },
+  logout: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#eaeaea',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  name: {
+    fontFamily: CustomFonts.medium,
+    fontSize: 20,
+    color: '#000000',
+  },
+  role: {
+    fontFamily: CustomFonts.regular,
+    fontSize: 18,
+    color: '#6a676a90',
+    marginTop: 5,
+  },
+  separator: {
+    height: 1,
+    marginHorizontal: 30,
+    backgroundColor: '#00000020',
+  },
+  separator2: {
+    height: 1,
+    backgroundColor: '#00000010',
+  },
+  jobItem: {
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 15,
+    paddingTop: 15,
+    paddingBottom: 10,
+    borderRadius: 15,
+    marginBottom: 15,
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
-      height: 6,
+      height: 2,
     },
-    shadowOpacity: 0.39,
-    shadowRadius: 8.3,
-
-    elevation: 13,
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  logo: {
+    width: 50,
+    height: 50,
+    padding: 10,
+    overflow: 'hidden',
+    backgroundColor: '#FFFFFF30',
+    borderRadius: 15,
+    shadowColor: '#00000010',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.46,
+    shadowRadius: 11.14,
+    elevation: 5,
   },
 });

@@ -8,10 +8,10 @@ import {
   Linking,
   ImageBackground,
   StatusBar,
+  Text,
 } from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
-import {Text} from 'native-base';
 import JobTabView from './components/JobTabView';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -27,33 +27,8 @@ const JobDetail = ({navigation, route}) => {
       <StatusBar
         barStyle="dark-content"
         backgroundColor="transparent"
-        // backgroundColor="red"
         translucent={true}
       />
-      {/* <ImageBackground
-        source={require('../../assets/images/bg_detail.png')}
-        resizeMode="cover"
-        style={styles.bgImage}>
-        <View style={{marginTop: 50, paddingHorizontal: 25}}>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: 20,
-              backgroundColor: '#FFFFFF90',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <MaterialIcons
-              name={'keyboard-backspace'}
-              size={27}
-              color={'#000000'}
-              // style={{marginRight: 1, marginTop: 2}}
-            />
-          </TouchableOpacity>
-        </View>
-      </ImageBackground> */}
       <View
         style={{
           marginTop: 60,
@@ -80,33 +55,39 @@ const JobDetail = ({navigation, route}) => {
           />
         </TouchableOpacity>
         <Text
-          style={{marginLeft: 20, marginBottom: 1}}
-          numberOfLines={1}
-          fontFamily="medium"
-          fontSize="22"
-          color={'#000000'}>
+          style={{
+            marginLeft: 20,
+            marginBottom: 1,
+            fontFamily: CustomFonts.semibold,
+            fontSize: 22,
+            color: '#000000',
+          }}
+          numberOfLines={1}>
           {'Kỹ thuật viên nhà máy'}
         </Text>
       </View>
       <View style={styles.separator} />
-      <ScrollView contentContainerStyle={{paddingBottom: 100}}>
-        <View style={{paddingHorizontal: 25, marginTop: 15, marginBottom: 10}}>
+      <ScrollView contentContainerStyle={{paddingBottom: 120}}>
+        <View style={{paddingHorizontal: 25, marginTop: 15, marginBottom: 15}}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <View style={{marginRight: 10, flex: 1}}>
               <Text
-                style={{}}
-                numberOfLines={1}
-                fontFamily="medium"
-                fontSize="15"
-                color={'#000000'}>
+                style={{
+                  fontFamily: CustomFonts.medium,
+                  fontSize: 16,
+                  color: '#000000',
+                }}
+                numberOfLines={1}>
                 {'Công ty TNHH Đóng tàu Bình An'}
               </Text>
               <Text
-                style={{marginTop: 5}}
-                numberOfLines={2}
-                fontFamily="regular"
-                fontSize="12"
-                color={'#6a676a'}>
+                style={{
+                  marginTop: 7,
+                  fontFamily: CustomFonts.regular,
+                  fontSize: 13,
+                  color: '#6a676a',
+                }}
+                numberOfLines={2}>
                 {
                   'Km 92/QL5, hường Hùng Vương, quận Hồng Bàng, thành phố Hải Phòng'
                 }
@@ -129,7 +110,7 @@ const JobDetail = ({navigation, route}) => {
               // flexShrink: 1,
               flexWrap: 1,
               alignItems: 'center',
-              // marginTop: 10,
+              marginTop: 5,
             }}>
             <View
               style={{
@@ -142,11 +123,13 @@ const JobDetail = ({navigation, route}) => {
                 marginBottom: 10,
               }}>
               <Text
-                style={{marginBottom: 1}}
-                numberOfLines={2}
-                fontFamily="medium"
-                fontSize="14"
-                color={'#8054ef'}>
+                style={{
+                  marginBottom: 1,
+                  fontFamily: CustomFonts.medium,
+                  fontSize: 14,
+                  color: '#8054ef',
+                }}
+                numberOfLines={2}>
                 Thực tập
               </Text>
             </View>
@@ -161,11 +144,13 @@ const JobDetail = ({navigation, route}) => {
                 marginBottom: 10,
               }}>
               <Text
-                style={{marginBottom: 1}}
-                numberOfLines={2}
-                fontFamily="medium"
-                fontSize="14"
-                color={'#8054ef'}>
+                style={{
+                  marginBottom: 1,
+                  fontFamily: CustomFonts.medium,
+                  fontSize: 14,
+                  color: '#8054ef',
+                }}
+                numberOfLines={2}>
                 Giờ hành chính
               </Text>
             </View>
@@ -180,11 +165,13 @@ const JobDetail = ({navigation, route}) => {
                 marginBottom: 10,
               }}>
               <Text
-                style={{marginBottom: 1}}
-                numberOfLines={2}
-                fontFamily="medium"
-                fontSize="14"
-                color={'#8054ef'}>
+                style={{
+                  marginBottom: 1,
+                  fontFamily: CustomFonts.medium,
+                  fontSize: 14,
+                  color: '#8054ef',
+                }}
+                numberOfLines={2}>
                 Trưởng nhóm / Giám sát
               </Text>
             </View>
@@ -199,11 +186,13 @@ const JobDetail = ({navigation, route}) => {
                 marginBottom: 10,
               }}>
               <Text
-                style={{marginBottom: 1}}
-                numberOfLines={2}
-                fontFamily="medium"
-                fontSize="14"
-                color={'#8054ef'}>
+                style={{
+                  marginBottom: 1,
+                  fontFamily: CustomFonts.medium,
+                  fontSize: 14,
+                  color: '#8054ef',
+                }}
+                numberOfLines={2}>
                 Kỹ thuật cơ khí
               </Text>
             </View>
@@ -226,18 +215,22 @@ const JobDetail = ({navigation, route}) => {
             </View>
             <View style={{marginLeft: 14}}>
               <Text
-                numberOfLines={1}
-                fontFamily="medium"
-                fontSize="15"
-                color={'#b9b9b9'}>
+                style={{
+                  fontFamily: CustomFonts.regular,
+                  fontSize: 16,
+                  color: '#b9b9b9',
+                }}
+                numberOfLines={1}>
                 Mức lương
               </Text>
               <Text
-                style={{marginBottom: 1}}
-                numberOfLines={1}
-                fontFamily="medium"
-                fontSize="15"
-                color={'#3d3d3d'}>
+                style={{
+                  marginBottom: 1,
+                  fontFamily: CustomFonts.medium,
+                  fontSize: 15,
+                  color: '#3d3d3d',
+                }}
+                numberOfLines={1}>
                 10-15 Triệu
               </Text>
             </View>
@@ -261,18 +254,22 @@ const JobDetail = ({navigation, route}) => {
             </View>
             <View style={{marginLeft: 14, flex: 1}}>
               <Text
-                numberOfLines={1}
-                fontFamily="medium"
-                fontSize="14"
-                color={'#b9b9b9'}>
+                style={{
+                  fontFamily: CustomFonts.regular,
+                  fontSize: 16,
+                  color: '#b9b9b9',
+                }}
+                numberOfLines={1}>
                 Nơi làm việc
               </Text>
               <Text
-                style={{marginBottom: 1}}
-                numberOfLines={2}
-                fontFamily="medium"
-                fontSize="15"
-                color={'#3d3d3d'}>
+                style={{
+                  marginBottom: 1,
+                  fontFamily: CustomFonts.medium,
+                  fontSize: 15,
+                  color: '#3d3d3d',
+                }}
+                numberOfLines={2}>
                 Công ty 4p electronics, khu CN Tràng Duệ, An Dương, Hải phòng
               </Text>
             </View>
@@ -319,20 +316,12 @@ const JobDetail = ({navigation, route}) => {
           flexDirection: 'row',
           paddingHorizontal: 25,
         }}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: '#eaeaea',
-            paddingVertical: 20,
-            paddingHorizontal: 20,
-            borderRadius: 40,
-          }}>
-          <Text
-            numberOfLines={1}
-            fontFamily="bold"
-            fontSize="15"
-            color={'#8054ef'}>
-            SAVE
-          </Text>
+        <TouchableOpacity>
+          <FastImage
+            style={{width: 60, height: 60}}
+            source={require('../../assets/icons/ic_save.png')}
+            resizeMode={FastImage.resizeMode.contain}
+          />
         </TouchableOpacity>
         <TouchableOpacity
           style={{
@@ -345,11 +334,14 @@ const JobDetail = ({navigation, route}) => {
             alignItems: 'center',
           }}>
           <Text
-            numberOfLines={1}
-            fontFamily="black"
-            fontSize="20"
-            color={'#FFFFFF'}>
-            ỨNG TUYỂN
+            style={{
+              marginBottom: 1,
+              fontFamily: CustomFonts.semibold,
+              fontSize: 18,
+              color: '#FFFFFF',
+            }}
+            numberOfLines={1}>
+            ỨNG TUYỂN NGAY
           </Text>
         </TouchableOpacity>
       </View>

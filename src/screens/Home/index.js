@@ -8,9 +8,10 @@ import {
   TouchableOpacity,
   Dimensions,
   StatusBar,
+  Text,
 } from 'react-native';
 import React from 'react';
-import {Text, Input, Icon, Avatar} from 'native-base';
+import {Input, Icon, Avatar} from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -19,192 +20,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
-import {CustomFonts} from '../../constants/AppConstants';
+import {CustomFonts, popularJobs} from '../../constants/AppConstants';
 import FastImage from 'react-native-fast-image';
 
 const {width} = Dimensions.get('screen');
-
-const popularJobs = [
-  {
-    id: 0,
-    logo: require('../../assets/images/logo_google.png'),
-    enterprise: 'PEGATRON',
-    job_name: 'Kỹ Sư Cho KCN Hải Phòng',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.\n- Khảo sát, lập qui trình công nghệ, dự toán sửa chữa, hồ sơ kỹ thuật, hồ sơ hoàn công.\n- Thực hiện các công việc khác theo yêu cầu của Trưởng bộ phận.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$50k',
-  },
-  {
-    id: 1,
-    logo: require('../../assets/images/logo_dribbble.png'),
-    enterprise: 'Dribble',
-    job_name: 'UI/UX Product Designer',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$30k',
-  },
-  {
-    id: 2,
-    logo: require('../../assets/images/logo_apple.png'),
-    enterprise: 'Apple',
-    job_name: 'Lead Creative Director',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$55k',
-  },
-  {
-    id: 3,
-    logo: require('../../assets/images/logo_steam.png'),
-    enterprise: 'Steam',
-    job_name: 'UI/UX Product Designer',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$40k',
-  },
-];
-
-const recommendedJobs = [
-  {
-    id: 2,
-    logo: require('../../assets/images/logo_apple.png'),
-    enterprise: 'Pegatron Vietnam',
-    job_name: 'Thiết Kế Đồ Họa',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$55k',
-  },
-  {
-    id: 3,
-    logo: require('../../assets/images/logo_steam.png'),
-    enterprise: 'Bosch',
-    job_name: 'Thực Tập Sinh Quản Lý Cơ Sở Vật Chất',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$40k',
-  },
-  {
-    id: 0,
-    logo: require('../../assets/images/logo_google.png'),
-    enterprise: 'LG Vietnam',
-    job_name: 'Nhân Viên Kỹ Thuật',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$50k',
-  },
-  {
-    id: 1,
-    logo: require('../../assets/images/logo_dribbble.png'),
-    enterprise: 'IDG Vietnam',
-    job_name: 'Thực Tập Sinh',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$30k',
-  },
-  {
-    id: 4,
-    logo: require('../../assets/images/logo_apple.png'),
-    enterprise: 'Pegatron Vietnam',
-    job_name: 'Thiết Kế Đồ Họa',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$55k',
-  },
-  {
-    id: 5,
-    logo: require('../../assets/images/logo_steam.png'),
-    enterprise: 'Bosch',
-    job_name: 'Thực Tập Sinh Quản Lý Cơ Sở Vật Chất',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$40k',
-  },
-  {
-    id: 6,
-    logo: require('../../assets/images/logo_google.png'),
-    enterprise: 'LG Vietnam',
-    job_name: 'Nhân Viên Kỹ Thuật',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$50k',
-  },
-  {
-    id: 7,
-    logo: require('../../assets/images/logo_dribbble.png'),
-    enterprise: 'IDG Vietnam',
-    job_name: 'Thực Tập Sinh',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$30k',
-  },
-  {
-    id: 8,
-    logo: require('../../assets/images/logo_apple.png'),
-    enterprise: 'Pegatron Vietnam',
-    job_name: 'Thiết Kế Đồ Họa',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$55k',
-  },
-  {
-    id: 9,
-    logo: require('../../assets/images/logo_steam.png'),
-    enterprise: 'Bosch',
-    job_name: 'Thực Tập Sinh Quản Lý Cơ Sở Vật Chất',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$40k',
-  },
-  {
-    id: 10,
-    logo: require('../../assets/images/logo_google.png'),
-    enterprise: 'LG Vietnam',
-    job_name: 'Nhân Viên Kỹ Thuật',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$50k',
-  },
-  {
-    id: 11,
-    logo: require('../../assets/images/logo_dribbble.png'),
-    enterprise: 'IDG Vietnam',
-    job_name: 'Thực Tập Sinh',
-    description:
-      '- Tốt nghiệp Đại học các chuyên ngành Kỹ thuật liên quan đến: Điện - Điện tử, Tự động hóa, Cơ khí, Cơ điện tử, Quản lý chất lượng, Viễn thông, Vật liệu kỹ thuật, ...\n- Chấp nhận ứng viên mới tốt nghiệp.',
-    company:
-      'Công ty Pegatron Việt Nam, thuộc tập đoàn Pegatron, là đối tác chiến lược của các tập đoàn Công nghệ hàng đầu thế giới. Tại đây, chúng tôi sản xuất các linh kiện, sản phẩm điện tử với môi trường làm việc sạch sẽ.',
-    salary: '$30k',
-  },
-];
 
 const HomeScreen = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
@@ -244,18 +63,21 @@ const HomeScreen = ({navigation}) => {
               }}
               source={
                 index % 2
-                  ? require('../../assets/icons/ic_notsave.png')
+                  ? require('../../assets/icons/ic_save.png')
                   : require('../../assets/icons/ic_save.png')
               }
               resizeMode={FastImage.resizeMode.contain}
             />
           </TouchableOpacity> */}
           <Text
-            fontFamily="medium"
-            fontSize="16"
-            color={'#FFFFFF'}
             numberOfLines={2}
-            style={{flex: 1, marginLeft: 7}}>
+            style={{
+              flex: 1,
+              marginLeft: 7,
+              fontFamily: CustomFonts.medium,
+              fontSize: 17,
+              color: '#FFFFFF',
+            }}>
             Công ty TNHH Đóng tàu Bình An
           </Text>
         </View>
@@ -275,16 +97,20 @@ const HomeScreen = ({navigation}) => {
           <View style={{marginLeft: 7}}>
             <Text
               numberOfLines={1}
-              fontFamily="regular"
-              fontSize="14"
-              color={'#FFFFFF90'}>
+              style={{
+                fontFamily: CustomFonts.regular,
+                fontSize: 14,
+                color: '#FFFFFF90',
+              }}>
               Công việc
             </Text>
             <Text
               numberOfLines={1}
-              fontFamily="medium"
-              fontSize="15"
-              color={'#FFFFFF'}>
+              style={{
+                fontFamily: CustomFonts.medium,
+                fontSize: 15,
+                color: '#FFFFFF',
+              }}>
               Thợ sắt hàn
             </Text>
           </View>
@@ -306,17 +132,21 @@ const HomeScreen = ({navigation}) => {
           <View style={{marginLeft: 7}}>
             <Text
               numberOfLines={1}
-              fontFamily="regular"
-              fontSize="14"
-              color={'#FFFFFF90'}>
+              style={{
+                fontFamily: CustomFonts.regular,
+                fontSize: 14,
+                color: '#FFFFFF90',
+              }}>
               Mức lương
             </Text>
             <Text
-              style={{marginBottom: 1}}
-              numberOfLines={1}
-              fontFamily="medium"
-              fontSize="15"
-              color={'#FFFFFF'}>
+              style={{
+                marginBottom: 1,
+                fontFamily: CustomFonts.medium,
+                fontSize: 15,
+                color: '#FFFFFF',
+              }}
+              numberOfLines={1}>
               10-15 Triệu
             </Text>
           </View>
@@ -337,15 +167,39 @@ const HomeScreen = ({navigation}) => {
               backgroundColor: '#FFFFFF30',
             }}>
             <Text
-              style={{marginBottom: 1}}
-              fontFamily="medium"
-              fontSize="14"
-              color={'#FFFFFF'}>
+              style={{
+                marginBottom: 1,
+                fontFamily: CustomFonts.medium,
+                fontSize: 14,
+                color: '#FFFFFF',
+              }}>
               Làm chính thức
             </Text>
           </View>
-          <TouchableOpacity style={{marginRight: 5}}>
-            <FontAwesome name={'star'} size={28} color={'#FFFFFF'} />
+          <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              borderRadius: 7,
+              backgroundColor: '#f5a545',
+              paddingVertical: 5,
+              paddingHorizontal: 10,
+            }}>
+            <FastImage
+              style={{width: 20, height: 20}}
+              source={require('../../assets/icons/ic_save.png')}
+              resizeMode={FastImage.resizeMode.contain}
+            />
+            <Text
+              style={{
+                marginLeft: 7,
+                fontFamily: CustomFonts.medium,
+                fontSize: 14,
+                color: '#FFFFFF',
+              }}
+              numberOfLines={1}>
+              {'Like'}
+            </Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
@@ -365,7 +219,6 @@ const HomeScreen = ({navigation}) => {
             marginRight: undefined,
             borderRadius: 20,
             // borderLeftWidth: 7,
-            borderColor: index % 2 ? '#8054ef' : '#fe5073',
             marginBottom: 10,
           },
         ]}>
@@ -392,19 +245,23 @@ const HomeScreen = ({navigation}) => {
           </View>
           <View style={{flex: 1}}>
             <Text
-              style={{width: '100%'}}
-              numberOfLines={1}
-              fontFamily="medium"
-              fontSize="16"
-              color={'#000000'}>
+              style={{
+                width: '100%',
+                fontFamily: CustomFonts.medium,
+                fontSize: 16,
+                color: '#000000',
+              }}
+              numberOfLines={1}>
               {item.job_name}
             </Text>
             <Text
-              style={{marginTop: 5}}
-              numberOfLines={1}
-              fontFamily="regular"
-              fontSize="14"
-              color={'#6a676a'}>
+              style={{
+                marginTop: 5,
+                fontFamily: CustomFonts.regular,
+                fontSize: 14,
+                color: '#6a676a',
+              }}
+              numberOfLines={1}>
               {'Công ty TNHH Đóng tàu Bình An'}
             </Text>
             <View
@@ -421,11 +278,13 @@ const HomeScreen = ({navigation}) => {
                   borderRadius: 15,
                 }}>
                 <Text
-                  style={{marginBottom: 1}}
-                  numberOfLines={1}
-                  fontFamily="regular"
-                  fontSize="14"
-                  color={'#FFFFFF'}>
+                  style={{
+                    marginBottom: 1,
+                    fontFamily: CustomFonts.regular,
+                    fontSize: 14,
+                    color: '#FFFFFF',
+                  }}
+                  numberOfLines={1}>
                   {'10-15 Triệu'}
                 </Text>
               </View>
@@ -438,33 +297,19 @@ const HomeScreen = ({navigation}) => {
                   marginLeft: 5,
                 }}>
                 <Text
-                  style={{marginBottom: 1}}
-                  numberOfLines={1}
-                  fontFamily="regular"
-                  fontSize="14"
-                  color={'#FFFFFF'}>
+                  style={{
+                    marginBottom: 1,
+                    fontFamily: CustomFonts.regular,
+                    fontSize: 14,
+                    color: '#FFFFFF',
+                  }}
+                  numberOfLines={1}>
                   {'Làm chính thức'}
                 </Text>
               </View>
             </View>
           </View>
         </View>
-
-        {/* <TouchableOpacity>
-          <FastImage
-            style={{
-              width: 40,
-              height: 40,
-              tintColor: 'red',
-            }}
-            source={
-              index % 2
-                ? require('../../assets/icons/ic_notsave.png')
-                : require('../../assets/icons/ic_save.png')
-            }
-            resizeMode={FastImage.resizeMode.contain}
-          />
-        </TouchableOpacity> */}
       </TouchableOpacity>
     );
   };
@@ -492,10 +337,21 @@ const HomeScreen = ({navigation}) => {
       <View style={{marginTop: -145}}>
         <View style={styles.header}>
           <View style={{flex: 1}}>
-            <Text fontFamily="bold" fontSize="24" color={'#FFFFFF'}>
+            <Text
+              style={{
+                fontFamily: CustomFonts.bold,
+                fontSize: 24,
+                color: '#FFFFFF',
+              }}>
               {'Welcome back !'}
             </Text>
-            <Text fontFamily="medium" fontSize="18" color="#FFFFFF">
+            <Text
+              style={{
+                fontFamily: CustomFonts.medium,
+                fontSize: 18,
+                color: '#FFFFFF',
+                marginTop: 5,
+              }}>
               {'Chào, Tuan Dinh'}
             </Text>
           </View>
@@ -518,10 +374,12 @@ const HomeScreen = ({navigation}) => {
         </TouchableOpacity>
         <View style={styles.bestJobs}>
           <Text
-            style={{marginHorizontal: 25}}
-            fontFamily="semibold"
-            fontSize="20"
-            color="#000000">
+            style={{
+              marginHorizontal: 25,
+              fontFamily: CustomFonts.medium,
+              fontSize: 20,
+              color: '#000000',
+            }}>
             {'Việc làm tốt nhất'}
           </Text>
           <FlatList
@@ -538,12 +396,14 @@ const HomeScreen = ({navigation}) => {
             keyExtractor={item => String(item.id)}
           />
         </View>
-        <View>
+        <View style={{marginTop: 10}}>
           <Text
-            style={{marginHorizontal: 25}}
-            fontFamily="semibold"
-            fontSize="20"
-            color="#393939">
+            style={{
+              marginHorizontal: 25,
+              fontFamily: CustomFonts.medium,
+              fontSize: 20,
+              color: '#393939',
+            }}>
             {'Việc làm mới đăng tuyển'}
           </Text>
           <FlatList
@@ -591,12 +451,12 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
-      height: 6,
+      height: 2,
     },
-    shadowOpacity: 0.39,
-    shadowRadius: 8.3,
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
 
-    elevation: 13,
+    elevation: 3,
   },
   search: {
     fontFamily: CustomFonts.regular,
@@ -614,7 +474,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bestJobs: {
-    // marginTop: 20,
+    marginTop: 10,
   },
   jobItem: {
     marginRight: 20,
@@ -624,12 +484,11 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
-      height: 6,
+      height: 2,
     },
-    shadowOpacity: 0.39,
-    shadowRadius: 8.3,
-
-    elevation: 13,
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
   },
   logo: {
     width: 50,
