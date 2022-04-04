@@ -179,13 +179,13 @@ const HomeScreen = ({navigation}) => {
             style={{
               paddingVertical: 5,
               paddingHorizontal: 10,
-              borderRadius: 10,
+              borderRadius: 7,
               backgroundColor: '#FFFFFF30',
             }}>
             <Text
               style={{
                 marginBottom: 1,
-                fontFamily: CustomFonts.medium,
+                fontFamily: CustomFonts.regular,
                 fontSize: 14,
                 color: '#FFFFFF',
               }}>
@@ -200,7 +200,7 @@ const HomeScreen = ({navigation}) => {
               borderRadius: 7,
               backgroundColor: '#f5a545',
               paddingVertical: 5,
-              paddingHorizontal: 10,
+              paddingHorizontal: 7,
             }}>
             <FastImage
               style={{width: 20, height: 20}}
@@ -210,7 +210,7 @@ const HomeScreen = ({navigation}) => {
             <Text
               style={{
                 marginLeft: 7,
-                fontFamily: CustomFonts.medium,
+                fontFamily: CustomFonts.regular,
                 fontSize: 14,
                 color: '#FFFFFF',
               }}
@@ -379,7 +379,7 @@ const HomeScreen = ({navigation}) => {
             <Avatar
               bg="#8054ef"
               source={{
-                uri: 'https://scontent.fhan2-4.fna.fbcdn.net/v/t1.6435-9/145775551_3261099993996131_3501307941742539165_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=IFOij_1MMmgAX-u8VF0&_nc_ht=scontent.fhan2-4.fna&oh=00_AT_0bNLHIOIFRGxzPEg10vPOqn5rVAZfx3YBniCWOzBJtg&oe=6255D11F',
+                uri: 'https://images.unsplash.com/photo-1462804993656-fac4ff489837?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
               }}>
               VT
             </Avatar>

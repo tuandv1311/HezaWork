@@ -16,7 +16,7 @@ import FastImage from 'react-native-fast-image';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import RenderHtml from 'react-native-render-html';
-import {CustomFonts, source} from '../../constants/AppConstants';
+import {CustomFonts} from '../../constants/AppConstants';
 import {getJobDetailApi} from '../../services/api';
 import {addJobData} from '../../services/helpers';
 import LoadingView from '../../components/LoadingView';
@@ -97,7 +97,7 @@ const JobDetail = ({navigation, route}) => {
       {loading ? (
         <LoadingView />
       ) : (
-        <View>
+        <View style={{paddingBottom: 120}}>
           <View style={styles.separator} />
           <ScrollView contentContainerStyle={{paddingBottom: 120}}>
             <View
