@@ -8,6 +8,7 @@ import {
   Dimensions,
   StatusBar,
   Text,
+  Platform,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Avatar} from 'native-base';
@@ -18,12 +19,18 @@ import {CustomFonts} from '../../constants/AppConstants';
 import FastImage from 'react-native-fast-image';
 import {getJobsListApi} from '../../services/api';
 import {addJobData, getJobsData} from '../../services/helpers';
+import LoadingView from '../../components/LoadingView';
 
 const {width} = Dimensions.get('screen');
 
 const HomeScreen = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
   const [jobsList, setJobsList] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+  }, []);
 
   useEffect(() => {
     const onFocus = navigation.addListener('focus', () => {
@@ -37,9 +44,11 @@ const HomeScreen = ({navigation}) => {
       const data = await getJobsListApi();
       console.log('getJobsList', data);
       setJobsList(data?.data);
+      setLoading(false);
     } catch (error) {
       console.log('getJobsList error', error);
       setJobsList([]);
+      setLoading(false);
     }
   };
 
@@ -339,7 +348,7 @@ const HomeScreen = ({navigation}) => {
           // position: 'absolute',
           backgroundColor: '#8054ef',
           width: '100%',
-          height: 170,
+          height: Platform.OS === 'ios' ? 170 : 160,
           borderBottomLeftRadius: 40,
           borderBottomRightRadius: 40,
         }}
@@ -368,7 +377,7 @@ const HomeScreen = ({navigation}) => {
           <View>
             {/* <Ionicons name={'newspaper'} size={24} color={'#000000'} /> */}
             <Avatar
-              bg="green.500"
+              bg="#8054ef"
               source={{
                 uri: 'https://scontent.fhan2-4.fna.fbcdn.net/v/t1.6435-9/145775551_3261099993996131_3501307941742539165_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=IFOij_1MMmgAX-u8VF0&_nc_ht=scontent.fhan2-4.fna&oh=00_AT_0bNLHIOIFRGxzPEg10vPOqn5rVAZfx3YBniCWOzBJtg&oe=6255D11F',
               }}>
@@ -382,52 +391,58 @@ const HomeScreen = ({navigation}) => {
           <Ionicons name={'search'} size={24} color={'#cacdd8'} />
           <Text style={styles.search}>Tìm kiếm công việc ...</Text>
         </TouchableOpacity>
-        <View style={styles.bestJobs}>
-          <Text
-            style={{
-              marginHorizontal: 25,
-              fontFamily: CustomFonts.medium,
-              fontSize: 20,
-              color: '#000000',
-            }}>
-            {'Việc làm tốt nhất'}
-          </Text>
-          <FlatList
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{
-              paddingTop: 15,
-              paddingBottom: 20,
-              paddingLeft: 25,
-              // paddingRight: 15,
-            }}
-            data={jobsList}
-            renderItem={renderPopularItem}
-            keyExtractor={item => String(item.id_viec)}
-          />
-        </View>
-        <View style={{marginTop: 10}}>
-          <Text
-            style={{
-              marginHorizontal: 25,
-              fontFamily: CustomFonts.medium,
-              fontSize: 20,
-              color: '#393939',
-            }}>
-            {'Việc làm mới đăng tuyển'}
-          </Text>
-          <FlatList
-            scrollEnabled={false}
-            contentContainerStyle={{
-              paddingTop: 15,
-              paddingBottom: 20,
-              paddingHorizontal: 25,
-            }}
-            data={jobsList}
-            renderItem={renderRecommendedItem}
-            keyExtractor={item => String(item.id_viec)}
-          />
-        </View>
+        {loading ? (
+          <LoadingView />
+        ) : (
+          <View>
+            <View style={styles.bestJobs}>
+              <Text
+                style={{
+                  marginHorizontal: 25,
+                  fontFamily: CustomFonts.medium,
+                  fontSize: 20,
+                  color: '#000000',
+                }}>
+                {'Việc làm tốt nhất'}
+              </Text>
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{
+                  paddingTop: 15,
+                  paddingBottom: 20,
+                  paddingLeft: 25,
+                  // paddingRight: 15,
+                }}
+                data={jobsList}
+                renderItem={renderPopularItem}
+                keyExtractor={item => String(item.id_viec)}
+              />
+            </View>
+            <View style={{marginTop: 10}}>
+              <Text
+                style={{
+                  marginHorizontal: 25,
+                  fontFamily: CustomFonts.medium,
+                  fontSize: 20,
+                  color: '#393939',
+                }}>
+                {'Việc làm mới đăng tuyển'}
+              </Text>
+              <FlatList
+                scrollEnabled={false}
+                contentContainerStyle={{
+                  paddingTop: 15,
+                  paddingBottom: 20,
+                  paddingHorizontal: 25,
+                }}
+                data={jobsList}
+                renderItem={renderRecommendedItem}
+                keyExtractor={item => String(item.id_viec)}
+              />
+            </View>
+          </View>
+        )}
       </View>
     </ScrollView>
   );

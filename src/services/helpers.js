@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
 
-import {SAVED_JOBS} from '../constants/AppConstants';
+import {SAVED_JOBS, SET_LOGIN} from '../constants/AppConstants';
 
 export const addJobData = async job => {
   try {
@@ -53,4 +53,29 @@ export const clearAll = async () => {
   }
 
   console.log('Done.');
+};
+
+export const fakeLogin = async () => {
+  try {
+    await AsyncStorage.setItem(SET_LOGIN, '1');
+  } catch (error) {
+    console.log('fakeAuth error', error);
+  }
+};
+
+export const fakeLogout = async () => {
+  try {
+    await AsyncStorage.setItem(SET_LOGIN, null);
+  } catch (error) {
+    console.log('fakeAuth error', error);
+  }
+};
+
+export const getFakeAuth = async () => {
+  try {
+    const authData = await AsyncStorage.getItem(SET_LOGIN);
+    return authData;
+  } catch (error) {
+    console.log('fakeAuth error', error);
+  }
 };

@@ -61,3 +61,5 @@ export const popularJobs = [
 ];
 
 export const SAVED_JOBS = 'SAVED_JOBS';
+
+export const SET_LOGIN = 'SET_LOGIN';

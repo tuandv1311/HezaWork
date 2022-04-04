@@ -7,8 +7,9 @@ import {
   Text,
   FlatList,
   Alert,
+  Platform,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import FastImage from 'react-native-fast-image';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -16,11 +17,18 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import {CustomFonts} from '../../constants/AppConstants';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
-import {clearAll, getJobsData, removeJobData} from '../../services/helpers';
+import {
+  clearAll,
+  fakeLogout,
+  getJobsData,
+  removeJobData,
+} from '../../services/helpers';
+import {AuthContext} from '../../AppRoot';
 
 const Profile = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
   const [savedJobs, setSavedJobs] = useState([]);
+  const {signOut} = useContext(AuthContext);
 
   useEffect(() => {
     const onFocus = navigation.addListener('focus', () => {
@@ -51,6 +59,17 @@ const Profile = ({navigation}) => {
         {text: 'Hủy', onPress: () => console.log('Cancel')},
       ],
     );
+  };
+
+  const onLogout = () => {
+    Alert.alert('Đăng xuất', 'Bạn có chắc muốn đăng xuất?', [
+      {
+        text: 'Có',
+        onPress: signOut,
+        style: 'destructive',
+      },
+      {text: 'Hủy', onPress: () => console.log('Cancel')},
+    ]);
   };
 
   const renderSavedJobs = ({item, index}) => {
@@ -186,6 +205,8 @@ const Profile = ({navigation}) => {
     );
   };
 
+  // const onLogout = async () => await fakeLogout();
+
   return (
     <View style={[styles.container, {paddingBottom: tabbarHeight}]}>
       <StatusBar
@@ -197,9 +218,7 @@ const Profile = ({navigation}) => {
         <Text style={styles.title} numberOfLines={1}>
           {'Hồ sơ'}
         </Text>
-        <TouchableOpacity
-          onPress={async () => await clearAll()}
-          style={styles.logout}>
+        <TouchableOpacity onPress={onLogout} style={styles.logout}>
           <AntDesign
             name={'logout'}
             size={20}
@@ -227,7 +246,6 @@ const Profile = ({navigation}) => {
         </View>
         <FastImage
           style={{
-            backgroundColor: 'red',
             width: 100,
             height: 100,
             borderRadius: 20,
@@ -274,7 +292,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   header: {
-    marginTop: 60,
+    marginTop: Platform.OS === 'ios' ? 60 : 50,
     paddingHorizontal: 30,
     marginBottom: 20,
     flexDirection: 'row',

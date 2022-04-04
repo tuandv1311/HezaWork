@@ -20,6 +20,8 @@
     "react-native": "0.67.3",
     "react-native-device-info": "^8.5.0",
     "react-native-fast-image": "^8.5.11",
+    "react-native-indicators": "^0.17.0",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-pager-view": "^5.4.15",
     "react-native-render-html": "^6.3.4",
     "react-native-safe-area-context": "^3.2.0",

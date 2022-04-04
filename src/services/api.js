@@ -1,8 +1,8 @@
 import axiosService from './axios';
 
-export const getJobsListApi = async () => {
+export const getJobsListApi = async (num = 100) => {
   return axiosService.get(
-    'https://tuyendung.haiphong.vn/callback/ds_viec_fe/so_tin',
+    `https://tuyendung.haiphong.vn/callback/ds_viec_fe/${num}`,
   );
 };
 

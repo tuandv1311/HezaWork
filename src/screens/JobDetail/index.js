@@ -6,7 +6,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Linking,
-  ImageBackground,
+  Platform,
   StatusBar,
   Text,
 } from 'react-native';
@@ -19,19 +19,19 @@ import RenderHtml from 'react-native-render-html';
 import {CustomFonts, source} from '../../constants/AppConstants';
 import {getJobDetailApi} from '../../services/api';
 import {addJobData} from '../../services/helpers';
+import LoadingView from '../../components/LoadingView';
 
 const {width} = Dimensions.get('screen');
 
 const JobDetail = ({navigation, route}) => {
   const {item} = route.params;
   const [jobDetail, setJobDetail] = useState({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const onFocus = navigation.addListener('focus', () => {
-      getJobDetail();
-    });
-    return onFocus;
-  }, [navigation]);
+    setLoading(true);
+    getJobDetail();
+  }, []);
 
   const onAddJobData = async data => {
     await addJobData(data);
@@ -42,9 +42,11 @@ const JobDetail = ({navigation, route}) => {
       const data = await getJobDetailApi(item?.id_viec);
       console.log('getJobDetail', data);
       setJobDetail(data?.data[0]);
+      setLoading(false);
     } catch (error) {
       console.log('getJobDetail error', error);
       setJobDetail({});
+      setLoading(false);
     }
   };
 
@@ -57,7 +59,7 @@ const JobDetail = ({navigation, route}) => {
       />
       <View
         style={{
-          marginTop: 60,
+          marginTop: Platform.OS === 'ios' ? 60 : 50,
           paddingHorizontal: 25,
           marginBottom: 20,
           flexDirection: 'row',
@@ -92,222 +94,232 @@ const JobDetail = ({navigation, route}) => {
           {jobDetail?.ten_cong_viec}
         </Text>
       </View>
-      <View style={styles.separator} />
-      <ScrollView contentContainerStyle={{paddingBottom: 120}}>
-        <View style={{paddingHorizontal: 25, marginTop: 15, marginBottom: 15}}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <View style={{marginRight: 10, flex: 1}}>
-              <Text
+      {loading ? (
+        <LoadingView />
+      ) : (
+        <View>
+          <View style={styles.separator} />
+          <ScrollView contentContainerStyle={{paddingBottom: 120}}>
+            <View
+              style={{paddingHorizontal: 25, marginTop: 15, marginBottom: 15}}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <View style={{marginRight: 10, flex: 1}}>
+                  <Text
+                    style={{
+                      fontFamily: CustomFonts.medium,
+                      fontSize: 16,
+                      color: '#000000',
+                    }}
+                    numberOfLines={1}>
+                    {item?.ten_dn}
+                  </Text>
+                  <Text
+                    style={{
+                      marginTop: 7,
+                      fontFamily: CustomFonts.regular,
+                      fontSize: 13,
+                      color: '#6a676a',
+                    }}
+                    numberOfLines={3}>
+                    {jobDetail?.noi_lam_viec}
+                  </Text>
+                </View>
+                <View style={styles.logo}>
+                  <FastImage
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                    }}
+                    source={{
+                      uri: `https://tuyendung.haiphong.vn/assets/uploads/${jobDetail?.logo}`,
+                    }}
+                    resizeMode={FastImage.resizeMode.cover}
+                  />
+                </View>
+              </View>
+              <View
                 style={{
-                  fontFamily: CustomFonts.medium,
-                  fontSize: 16,
-                  color: '#000000',
-                }}
-                numberOfLines={1}>
-                {item?.ten_dn}
-              </Text>
-              <Text
-                style={{
-                  marginTop: 7,
-                  fontFamily: CustomFonts.regular,
-                  fontSize: 13,
-                  color: '#6a676a',
-                }}
-                numberOfLines={3}>
-                {jobDetail?.noi_lam_viec}
-              </Text>
+                  flexDirection: 'row',
+                  // flexShrink: 1,
+                  flexWrap: 'wrap',
+                  alignItems: 'center',
+                  marginTop: 5,
+                }}>
+                <View
+                  style={{
+                    paddingHorizontal: 10,
+                    paddingVertical: 5,
+                    borderRadius: 20,
+                    borderColor: '#ebebeb',
+                    borderWidth: 2,
+                    marginRight: 10,
+                    marginBottom: 10,
+                  }}>
+                  <Text
+                    style={{
+                      marginBottom: 1,
+                      fontFamily: CustomFonts.medium,
+                      fontSize: 14,
+                      color: '#8054ef',
+                    }}
+                    numberOfLines={2}>
+                    {jobDetail?.ten_loai_viec}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    paddingHorizontal: 10,
+                    paddingVertical: 5,
+                    borderRadius: 20,
+                    borderColor: '#ebebeb',
+                    borderWidth: 2,
+                    marginRight: 10,
+                    marginBottom: 10,
+                  }}>
+                  <Text
+                    style={{
+                      marginBottom: 1,
+                      fontFamily: CustomFonts.medium,
+                      fontSize: 14,
+                      color: '#8054ef',
+                    }}
+                    numberOfLines={2}>
+                    {jobDetail?.loai_tg_lv}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    paddingHorizontal: 10,
+                    paddingVertical: 5,
+                    borderRadius: 20,
+                    borderColor: '#ebebeb',
+                    borderWidth: 2,
+                    marginRight: 10,
+                    marginBottom: 10,
+                  }}>
+                  <Text
+                    style={{
+                      marginBottom: 1,
+                      fontFamily: CustomFonts.medium,
+                      fontSize: 14,
+                      color: '#8054ef',
+                    }}
+                    numberOfLines={2}>
+                    {jobDetail?.ten_chuc_danh}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    paddingHorizontal: 10,
+                    paddingVertical: 5,
+                    borderRadius: 20,
+                    borderColor: '#ebebeb',
+                    borderWidth: 2,
+                    marginRight: 10,
+                    marginBottom: 10,
+                  }}>
+                  <Text
+                    style={{
+                      marginBottom: 1,
+                      fontFamily: CustomFonts.medium,
+                      fontSize: 14,
+                      color: '#8054ef',
+                    }}
+                    numberOfLines={2}>
+                    {jobDetail?.ten_nganh_nghe}
+                  </Text>
+                </View>
+              </View>
             </View>
-            <View style={styles.logo}>
-              <FastImage
+            <View style={styles.separator} />
+            <View
+              style={{marginTop: 15, marginHorizontal: 30, marginBottom: 15}}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <View
+                  style={{
+                    width: 45,
+                    height: 45,
+                    borderRadius: 45 / 2,
+                    backgroundColor: '#8054ef90',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: 5,
+                  }}>
+                  <FontAwesome5 name={'coins'} size={22} color={'#FFFFFF'} />
+                </View>
+                <View style={{marginLeft: 14}}>
+                  <Text
+                    style={{
+                      fontFamily: CustomFonts.regular,
+                      fontSize: 16,
+                      color: '#b9b9b9',
+                    }}
+                    numberOfLines={1}>
+                    Mức lương
+                  </Text>
+                  <Text
+                    style={{
+                      marginBottom: 1,
+                      fontFamily: CustomFonts.medium,
+                      fontSize: 15,
+                      color: '#3d3d3d',
+                    }}
+                    numberOfLines={1}>
+                    {jobDetail?.ten_muc_luong}
+                  </Text>
+                </View>
+              </View>
+              <View
                 style={{
-                  width: '100%',
-                  height: '100%',
-                }}
-                source={{
-                  uri: `https://tuyendung.haiphong.vn/assets/uploads/${jobDetail?.logo}`,
-                }}
-                resizeMode={FastImage.resizeMode.cover}
-              />
+                  marginTop: 20,
+                  flexDirection: 'row',
+                }}>
+                <View
+                  style={{
+                    width: 45,
+                    height: 45,
+                    borderRadius: 45 / 2,
+                    backgroundColor: '#8054ef90',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: 5,
+                  }}>
+                  <FontAwesome5
+                    name={'briefcase'}
+                    size={22}
+                    color={'#FFFFFF'}
+                  />
+                </View>
+                <View style={{marginLeft: 14, flex: 1}}>
+                  <Text
+                    style={{
+                      fontFamily: CustomFonts.regular,
+                      fontSize: 16,
+                      color: '#b9b9b9',
+                    }}
+                    numberOfLines={1}>
+                    Nơi làm việc
+                  </Text>
+                  <Text
+                    style={{
+                      marginBottom: 1,
+                      fontFamily: CustomFonts.medium,
+                      fontSize: 15,
+                      color: '#3d3d3d',
+                    }}
+                    numberOfLines={3}>
+                    {jobDetail?.noi_lam_viec}
+                  </Text>
+                </View>
+              </View>
             </View>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              // flexShrink: 1,
-              flexWrap: 1,
-              alignItems: 'center',
-              marginTop: 5,
-            }}>
+            <View style={styles.separator} />
             <View
               style={{
-                paddingHorizontal: 10,
-                paddingVertical: 5,
-                borderRadius: 20,
-                borderColor: '#ebebeb',
-                borderWidth: 2,
-                marginRight: 10,
-                marginBottom: 10,
-              }}>
-              <Text
-                style={{
-                  marginBottom: 1,
-                  fontFamily: CustomFonts.medium,
-                  fontSize: 14,
-                  color: '#8054ef',
-                }}
-                numberOfLines={2}>
-                {jobDetail?.ten_loai_viec}
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingHorizontal: 10,
-                paddingVertical: 5,
-                borderRadius: 20,
-                borderColor: '#ebebeb',
-                borderWidth: 2,
-                marginRight: 10,
-                marginBottom: 10,
-              }}>
-              <Text
-                style={{
-                  marginBottom: 1,
-                  fontFamily: CustomFonts.medium,
-                  fontSize: 14,
-                  color: '#8054ef',
-                }}
-                numberOfLines={2}>
-                {jobDetail?.loai_tg_lv}
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingHorizontal: 10,
-                paddingVertical: 5,
-                borderRadius: 20,
-                borderColor: '#ebebeb',
-                borderWidth: 2,
-                marginRight: 10,
-                marginBottom: 10,
-              }}>
-              <Text
-                style={{
-                  marginBottom: 1,
-                  fontFamily: CustomFonts.medium,
-                  fontSize: 14,
-                  color: '#8054ef',
-                }}
-                numberOfLines={2}>
-                {jobDetail?.ten_chuc_danh}
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingHorizontal: 10,
-                paddingVertical: 5,
-                borderRadius: 20,
-                borderColor: '#ebebeb',
-                borderWidth: 2,
-                marginRight: 10,
-                marginBottom: 10,
-              }}>
-              <Text
-                style={{
-                  marginBottom: 1,
-                  fontFamily: CustomFonts.medium,
-                  fontSize: 14,
-                  color: '#8054ef',
-                }}
-                numberOfLines={2}>
-                {jobDetail?.ten_nganh_nghe}
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.separator} />
-        <View style={{marginTop: 15, marginHorizontal: 30, marginBottom: 15}}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <View
-              style={{
-                width: 45,
-                height: 45,
-                borderRadius: 45 / 2,
-                backgroundColor: '#8054ef90',
-                alignItems: 'center',
-                justifyContent: 'center',
+                paddingHorizontal: 25,
                 marginTop: 5,
               }}>
-              <FontAwesome5 name={'coins'} size={22} color={'#FFFFFF'} />
-            </View>
-            <View style={{marginLeft: 14}}>
-              <Text
-                style={{
-                  fontFamily: CustomFonts.regular,
-                  fontSize: 16,
-                  color: '#b9b9b9',
-                }}
-                numberOfLines={1}>
-                Mức lương
-              </Text>
-              <Text
-                style={{
-                  marginBottom: 1,
-                  fontFamily: CustomFonts.medium,
-                  fontSize: 15,
-                  color: '#3d3d3d',
-                }}
-                numberOfLines={1}>
-                {jobDetail?.ten_muc_luong}
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{
-              marginTop: 20,
-              flexDirection: 'row',
-            }}>
-            <View
-              style={{
-                width: 45,
-                height: 45,
-                borderRadius: 45 / 2,
-                backgroundColor: '#8054ef90',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginTop: 5,
-              }}>
-              <FontAwesome5 name={'briefcase'} size={22} color={'#FFFFFF'} />
-            </View>
-            <View style={{marginLeft: 14, flex: 1}}>
-              <Text
-                style={{
-                  fontFamily: CustomFonts.regular,
-                  fontSize: 16,
-                  color: '#b9b9b9',
-                }}
-                numberOfLines={1}>
-                Nơi làm việc
-              </Text>
-              <Text
-                style={{
-                  marginBottom: 1,
-                  fontFamily: CustomFonts.medium,
-                  fontSize: 15,
-                  color: '#3d3d3d',
-                }}
-                numberOfLines={3}>
-                {jobDetail?.noi_lam_viec}
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.separator} />
-        <View
-          style={{
-            paddingHorizontal: 25,
-            marginTop: 5,
-          }}>
-          {/* <Text
+              {/* <Text
             style={{marginBottom: 1}}
             numberOfLines={2}
             fontFamily="bold"
@@ -315,32 +327,35 @@ const JobDetail = ({navigation, route}) => {
             color={'#000000'}>
             Mô tả công việc
           </Text> */}
-          <View>
-            <RenderHtml
-              contentWidth={width - 50}
-              source={{
-                html: jobDetail?.mota_vl,
-              }}
-              tagsStyles={{
-                div: {
-                  fontSize: 15,
-                  fontFamily: CustomFonts.regular,
-                  lineHeight: 22,
-                },
-                h3: {
-                  fontSize: 16,
-                  fontFamily: CustomFonts.bold,
-                },
-                p: {
-                  fontSize: 16,
-                  fontFamily: CustomFonts.regular,
-                  lineHeight: 22,
-                },
-              }}
-            />
-          </View>
+              <View>
+                <RenderHtml
+                  contentWidth={width - 50}
+                  source={{
+                    html: jobDetail?.mota_vl,
+                  }}
+                  tagsStyles={{
+                    div: {
+                      fontSize: 15,
+                      fontFamily: CustomFonts.regular,
+                      lineHeight: 22,
+                    },
+                    h3: {
+                      fontSize: 16,
+                      fontFamily: CustomFonts.bold,
+                    },
+                    p: {
+                      fontSize: 16,
+                      fontFamily: CustomFonts.regular,
+                      lineHeight: 22,
+                    },
+                  }}
+                />
+              </View>
+            </View>
+          </ScrollView>
         </View>
-      </ScrollView>
+      )}
+
       <View
         style={{
           position: 'absolute',

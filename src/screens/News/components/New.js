@@ -7,6 +7,7 @@ import {
   Text,
   Dimensions,
   ScrollView,
+  Platform,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {WebView} from 'react-native-webview';
@@ -50,7 +51,7 @@ const NewsDetail = ({navigation, route}) => {
       />
       <View
         style={{
-          marginTop: 60,
+          marginTop: Platform.OS === 'ios' ? 60 : 40,
           paddingHorizontal: 25,
           marginBottom: 20,
           flexDirection: 'row',

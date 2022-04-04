@@ -7,16 +7,37 @@ import {
   StatusBar,
   Text,
 } from 'react-native';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import FastImage from 'react-native-fast-image';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {CustomFonts, popularJobs} from '../../constants/AppConstants';
+import {CustomFonts} from '../../constants/AppConstants';
 import {FlatList} from 'native-base';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {getJobsListApi} from '../../services/api';
 
 const JobSearch = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
+  const [jobsList, setJobsList] = useState([]);
+  const [searchParam, setSearchParam] = useState();
+
+  useEffect(() => {
+    const onFocus = navigation.addListener('focus', () => {
+      getJobsList();
+    });
+    return onFocus;
+  }, [navigation]);
+
+  const getJobsList = async () => {
+    try {
+      const data = await getJobsListApi();
+      console.log('getJobsList', data);
+      setJobsList(data?.data);
+    } catch (error) {
+      console.log('getJobsList error', error);
+      setJobsList([]);
+    }
+  };
 
   const renderItem = ({item, index}) => {
     return (
@@ -30,7 +51,9 @@ const JobSearch = ({navigation}) => {
                 width: '100%',
                 height: '100%',
               }}
-              source={item.logo}
+              source={{
+                uri: `https://tuyendung.haiphong.vn/assets/uploads/${item?.logo}`,
+              }}
               resizeMode={FastImage.resizeMode.contain}
             />
           </View>
@@ -42,7 +65,7 @@ const JobSearch = ({navigation}) => {
                 color: '#000000',
               }}
               numberOfLines={1}>
-              {'Thợ sắt hàn'}
+              {item?.ten_cong_viec}
             </Text>
 
             <Text
@@ -54,7 +77,7 @@ const JobSearch = ({navigation}) => {
                 color: '#6a676a',
               }}
               numberOfLines={2}>
-              {'Công ty TNHH Đóng tàu Bình An'}
+              {item?.ten_dn}
             </Text>
             <View style={{marginTop: 10, marginBottom: 5}}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -63,12 +86,12 @@ const JobSearch = ({navigation}) => {
                   <Text
                     style={{
                       marginBottom: 1,
-                      fontFamily: CustomFonts.medium,
+                      fontFamily: CustomFonts.regular,
                       fontSize: 15,
                       color: '#3d3d3d',
                     }}
                     numberOfLines={1}>
-                    10-15 Triệu
+                    {item?.ten_muc_luong}
                   </Text>
                 </View>
               </View>
@@ -82,13 +105,12 @@ const JobSearch = ({navigation}) => {
                   <Text
                     style={{
                       marginBottom: 1,
-                      fontFamily: CustomFonts.medium,
+                      fontFamily: CustomFonts.regular,
                       fontSize: 15,
                       color: '#3d3d3d',
                     }}
                     numberOfLines={2}>
-                    Công ty 4p electronics, khu CN Tràng Duệ, An Dương, Hải
-                    phòng
+                    Hải Phòng
                   </Text>
                 </View>
               </View>
@@ -132,8 +154,10 @@ const JobSearch = ({navigation}) => {
           placeholder={'Tìm kiếm công việc'}
           placeholderTextColor={'#cacdd8'}
           style={styles.searchBar}
+          value={searchParam}
+          onChangeText={setSearchParam}
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setSearchParam()}>
           <Ionicons name={'close-circle'} size={24} color={'#cacdd8'} />
         </TouchableOpacity>
       </View>
@@ -143,10 +167,10 @@ const JobSearch = ({navigation}) => {
             paddingBottom: 20,
             paddingHorizontal: 25,
           }}
-          data={popularJobs}
+          data={jobsList}
           renderItem={renderItem}
           ItemSeparatorComponent={renderSeparator}
-          keyExtractor={item => String(item.id)}
+          keyExtractor={item => String(item.id_viec)}
         />
       </View>
     </View>
@@ -196,7 +220,6 @@ const styles = StyleSheet.create({
   logo: {
     width: 70,
     height: 70,
-    padding: 10,
     overflow: 'hidden',
     borderRadius: 10,
     backgroundColor: '#f1f0f7',
