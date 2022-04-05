@@ -16,7 +16,9 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {CustomFonts} from '../../constants/AppConstants';
 import {getNewsListApi} from '../../services/api';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 
+const safeAreaHeight = getStatusBarHeight();
 const {width} = Dimensions.get('screen');
 
 const News = ({navigation}) => {
@@ -249,7 +251,7 @@ export default News;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: safeAreaHeight + 20,
     paddingBottom: 30,
     backgroundColor: '#ffffff',
   },

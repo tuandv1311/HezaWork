@@ -15,6 +15,9 @@ import {CustomFonts} from '../../constants/AppConstants';
 import {FlatList} from 'native-base';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {getJobsListApi} from '../../services/api';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
+
+const safeAreaHeight = getStatusBarHeight();
 
 const JobSearch = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
@@ -136,7 +139,7 @@ const JobSearch = ({navigation}) => {
 
       <View
         style={{
-          marginTop: 25,
+          marginTop: 20,
           marginHorizontal: 30,
           flexDirection: 'row',
           alignItems: 'center',
@@ -182,7 +185,8 @@ export default JobSearch;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 30,
+    paddingTop: safeAreaHeight,
+    paddingBottom: 30,
     backgroundColor: '#FFFFFF',
   },
   searchBar: {

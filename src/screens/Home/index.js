@@ -20,7 +20,11 @@ import FastImage from 'react-native-fast-image';
 import {getJobsListApi} from '../../services/api';
 import {addJobData, getJobsData} from '../../services/helpers';
 import LoadingView from '../../components/LoadingView';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
+import DeviceInfo from 'react-native-device-info';
 
+const hasNotch = DeviceInfo.hasNotch();
+const safeAreaHeight = getStatusBarHeight();
 const {width} = Dimensions.get('screen');
 
 const HomeScreen = ({navigation}) => {
@@ -345,10 +349,11 @@ const HomeScreen = ({navigation}) => {
       />
       <View
         style={{
+          paddingTop: safeAreaHeight,
           // position: 'absolute',
           backgroundColor: '#8054ef',
           width: '100%',
-          height: Platform.OS === 'ios' ? 170 : 160,
+          height: Platform.OS === 'android' ? 160 : hasNotch ? 170 : 150,
           borderBottomLeftRadius: 40,
           borderBottomRightRadius: 40,
         }}

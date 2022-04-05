@@ -16,7 +16,6 @@ import Auth from './screens/Auth';
 import News from './screens/News';
 import New from './screens/News/components/New';
 import Profile from './screens/Profile';
-import {getFakeAuth} from './services/helpers';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const AuthContext = React.createContext();
 
@@ -53,8 +52,7 @@ function BottomTab() {
         tabBarActiveTintColor: '#8054ef',
         tabBarInactiveTintColor: '#A7A7A7',
         tabBarStyle: {
-          height: Platform.OS === 'ios' ? '10%' : '8%',
-          // height: 90,
+          height: Platform.OS === 'ios' ? '10%' : 70,
           paddingTop: 10,
           // backgroundColor: 'rgba(196, 196, 196, 0.01)',
           // borderTopColor: 'rgba(196, 196, 196, 0.01)',

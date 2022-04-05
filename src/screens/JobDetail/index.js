@@ -20,7 +20,9 @@ import {CustomFonts} from '../../constants/AppConstants';
 import {getJobDetailApi} from '../../services/api';
 import {addJobData} from '../../services/helpers';
 import LoadingView from '../../components/LoadingView';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 
+const safeAreaHeight = getStatusBarHeight();
 const {width} = Dimensions.get('screen');
 
 const JobDetail = ({navigation, route}) => {
@@ -59,7 +61,7 @@ const JobDetail = ({navigation, route}) => {
       />
       <View
         style={{
-          marginTop: Platform.OS === 'ios' ? 60 : 50,
+          marginTop: safeAreaHeight + 20,
           paddingHorizontal: 25,
           marginBottom: 20,
           flexDirection: 'row',

@@ -24,6 +24,9 @@ import {
   removeJobData,
 } from '../../services/helpers';
 import {AuthContext} from '../../AppRoot';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
+
+const safeAreaHeight = getStatusBarHeight();
 
 const Profile = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
@@ -292,7 +295,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   header: {
-    marginTop: Platform.OS === 'ios' ? 60 : 50,
+    marginTop: safeAreaHeight + 20,
     paddingHorizontal: 30,
     marginBottom: 20,
     flexDirection: 'row',

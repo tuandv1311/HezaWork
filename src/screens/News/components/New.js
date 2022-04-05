@@ -16,6 +16,9 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {CustomFonts} from '../../../constants/AppConstants';
 import RenderHTML from 'react-native-render-html';
 import {getNewsDetailApi} from '../../../services/api';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
+
+const safeAreaHeight = getStatusBarHeight();
 
 const {width} = Dimensions.get('screen');
 
@@ -51,7 +54,7 @@ const NewsDetail = ({navigation, route}) => {
       />
       <View
         style={{
-          marginTop: Platform.OS === 'ios' ? 60 : 40,
+          marginTop: safeAreaHeight + 20,
           paddingHorizontal: 25,
           marginBottom: 20,
           flexDirection: 'row',
