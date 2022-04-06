@@ -8,20 +8,20 @@ import {
   Text,
   Platform,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import dummyNews from './data';
-import {FlatList} from 'native-base';
+import { FlatList } from 'native-base';
 import FastImage from 'react-native-fast-image';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {CustomFonts} from '../../constants/AppConstants';
-import {getNewsListApi} from '../../services/api';
-import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
+import { CustomFonts } from '../../constants/AppConstants';
+import { getNewsListApi } from '../../services/api';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const safeAreaHeight = getStatusBarHeight();
-const {width} = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 
-const News = ({navigation}) => {
+const News = ({ navigation }) => {
   const tabbarHeight = useBottomTabBarHeight();
 
   const [newsList, setNewsList] = useState([]);
@@ -116,10 +116,10 @@ const News = ({navigation}) => {
   //   );
   // };
 
-  const renderAllNews = ({item}) => {
+  const renderAllNews = ({ item }) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('New', {tintuc: item})}
+        onPress={() => navigation.navigate('New', { tintuc: item })}
         style={{
           flexDirection: 'row',
           backgroundColor: '#fbf8ff',
@@ -148,7 +148,7 @@ const News = ({navigation}) => {
           }}
           resizeMode={FastImage.resizeMode.cover}
         />
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <Text
             numberOfLines={3}
             style={{
@@ -227,10 +227,10 @@ const News = ({navigation}) => {
           }}
           data={newsList}
           renderItem={renderLatestNews}
-          keyExtractor={item => String(item.id)}
+          keyExtractor={item => String(item.id_tin_tuc)}
         />
       </View> */}
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <FlatList
           contentContainerStyle={{
             paddingTop: 15,
@@ -239,7 +239,7 @@ const News = ({navigation}) => {
           }}
           data={newsList}
           renderItem={renderAllNews}
-          keyExtractor={item => String(item.id)}
+          keyExtractor={item => String(item.id_tin_tuc)}
         />
       </View>
     </View>

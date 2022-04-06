@@ -6,6 +6,12 @@ export const getJobsListApi = async (num = 100) => {
   );
 };
 
+export const jobsSearchApi = async (keyword) => {
+  return axiosService.get(
+    `https://tuyendung.haiphong.vn/callback/tim_kiem/${keyword}`,
+  );
+};
+
 export const getJobDetailApi = async id => {
   return axiosService.get(
     `https://tuyendung.haiphong.vn/callback/viec_lam_ct/${id}`,

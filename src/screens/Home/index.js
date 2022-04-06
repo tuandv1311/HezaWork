@@ -10,24 +10,24 @@ import {
   Text,
   Platform,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {Avatar} from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { Avatar } from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
-import {CustomFonts} from '../../constants/AppConstants';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { CustomFonts } from '../../constants/AppConstants';
 import FastImage from 'react-native-fast-image';
-import {getJobsListApi} from '../../services/api';
-import {addJobData, getJobsData} from '../../services/helpers';
+import { getJobsListApi } from '../../services/api';
+import { addJobData, getJobsData } from '../../services/helpers';
 import LoadingView from '../../components/LoadingView';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import DeviceInfo from 'react-native-device-info';
 
 const hasNotch = DeviceInfo.hasNotch();
 const safeAreaHeight = getStatusBarHeight();
-const {width} = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   const tabbarHeight = useBottomTabBarHeight();
   const [jobsList, setJobsList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -60,10 +60,10 @@ const HomeScreen = ({navigation}) => {
     await addJobData(data);
   };
 
-  const renderPopularItem = ({item, index}) => {
+  const renderPopularItem = ({ item, index }) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('JobDetail', {item: item})}
+        onPress={() => navigation.navigate('JobDetail', { item: item })}
         style={[
           styles.jobItem,
           {
@@ -72,11 +72,11 @@ const HomeScreen = ({navigation}) => {
               index % 3 === 0
                 ? '#6ecb96'
                 : index % 2 === 0
-                ? '#ea5f71'
-                : '#6174fa',
+                  ? '#ea5f71'
+                  : '#6174fa',
           },
         ]}>
-        <View style={{alignItems: 'center', flexDirection: 'row'}}>
+        <View style={{ alignItems: 'center', flexDirection: 'row' }}>
           <View style={styles.logo}>
             <FastImage
               style={{
@@ -102,7 +102,7 @@ const HomeScreen = ({navigation}) => {
           </Text>
         </View>
         <View
-          style={{flexDirection: 'row', alignItems: 'center', marginTop: 15}}>
+          style={{ flexDirection: 'row', alignItems: 'center', marginTop: 15 }}>
           <View
             style={{
               width: 45,
@@ -114,7 +114,7 @@ const HomeScreen = ({navigation}) => {
             }}>
             <FontAwesome5 name={'briefcase'} size={22} color={'#FFFFFF'} />
           </View>
-          <View style={{marginHorizontal: 7, flex: 1}}>
+          <View style={{ marginHorizontal: 7, flex: 1 }}>
             <Text
               numberOfLines={1}
               style={{
@@ -137,7 +137,7 @@ const HomeScreen = ({navigation}) => {
         </View>
 
         <View
-          style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
+          style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
           <View
             style={{
               width: 45,
@@ -149,7 +149,7 @@ const HomeScreen = ({navigation}) => {
             }}>
             <FontAwesome5 name={'coins'} size={22} color={'#FFFFFF'} />
           </View>
-          <View style={{marginLeft: 7}}>
+          <View style={{ marginLeft: 7 }}>
             <Text
               numberOfLines={1}
               style={{
@@ -207,7 +207,7 @@ const HomeScreen = ({navigation}) => {
               paddingHorizontal: 7,
             }}>
             <FastImage
-              style={{width: 20, height: 20}}
+              style={{ width: 20, height: 20 }}
               source={require('../../assets/icons/ic_save.png')}
               resizeMode={FastImage.resizeMode.contain}
             />
@@ -227,10 +227,11 @@ const HomeScreen = ({navigation}) => {
     );
   };
 
-  const renderRecommendedItem = ({item, index}) => {
+  const renderAllItem = (item) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('JobDetail', {item: item})}
+        key={String(item?.id_viec)}
+        onPress={() => navigation.navigate('JobDetail', { item: item })}
         style={[
           styles.jobItem,
           {
@@ -243,7 +244,7 @@ const HomeScreen = ({navigation}) => {
             marginBottom: 10,
           },
         ]}>
-        <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
           <View
             style={[
               styles.logo,
@@ -266,7 +267,7 @@ const HomeScreen = ({navigation}) => {
               resizeMode={FastImage.resizeMode.contain}
             />
           </View>
-          <View style={{flex: 1}}>
+          <View style={{ flex: 1 }}>
             <Text
               style={{
                 width: '100%',
@@ -340,7 +341,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <ScrollView
       style={styles.container}
-      contentContainerStyle={{paddingBottom: tabbarHeight + 50}}>
+      contentContainerStyle={{ paddingBottom: tabbarHeight + 50 }}>
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
@@ -358,9 +359,9 @@ const HomeScreen = ({navigation}) => {
           borderBottomRightRadius: 40,
         }}
       />
-      <View style={{marginTop: -145}}>
+      <View style={{ marginTop: -145 }}>
         <View style={styles.header}>
-          <View style={{flex: 1}}>
+          <View style={{ flex: 1 }}>
             <Text
               style={{
                 fontFamily: CustomFonts.bold,
@@ -424,7 +425,7 @@ const HomeScreen = ({navigation}) => {
                 keyExtractor={item => String(item.id_viec)}
               />
             </View>
-            <View style={{marginTop: 10}}>
+            <View style={{ marginTop: 10 }}>
               <Text
                 style={{
                   marginHorizontal: 25,
@@ -434,7 +435,7 @@ const HomeScreen = ({navigation}) => {
                 }}>
                 {'Việc làm mới đăng tuyển'}
               </Text>
-              <FlatList
+              {/* <FlatList
                 scrollEnabled={false}
                 contentContainerStyle={{
                   paddingTop: 15,
@@ -442,9 +443,16 @@ const HomeScreen = ({navigation}) => {
                   paddingHorizontal: 25,
                 }}
                 data={jobsList}
-                renderItem={renderRecommendedItem}
+                renderItem={renderAllItem}
                 keyExtractor={item => String(item.id_viec)}
-              />
+              /> */}
+              <View style={{
+                paddingTop: 15,
+                paddingBottom: 20,
+                paddingHorizontal: 25,
+              }}>
+                {jobsList.map(item => renderAllItem(item))}
+              </View>
             </View>
           </View>
         )}

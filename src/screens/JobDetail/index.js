@@ -10,23 +10,23 @@ import {
   StatusBar,
   Text,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import FastImage from 'react-native-fast-image';
 // import JobTabView from './components/JobTabView';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import RenderHtml from 'react-native-render-html';
-import {CustomFonts} from '../../constants/AppConstants';
-import {getJobDetailApi} from '../../services/api';
-import {addJobData} from '../../services/helpers';
+import { CustomFonts } from '../../constants/AppConstants';
+import { getJobDetailApi } from '../../services/api';
+import { addJobData } from '../../services/helpers';
 import LoadingView from '../../components/LoadingView';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const safeAreaHeight = getStatusBarHeight();
-const {width} = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 
-const JobDetail = ({navigation, route}) => {
-  const {item} = route.params;
+const JobDetail = ({ navigation, route }) => {
+  const { item } = route.params;
   const [jobDetail, setJobDetail] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -81,31 +81,31 @@ const JobDetail = ({navigation, route}) => {
             name={'keyboard-backspace'}
             size={27}
             color={'#000000'}
-            // style={{marginRight: 1, marginTop: 2}}
+          // style={{marginRight: 1, marginTop: 2}}
           />
         </TouchableOpacity>
         <Text
           style={{
             marginHorizontal: 20,
             marginBottom: 1,
-            fontFamily: CustomFonts.semibold,
+            fontFamily: CustomFonts.medium,
             fontSize: 22,
             color: '#000000',
           }}
-          numberOfLines={2}>
-          {jobDetail?.ten_cong_viec}
+        >
+          {jobDetail?.ten_cong_viec?.trim()}
         </Text>
       </View>
       {loading ? (
         <LoadingView />
       ) : (
-        <View style={{paddingBottom: 120}}>
+        <View style={{ paddingBottom: 120 }}>
           <View style={styles.separator} />
-          <ScrollView contentContainerStyle={{paddingBottom: 120}}>
+          <ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
             <View
-              style={{paddingHorizontal: 25, marginTop: 15, marginBottom: 15}}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={{marginRight: 10, flex: 1}}>
+              style={{ paddingHorizontal: 25, marginTop: 15, marginBottom: 15 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={{ marginRight: 10, flex: 1 }}>
                   <Text
                     style={{
                       fontFamily: CustomFonts.medium,
@@ -123,7 +123,7 @@ const JobDetail = ({navigation, route}) => {
                       color: '#6a676a',
                     }}
                     numberOfLines={3}>
-                    {jobDetail?.noi_lam_viec}
+                    {item?.dia_chi}
                   </Text>
                 </View>
                 <View style={styles.logo}>
@@ -235,8 +235,8 @@ const JobDetail = ({navigation, route}) => {
             </View>
             <View style={styles.separator} />
             <View
-              style={{marginTop: 15, marginHorizontal: 30, marginBottom: 15}}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              style={{ marginTop: 15, marginHorizontal: 30, marginBottom: 15 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <View
                   style={{
                     width: 45,
@@ -249,7 +249,7 @@ const JobDetail = ({navigation, route}) => {
                   }}>
                   <FontAwesome5 name={'coins'} size={22} color={'#FFFFFF'} />
                 </View>
-                <View style={{marginLeft: 14}}>
+                <View style={{ marginLeft: 14 }}>
                   <Text
                     style={{
                       fontFamily: CustomFonts.regular,
@@ -292,7 +292,7 @@ const JobDetail = ({navigation, route}) => {
                     color={'#FFFFFF'}
                   />
                 </View>
-                <View style={{marginLeft: 14, flex: 1}}>
+                <View style={{ marginLeft: 14, flex: 1 }}>
                   <Text
                     style={{
                       fontFamily: CustomFonts.regular,
@@ -329,7 +329,7 @@ const JobDetail = ({navigation, route}) => {
             color={'#000000'}>
             Mô tả công việc
           </Text> */}
-              <View>
+              {jobDetail?.mota_vl && <View>
                 <RenderHtml
                   contentWidth={width - 50}
                   source={{
@@ -352,7 +352,7 @@ const JobDetail = ({navigation, route}) => {
                     },
                   }}
                 />
-              </View>
+              </View>}
             </View>
           </ScrollView>
         </View>
@@ -368,7 +368,7 @@ const JobDetail = ({navigation, route}) => {
         }}>
         <TouchableOpacity onPress={() => onAddJobData(jobDetail)}>
           <FastImage
-            style={{width: 60, height: 60}}
+            style={{ width: 60, height: 60 }}
             source={require('../../assets/icons/ic_save.png')}
             resizeMode={FastImage.resizeMode.contain}
           />
