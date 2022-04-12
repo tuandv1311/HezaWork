@@ -6,40 +6,86 @@ import {
   StatusBar,
   TextInput,
   TouchableOpacity,
-  LayoutAnimation,
-  Platform,
-  UIManager,
+  // LayoutAnimation,
+  Linking,
+  // Platform,
+  // UIManager,
+  // Alert,
 } from 'react-native';
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useRef, useContext} from 'react';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {CustomFonts} from '../../constants/AppConstants';
 import FastImage from 'react-native-fast-image';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {fakeLogin, getFakeAuth} from '../../services/helpers';
+// import {} from '../../services/helpers';
 import {AuthContext} from '../../AppRoot';
+import {loginApi} from '../../services/api';
+// import {WebView} from 'react-native-webview';
+import {InAppBrowser} from 'react-native-inappbrowser-reborn';
 
-if (Platform.OS === 'android') {
-  if (UIManager.setLayoutAnimationEnabledExperimental) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
-}
+// if (Platform.OS === 'android') {
+//   if (UIManager.setLayoutAnimationEnabledExperimental) {
+//     UIManager.setLayoutAnimationEnabledExperimental(true);
+//   }
+// }
 
 const safeAreaHeight = getStatusBarHeight();
+// const emailDummy = 'yenlinh25122008@gmail.com';
+// const passwordDummy = 'phamhaiyen';
 
 const AuthScreen = ({navigation}) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  const [validate, setValidate] = useState();
+
   const [showPassword, setShowPassword] = useState(true);
-  const [showLogin, setShowLogin] = useState(true);
+  // const [showLogin, setShowLogin] = useState(true);
   const {signIn} = useContext(AuthContext);
 
-  useEffect(() => {}, []);
+  const email = useRef('');
+  const password = useRef('');
 
-  const onChangeAuthRoute = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setShowLogin(!showLogin);
+  // useEffect(() => {
+  //   // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+  //   setValidate();
+  // }, [email, password]);
+
+  // const onChangeAuthRoute = () => {
+  //   setShowLogin(!showLogin);
+  // };
+
+  const onLogin = async () => {
+    try {
+      const result = await loginApi(email.current, password.current);
+      console.log('onLogin result', result, email.current, password.current);
+      if (result.data !== '') {
+        signIn(result.data);
+      } else {
+        // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        setValidate('Email hoặc Password chưa chính xác!');
+      }
+    } catch (error) {
+      console.log('onLogin error', error);
+    }
+  };
+
+  const onValidateBeforeLogin = () => {
+    if (email.current === '' || password.current === '') {
+      setValidate('Email và Password không được để trống!');
+    } else {
+      setValidate();
+      onLogin();
+    }
+  };
+
+  const onChangeEmail = text => {
+    email.current = text;
+  };
+
+  const onChangePassword = text => {
+    password.current = text;
   };
 
   const Login = () => {
@@ -79,8 +125,8 @@ const AuthScreen = ({navigation}) => {
             placeholder={'Email'}
             placeholderTextColor={'#cacdd8'}
             style={styles.searchBar}
-            value={email}
-            onChangeText={setEmail}
+            // value={email.current}
+            onChangeText={onChangeEmail}
             keyboardType={'email-address'}
           />
         </View>
@@ -90,18 +136,36 @@ const AuthScreen = ({navigation}) => {
             placeholder={'Password'}
             placeholderTextColor={'#cacdd8'}
             style={styles.searchBar}
-            value={password}
-            onChangeText={setPassword}
+            // value={password.current}
+            onChangeText={onChangePassword}
             secureTextEntry={showPassword}
           />
           <TouchableOpacity
             style={{marginRight: 10}}
             onPress={() => setShowPassword(!showPassword)}>
-            <Ionicons name={'eye'} size={24} color={'#cacdd8'} />
+            {showPassword ? (
+              <Ionicons name={'eye'} size={24} color={'#cacdd8'} />
+            ) : (
+              <Ionicons name={'eye-off'} size={24} color={'#cacdd8'} />
+            )}
           </TouchableOpacity>
         </View>
+        {validate && (
+          <View
+            style={{alignItems: 'center', marginTop: 20, marginBottom: -10}}>
+            <Text
+              style={{
+                marginHorizontal: 10,
+                fontFamily: CustomFonts.regular,
+                fontSize: 16,
+                color: '#f5222d',
+              }}>
+              {validate}
+            </Text>
+          </View>
+        )}
         <TouchableOpacity
-          onPress={() => signIn({username: 'viettuan', password: 'viettuan'})}
+          onPress={onValidateBeforeLogin}
           style={{
             flex: 1,
             marginTop: 30,
@@ -136,13 +200,14 @@ const AuthScreen = ({navigation}) => {
               fontFamily: CustomFonts.medium,
               fontSize: 14,
               color: '#6a676a',
+              textAlign: 'center',
             }}
             numberOfLines={2}>
             {'Chưa có tài khoản?'}
           </Text>
         </View>
         <TouchableOpacity
-          onPress={onChangeAuthRoute}
+          onPress={onSignup}
           style={{
             flex: 1,
             marginTop: 15,
@@ -168,146 +233,49 @@ const AuthScreen = ({navigation}) => {
     );
   };
 
-  const SignUp = () => {
-    return (
-      <View>
-        <View
-          style={{
-            marginTop: 10,
-            paddingHorizontal: 25,
-            marginBottom: 20,
-          }}>
-          <Text
-            style={{
-              marginHorizontal: 10,
-              fontFamily: CustomFonts.medium,
-              fontSize: 28,
-              color: '#000000',
-            }}
-            numberOfLines={2}>
-            {'Tạo tài khoản'}
-          </Text>
-          <Text
-            style={{
-              marginHorizontal: 10,
-              marginTop: 10,
-              fontFamily: CustomFonts.regular,
-              fontSize: 16,
-              color: '#6a676a',
-            }}
-            numberOfLines={2}>
-            {'Sử dụng email để đăng ký tài khoản'}
-          </Text>
-        </View>
-        <View style={styles.textInput}>
-          <MaterialIcons name={'email'} size={24} color={'#cacdd8'} />
-          <TextInput
-            placeholder={'Email'}
-            placeholderTextColor={'#cacdd8'}
-            style={styles.searchBar}
-            value={email}
-            onChangeText={setEmail}
-            keyboardType={'email-address'}
-          />
-        </View>
-        <View style={styles.textInput}>
-          <MaterialIcons name={'lock'} size={24} color={'#cacdd8'} />
-          <TextInput
-            placeholder={'Password'}
-            placeholderTextColor={'#cacdd8'}
-            style={styles.searchBar}
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={showPassword}
-          />
-          <TouchableOpacity
-            style={{marginRight: 10}}
-            onPress={() => setShowPassword(!showPassword)}>
-            <Ionicons name={'eye'} size={24} color={'#cacdd8'} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.textInput}>
-          <MaterialIcons name={'lock'} size={24} color={'#cacdd8'} />
-          <TextInput
-            placeholder={'Nhập lại password'}
-            placeholderTextColor={'#cacdd8'}
-            style={styles.searchBar}
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={showPassword}
-          />
-          <TouchableOpacity
-            style={{marginRight: 10}}
-            onPress={() => setShowPassword(!showPassword)}>
-            <Ionicons name={'eye'} size={24} color={'#cacdd8'} />
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity
-          onPress={() => signIn({username: 'viettuan', password: 'viettuan'})}
-          style={{
-            flex: 1,
-            marginTop: 30,
-            marginHorizontal: 30,
-            paddingVertical: 20,
-            backgroundColor: '#6ecb96',
-            borderRadius: 40,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              marginBottom: 1,
-              fontFamily: CustomFonts.semibold,
-              fontSize: 18,
-              color: '#FFFFFF',
-            }}
-            numberOfLines={1}>
-            Đăng ký
-          </Text>
-        </TouchableOpacity>
-        <View style={styles.separator} />
-        <View
-          style={{
-            marginTop: 15,
-            alignItems: 'center',
-            marginHorizontal: 30,
-          }}>
-          <Text
-            style={{
-              marginHorizontal: 10,
-              fontFamily: CustomFonts.medium,
-              fontSize: 14,
-              color: '#6a676a',
-            }}
-            numberOfLines={2}>
-            {'Đã có tài khoản?'}
-          </Text>
-        </View>
-        <TouchableOpacity
-          onPress={onChangeAuthRoute}
-          style={{
-            flex: 1,
-            marginTop: 15,
-            marginHorizontal: 30,
-            paddingVertical: 20,
-            backgroundColor: '#e1d2fe',
-            borderRadius: 40,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              marginBottom: 1,
-              fontFamily: CustomFonts.semibold,
-              fontSize: 18,
-              color: '#8054ef',
-            }}
-            numberOfLines={1}>
-            Đăng nhập
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
+  const onSignup = async () => {
+    try {
+      const url = 'https://work.thiendd.com/dang_ky';
+      if (await InAppBrowser.isAvailable()) {
+        const result = await InAppBrowser.open(url, {
+          // iOS Properties
+          dismissButtonStyle: 'cancel',
+          preferredBarTintColor: '#453AA4',
+          preferredControlTintColor: 'white',
+          readerMode: false,
+          animated: true,
+          modalPresentationStyle: 'automatic',
+          modalTransitionStyle: 'coverVertical',
+          modalEnabled: true,
+          enableBarCollapsing: false,
+          // Android Properties
+          showTitle: true,
+          toolbarColor: '#6200EE',
+          secondaryToolbarColor: 'black',
+          navigationBarColor: 'black',
+          navigationBarDividerColor: 'white',
+          enableUrlBarHiding: true,
+          enableDefaultShare: true,
+          forceCloseOnRedirection: false,
+          // Specify full animation resource identifier(package:anim/name)
+          // or only resource name(in case of animation bundled with app).
+          animations: {
+            startEnter: 'slide_in_right',
+            startExit: 'slide_out_left',
+            endEnter: 'slide_in_left',
+            endExit: 'slide_out_right',
+          },
+          headers: {
+            'my-custom-header': 'my custom header value',
+          },
+        });
+        console.log('onSignup', result);
+      } else {
+        Linking.openURL(url);
+      }
+    } catch (error) {
+      console.log('onSignup error', error.message);
+    }
   };
 
   return (
@@ -327,7 +295,12 @@ const AuthScreen = ({navigation}) => {
           source={require('../../assets/images/welcome.png')}
           resizeMode={FastImage.resizeMode.contain}
         />
-        {showLogin ? <Login /> : <SignUp />}
+        {/* {showLogin ? (
+          <Login />
+        ) : (
+          <WebView source={{uri: 'https://work.thiendd.com/dang_ky'}} />
+        )} */}
+        <Login />
       </View>
     </KeyboardAwareScrollView>
   );

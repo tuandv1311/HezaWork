@@ -1,12 +1,18 @@
 import axiosService from './axios';
 
+export const loginApi = async (email, password) => {
+  return axiosService.get(
+    `https://tuyendung.haiphong.vn/callback/xl_dn/${email}/${password}`,
+  );
+};
+
 export const getJobsListApi = async (num = 100) => {
   return axiosService.get(
     `https://tuyendung.haiphong.vn/callback/ds_viec_fe/${num}`,
   );
 };
 
-export const jobsSearchApi = async (keyword) => {
+export const jobsSearchApi = async keyword => {
   return axiosService.get(
     `https://tuyendung.haiphong.vn/callback/tim_kiem/${keyword}`,
   );

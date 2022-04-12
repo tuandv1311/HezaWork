@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Platform} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -17,6 +17,7 @@ import News from './screens/News';
 import New from './screens/News/components/New';
 import Profile from './screens/Profile';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {saveLoginData} from './services/helpers';
 const AuthContext = React.createContext();
 
 const hasNotch = DeviceInfo.hasNotch();
@@ -184,7 +185,7 @@ const AppRoot = () => {
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `SecureStore`
         // In the example, we'll use a dummy token
-
+        saveLoginData(data);
         dispatch({type: 'SIGN_IN', token: 'dummy-auth-token'});
       },
       signOut: () => dispatch({type: 'SIGN_OUT'}),

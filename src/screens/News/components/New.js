@@ -10,8 +10,8 @@ import {
   Platform,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
-import {WebView} from 'react-native-webview';
-import FastImage from 'react-native-fast-image';
+// import {WebView} from 'react-native-webview';
+// import FastImage from 'react-native-fast-image';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {CustomFonts} from '../../../constants/AppConstants';
 import RenderHTML from 'react-native-render-html';

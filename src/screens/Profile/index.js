@@ -9,29 +9,36 @@ import {
   Alert,
   Platform,
 } from 'react-native';
-import React, { useEffect, useState, useContext } from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import FastImage from 'react-native-fast-image';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import { CustomFonts } from '../../constants/AppConstants';
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import {CustomFonts} from '../../constants/AppConstants';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {
   clearAll,
   fakeLogout,
   getJobsData,
+  getLoginData,
   removeJobData,
 } from '../../services/helpers';
-import { AuthContext } from '../../AppRoot';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import {AuthContext} from '../../AppRoot';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 const safeAreaHeight = getStatusBarHeight();
 
-const Profile = ({ navigation }) => {
+const Profile = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
+  const [name, setName] = useState();
   const [savedJobs, setSavedJobs] = useState([]);
-  const { signOut } = useContext(AuthContext);
+
+  const {signOut} = useContext(AuthContext);
+
+  useEffect(() => {
+    onGetLoginData();
+  }, []);
 
   useEffect(() => {
     const onFocus = navigation.addListener('focus', () => {
@@ -39,6 +46,12 @@ const Profile = ({ navigation }) => {
     });
     return onFocus;
   }, [navigation]);
+
+  const onGetLoginData = async () => {
+    const result = await getLoginData();
+    console.log('onGetLoginData', result);
+    setName(result.ho_ten);
+  };
 
   const getJobsDataLocal = async () => {
     const oldData = await getJobsData();
@@ -59,7 +72,7 @@ const Profile = ({ navigation }) => {
           },
           style: 'destructive',
         },
-        { text: 'Hủy', onPress: () => console.log('Cancel') },
+        {text: 'Hủy', onPress: () => console.log('Cancel')},
       ],
     );
   };
@@ -71,16 +84,16 @@ const Profile = ({ navigation }) => {
         onPress: signOut,
         style: 'destructive',
       },
-      { text: 'Hủy', onPress: () => console.log('Cancel') },
+      {text: 'Hủy', onPress: () => console.log('Cancel')},
     ]);
   };
 
-  const renderSavedJobs = ({ item, index }) => {
+  const renderSavedJobs = ({item, index}) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('JobDetail', { item: item })}
+        onPress={() => navigation.navigate('JobDetail', {item: item})}
         style={styles.jobItem}>
-        <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}>
+        <View style={{flex: 1, flexDirection: 'row', marginBottom: 10}}>
           <View
             style={[
               styles.logo,
@@ -102,7 +115,7 @@ const Profile = ({ navigation }) => {
               resizeMode={FastImage.resizeMode.contain}
             />
           </View>
-          <View style={{ flex: 1 }}>
+          <View style={{flex: 1}}>
             <Text
               style={{
                 marginBottom: 5,
@@ -190,7 +203,7 @@ const Profile = ({ navigation }) => {
 
   const renderEmptySavedJobs = () => {
     return (
-      <View style={{ alignItems: 'center' }}>
+      <View style={{alignItems: 'center'}}>
         <FastImage
           style={{
             width: '100%',
@@ -200,7 +213,7 @@ const Profile = ({ navigation }) => {
           resizeMode={FastImage.resizeMode.contain}
         />
         <Text
-          style={{ fontFamily: CustomFonts.medium, fontSize: 16, marginTop: -30 }}
+          style={{fontFamily: CustomFonts.medium, fontSize: 16, marginTop: -30}}
           numberOfLines={1}>
           {'Bạn chưa lưu công việc nào cả'}
         </Text>
@@ -211,7 +224,7 @@ const Profile = ({ navigation }) => {
   // const onLogout = async () => await fakeLogout();
 
   return (
-    <View style={[styles.container, { paddingBottom: tabbarHeight }]}>
+    <View style={[styles.container, {paddingBottom: tabbarHeight}]}>
       <StatusBar
         barStyle="dark-content"
         backgroundColor="transparent"
@@ -226,7 +239,7 @@ const Profile = ({ navigation }) => {
             name={'logout'}
             size={20}
             color={'#000000'}
-            style={{ marginLeft: 2 }}
+            style={{marginLeft: 2}}
           />
         </TouchableOpacity>
       </View>
@@ -241,7 +254,7 @@ const Profile = ({ navigation }) => {
         }}>
         <View>
           <Text style={styles.name} numberOfLines={1}>
-            {'Đinh Việt Tuấn'}
+            {name}
           </Text>
           <Text style={styles.role} numberOfLines={1}>
             {'Người tìm việc'}
@@ -253,19 +266,18 @@ const Profile = ({ navigation }) => {
             height: 100,
             borderRadius: 20,
             overflow: 'hidden',
+            backgroundColor: '#00000010',
           }}
-          source={{
-            uri: 'https://images.unsplash.com/photo-1462804993656-fac4ff489837?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-          }}
+          source={require('../../assets/images/profile.png')}
           resizeMode={FastImage.resizeMode.cover}
         />
       </View>
       <View style={styles.separator} />
-      <View style={{ marginTop: 15 }}>
+      <View style={{marginTop: 15}}>
         <Text
           style={[
             styles.name,
-            { marginHorizontal: 30, marginBottom: 15, color: '#6a676a' },
+            {marginHorizontal: 30, marginBottom: 15, color: '#6a676a'},
           ]}
           numberOfLines={1}>
           {'Danh sách công việc đã chú ý'}

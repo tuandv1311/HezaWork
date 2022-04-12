@@ -55,11 +55,12 @@ export const clearAll = async () => {
   console.log('Done.');
 };
 
-export const fakeLogin = async () => {
+export const saveLoginData = async data => {
   try {
-    await AsyncStorage.setItem(SET_LOGIN, '1');
+    const jsonValue = JSON.stringify(data);
+    await AsyncStorage.setItem(SET_LOGIN, jsonValue);
   } catch (error) {
-    console.log('fakeAuth error', error);
+    console.log('saveLoginData error', error);
   }
 };
 
@@ -71,10 +72,12 @@ export const fakeLogout = async () => {
   }
 };
 
-export const getFakeAuth = async () => {
+export const getLoginData = async () => {
   try {
-    const authData = await AsyncStorage.getItem(SET_LOGIN);
-    return authData;
+    const jsonValue = await AsyncStorage.getItem(SET_LOGIN);
+    return jsonValue != null || jsonValue !== undefined
+      ? JSON.parse(jsonValue)
+      : [];
   } catch (error) {
     console.log('fakeAuth error', error);
   }

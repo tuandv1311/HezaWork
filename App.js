@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Link,
   Text,
@@ -24,6 +24,7 @@ import {
 } from 'native-base';
 import AppRoot from './src/AppRoot';
 import {LogBox} from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 
 LogBox.ignoreAllLogs();
 
@@ -95,6 +96,10 @@ const theme = extendTheme({
 });
 
 const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <NativeBaseProvider theme={theme}>
       <StatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
