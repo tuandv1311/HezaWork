@@ -9,6 +9,7 @@ import {
   StatusBar,
   Text,
   Platform,
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Avatar} from 'native-base';
@@ -17,7 +18,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {CustomFonts} from '../../constants/AppConstants';
 import FastImage from 'react-native-fast-image';
-import {getJobsListApi} from '../../services/api';
+import {getJobsListApi, submitCVApi} from '../../services/api';
 import {addJobData, getLoginData} from '../../services/helpers';
 import LoadingView from '../../components/LoadingView';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
@@ -32,6 +33,7 @@ const HomeScreen = ({navigation}) => {
   const [jobsList, setJobsList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState();
+  const [userId, setUserId] = useState();
 
   useEffect(() => {
     setLoading(true);
@@ -58,20 +60,21 @@ const HomeScreen = ({navigation}) => {
     }
   };
 
-  const onAddJobData = async data => {
-    await addJobData(data);
-  };
-
   const onGetLoginData = async () => {
     const result = await getLoginData();
     console.log('onGetLoginData', result);
     setName(result.ho_ten);
+    setUserId(result.id_nguoi_dung);
   };
+
+  const onSaveJob = async data => await addJobData(data);
 
   const renderPopularItem = ({item, index}) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('JobDetail', {item: item})}
+        onPress={() =>
+          navigation.navigate('JobDetail', {item: item, userId: userId})
+        }
         style={[
           styles.jobItem,
           {
@@ -180,6 +183,42 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
 
+        {/* <View
+          style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
+          <View
+            style={{
+              width: 45,
+              height: 45,
+              borderRadius: 45 / 2,
+              backgroundColor: '#8054ef90',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <FontAwesome5 name={'people-arrows'} size={22} color={'#FFFFFF'} />
+          </View>
+          <View style={{marginLeft: 7}}>
+            <Text
+              numberOfLines={1}
+              style={{
+                fontFamily: CustomFonts.regular,
+                fontSize: 14,
+                color: '#FFFFFF90',
+              }}>
+              Vị trí công việc
+            </Text>
+            <Text
+              style={{
+                marginBottom: 1,
+                fontFamily: CustomFonts.medium,
+                fontSize: 15,
+                color: '#FFFFFF',
+              }}
+              numberOfLines={1}>
+              {item?.ten_loai_viec}
+            </Text>
+          </View>
+        </View> */}
+
         <View
           style={{
             flexDirection: 'row',
@@ -190,7 +229,7 @@ const HomeScreen = ({navigation}) => {
           <View
             style={{
               paddingVertical: 5,
-              paddingHorizontal: 10,
+              paddingHorizontal: 7,
               borderRadius: 7,
               backgroundColor: '#FFFFFF30',
             }}>
@@ -205,14 +244,14 @@ const HomeScreen = ({navigation}) => {
             </Text>
           </View>
           <TouchableOpacity
-            onPress={() => onAddJobData(item)}
+            onPress={() => onSaveJob(item)}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
               borderRadius: 7,
               backgroundColor: '#f5a545',
               paddingVertical: 5,
-              paddingHorizontal: 7,
+              paddingHorizontal: 5,
             }}>
             <FastImage
               style={{width: 20, height: 20}}
@@ -227,7 +266,7 @@ const HomeScreen = ({navigation}) => {
                 color: '#FFFFFF',
               }}
               numberOfLines={1}>
-              {'Like'}
+              {'Lưu'}
             </Text>
           </TouchableOpacity>
         </View>
@@ -392,8 +431,9 @@ const HomeScreen = ({navigation}) => {
           <TouchableOpacity onPress={() => navigation.navigate('Cá nhân')}>
             {/* <Ionicons name={'newspaper'} size={24} color={'#000000'} /> */}
             <Avatar
+              padding={'1'}
               bg="#FFFFFF"
-              source={require('../../assets/images/profile.png')}>
+              source={require('../../assets/images/employee.png')}>
               {name}
             </Avatar>
           </TouchableOpacity>

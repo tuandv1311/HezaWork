@@ -8,7 +8,7 @@ import HomeScreen from './screens/Home';
 import JobSearch from './screens/JobSearch';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import DeviceInfo from 'react-native-device-info';
-import {CustomFonts} from './constants/AppConstants';
+import {CustomFonts, SET_LOGIN} from './constants/AppConstants';
 // import {View} from 'native-base';
 import JobDetail from './screens/JobDetail';
 import Auth from './screens/Auth';
@@ -17,7 +17,8 @@ import News from './screens/News';
 import New from './screens/News/components/New';
 import Profile from './screens/Profile';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {saveLoginData} from './services/helpers';
+import {getLoginData, saveLoginData} from './services/helpers';
+
 const AuthContext = React.createContext();
 
 const hasNotch = DeviceInfo.hasNotch();
@@ -127,6 +128,8 @@ function BottomTab() {
 }
 
 const AppRoot = () => {
+  const [userData, setUserData] = React.useState();
+
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -158,14 +161,17 @@ const AppRoot = () => {
   );
 
   React.useEffect(() => {
+    getUserData();
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       let userToken;
 
       try {
-        userToken = await AsyncStorage.getItem('userToken');
+        userToken = JSON.parse(await AsyncStorage.getItem(SET_LOGIN));
+        console.log('userToken', userToken);
       } catch (e) {
         // Restoring token failed
+        console.log('Restoring token failed', e);
       }
 
       // After restoring token, we may need to validate it in production apps
@@ -177,6 +183,15 @@ const AppRoot = () => {
 
     bootstrapAsync();
   }, []);
+
+  React.useEffect(() => {}, [userData]);
+
+  const getUserData = async () => {
+    const result = await getLoginData();
+    console.log('getUserData', result);
+
+    setUserData(result);
+  };
 
   const authContext = React.useMemo(
     () => ({

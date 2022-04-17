@@ -81,7 +81,10 @@ const Profile = ({navigation}) => {
     Alert.alert('Đăng xuất', 'Bạn có chắc muốn đăng xuất?', [
       {
         text: 'Có',
-        onPress: signOut,
+        onPress: async () => {
+          await clearAll();
+          signOut();
+        },
         style: 'destructive',
       },
       {text: 'Hủy', onPress: () => console.log('Cancel')},
@@ -260,17 +263,24 @@ const Profile = ({navigation}) => {
             {'Người tìm việc'}
           </Text>
         </View>
-        <FastImage
+        <View
           style={{
             width: 100,
             height: 100,
             borderRadius: 20,
             overflow: 'hidden',
             backgroundColor: '#00000010',
-          }}
-          source={require('../../assets/images/profile.png')}
-          resizeMode={FastImage.resizeMode.cover}
-        />
+            padding: 5,
+          }}>
+          <FastImage
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+            source={require('../../assets/images/employee.png')}
+            resizeMode={FastImage.resizeMode.cover}
+          />
+        </View>
       </View>
       <View style={styles.separator} />
       <View style={{marginTop: 15}}>

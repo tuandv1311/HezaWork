@@ -35,3 +35,15 @@ export const getNewsDetailApi = async id => {
     `https://tuyendung.haiphong.vn/callback/ct_tin/${id}`,
   );
 };
+
+export const submitCVApi = async (jobId, userId) => {
+  return axiosService.get(
+    `https://tuyendung.haiphong.vn/callback/luu_nop_don/${jobId}/${userId}`,
+  );
+};
+
+export const checkSubmitCVApi = async (jobId, userId) => {
+  return axiosService.get(
+    `https://tuyendung.haiphong.vn/callback/kt_nop_don/${jobId}/${userId}`,
+  );
+};

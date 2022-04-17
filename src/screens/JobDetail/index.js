@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Linking,
   Platform,
+  Alert,
   StatusBar,
   Text,
 } from 'react-native';
@@ -17,8 +18,12 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import RenderHtml from 'react-native-render-html';
 import {CustomFonts} from '../../constants/AppConstants';
-import {getJobDetailApi} from '../../services/api';
-import {addJobData} from '../../services/helpers';
+import {
+  checkSubmitCVApi,
+  getJobDetailApi,
+  submitCVApi,
+} from '../../services/api';
+// import {addJobData} from '../../services/helpers';
 import LoadingView from '../../components/LoadingView';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 
@@ -26,18 +31,20 @@ const safeAreaHeight = getStatusBarHeight();
 const {width} = Dimensions.get('screen');
 
 const JobDetail = ({navigation, route}) => {
-  const {item} = route.params;
+  const {item, userId} = route.params;
   const [jobDetail, setJobDetail] = useState({});
+  const [isSubmited, setIsSubmited] = useState();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
+    checkIsJobSubmited();
     getJobDetail();
   }, []);
 
-  const onAddJobData = async data => {
-    await addJobData(data);
-  };
+  // const onAddJobData = async data => {
+  //   await addJobData(data);
+  // };
 
   const getJobDetail = async () => {
     try {
@@ -49,6 +56,43 @@ const JobDetail = ({navigation, route}) => {
       console.log('getJobDetail error', error);
       setJobDetail({});
       setLoading(false);
+    }
+  };
+
+  const checkIsJobSubmited = async () => {
+    try {
+      const data = await checkSubmitCVApi(item?.id_viec, userId);
+      console.log('checkIsJobSubmited', data);
+      setIsSubmited(data?.data);
+    } catch (error) {
+      console.log('checkIsJobSubmited error', error);
+    }
+  };
+
+  const onSubmitCV = async () => {
+    Alert.alert(
+      'Ứng tuyển?',
+      'Bạn có chắc chắn muốn ứng tuyển công việc này không?',
+      [
+        {
+          text: 'Có',
+          onPress: () => onSubmitCVAction(),
+          style: 'destructive',
+        },
+        {text: 'Hủy', onPress: () => console.log('Cancel')},
+      ],
+    );
+  };
+
+  const onSubmitCVAction = async () => {
+    try {
+      const result = await submitCVApi(item?.id_viec, userId);
+      console.log('onSubmitCVAction', result);
+      if (result.data) {
+        setIsSubmited(true);
+      }
+    } catch (error) {
+      console.log('onSubmitCVAction error', error);
     }
   };
 
@@ -366,40 +410,47 @@ const JobDetail = ({navigation, route}) => {
           width: '100%',
           flexDirection: 'row',
           paddingHorizontal: 25,
+          justifyContent: 'center',
+          backgroundColor: isSubmited ? '#ea5f71' : undefined,
         }}>
-        <TouchableOpacity onPress={() => onAddJobData(jobDetail)}>
-          <FastImage
-            style={{width: 60, height: 60}}
-            source={require('../../assets/icons/ic_save.png')}
-            resizeMode={FastImage.resizeMode.contain}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            Linking.openURL('https://work.thiendd.com/').catch(err =>
-              console.error("Couldn't load page", err),
-            );
-          }}
-          style={{
-            flex: 1,
-            marginLeft: 15,
-            // width: '70%',
-            backgroundColor: '#8054ef',
-            borderRadius: 30,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+        {isSubmited ? (
           <Text
             style={{
-              marginBottom: 1,
-              fontFamily: CustomFonts.semibold,
+              marginTop: 10,
+              marginHorizontal: 20,
+              marginBottom: 11,
+              fontFamily: CustomFonts.medium,
               fontSize: 18,
               color: '#FFFFFF',
-            }}
-            numberOfLines={1}>
-            ỨNG TUYỂN NGAY
+              textAlign: 'center',
+              width: 250,
+            }}>
+            {'Bạn đã ứng tuyển công việc này rồi!'}
           </Text>
-        </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            onPress={onSubmitCV}
+            style={{
+              flex: 1,
+              height: 60,
+              // width: '70%',
+              backgroundColor: '#8054ef',
+              borderRadius: 30,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text
+              style={{
+                marginBottom: 1,
+                fontFamily: CustomFonts.semibold,
+                fontSize: 18,
+                color: '#FFFFFF',
+              }}
+              numberOfLines={1}>
+              ỨNG TUYỂN NGAY
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

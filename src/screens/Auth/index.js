@@ -6,13 +6,14 @@ import {
   StatusBar,
   TextInput,
   TouchableOpacity,
+  Dimensions,
   // LayoutAnimation,
   Linking,
   // Platform,
   // UIManager,
   // Alert,
 } from 'react-native';
-import React, {useState, useRef, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {CustomFonts} from '../../constants/AppConstants';
 import FastImage from 'react-native-fast-image';
@@ -24,28 +25,31 @@ import {AuthContext} from '../../AppRoot';
 import {loginApi} from '../../services/api';
 // import {WebView} from 'react-native-webview';
 import {InAppBrowser} from 'react-native-inappbrowser-reborn';
+import LoadingView from '../../components/LoadingView';
 
 // if (Platform.OS === 'android') {
 //   if (UIManager.setLayoutAnimationEnabledExperimental) {
 //     UIManager.setLayoutAnimationEnabledExperimental(true);
 //   }
 // }
-
+const {height} = Dimensions.get('window');
 const safeAreaHeight = getStatusBarHeight();
 // const emailDummy = 'yenlinh25122008@gmail.com';
 // const passwordDummy = 'phamhaiyen';
 
 const AuthScreen = ({navigation}) => {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  const [email, onChangeEmail] = useState('');
+  const [password, onChangePassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const [validate, setValidate] = useState();
 
   const [showPassword, setShowPassword] = useState(true);
   // const [showLogin, setShowLogin] = useState(true);
   const {signIn} = useContext(AuthContext);
 
-  const email = useRef('');
-  const password = useRef('');
+  // const email = useRef('');
+  // const password = useRef('');
 
   // useEffect(() => {
   //   // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -57,180 +61,31 @@ const AuthScreen = ({navigation}) => {
   // };
 
   const onLogin = async () => {
+    setLoading(true);
     try {
-      const result = await loginApi(email.current, password.current);
-      console.log('onLogin result', result, email.current, password.current);
+      const result = await loginApi(email, password);
+      console.log('onLogin result', result, email, password);
       if (result.data !== '') {
         signIn(result.data);
+        setLoading(false);
       } else {
         // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         setValidate('Email hoặc Password chưa chính xác!');
+        setLoading(false);
       }
     } catch (error) {
       console.log('onLogin error', error);
+      setLoading(false);
     }
   };
 
   const onValidateBeforeLogin = () => {
-    if (email.current === '' || password.current === '') {
+    if (email.length === 0 || password.length === 0) {
       setValidate('Email và Password không được để trống!');
     } else {
       setValidate();
       onLogin();
     }
-  };
-
-  const onChangeEmail = text => {
-    email.current = text;
-  };
-
-  const onChangePassword = text => {
-    password.current = text;
-  };
-
-  const Login = () => {
-    return (
-      <View>
-        <View
-          style={{
-            marginTop: 10,
-            paddingHorizontal: 25,
-            marginBottom: 20,
-          }}>
-          <Text
-            style={{
-              marginHorizontal: 10,
-              fontFamily: CustomFonts.medium,
-              fontSize: 28,
-              color: '#000000',
-            }}
-            numberOfLines={2}>
-            {'Đăng nhập'}
-          </Text>
-          <Text
-            style={{
-              marginHorizontal: 10,
-              marginTop: 10,
-              fontFamily: CustomFonts.regular,
-              fontSize: 16,
-              color: '#6a676a',
-            }}
-            numberOfLines={2}>
-            {'Sử dụng email đã đăng ký của bạn'}
-          </Text>
-        </View>
-        <View style={styles.textInput}>
-          <MaterialIcons name={'email'} size={24} color={'#cacdd8'} />
-          <TextInput
-            placeholder={'Email'}
-            placeholderTextColor={'#cacdd8'}
-            style={styles.searchBar}
-            // value={email.current}
-            onChangeText={onChangeEmail}
-            keyboardType={'email-address'}
-          />
-        </View>
-        <View style={styles.textInput}>
-          <MaterialIcons name={'lock'} size={24} color={'#cacdd8'} />
-          <TextInput
-            placeholder={'Password'}
-            placeholderTextColor={'#cacdd8'}
-            style={styles.searchBar}
-            // value={password.current}
-            onChangeText={onChangePassword}
-            secureTextEntry={showPassword}
-          />
-          <TouchableOpacity
-            style={{marginRight: 10}}
-            onPress={() => setShowPassword(!showPassword)}>
-            {showPassword ? (
-              <Ionicons name={'eye'} size={24} color={'#cacdd8'} />
-            ) : (
-              <Ionicons name={'eye-off'} size={24} color={'#cacdd8'} />
-            )}
-          </TouchableOpacity>
-        </View>
-        {validate && (
-          <View
-            style={{alignItems: 'center', marginTop: 20, marginBottom: -10}}>
-            <Text
-              style={{
-                marginHorizontal: 10,
-                fontFamily: CustomFonts.regular,
-                fontSize: 16,
-                color: '#f5222d',
-              }}>
-              {validate}
-            </Text>
-          </View>
-        )}
-        <TouchableOpacity
-          onPress={onValidateBeforeLogin}
-          style={{
-            flex: 1,
-            marginTop: 30,
-            marginHorizontal: 30,
-            paddingVertical: 20,
-            backgroundColor: '#6ecb96',
-            borderRadius: 40,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              marginBottom: 1,
-              fontFamily: CustomFonts.semibold,
-              fontSize: 18,
-              color: '#FFFFFF',
-            }}
-            numberOfLines={1}>
-            Đăng nhập
-          </Text>
-        </TouchableOpacity>
-        <View style={styles.separator} />
-        <View
-          style={{
-            marginTop: 15,
-            alignItems: 'center',
-            marginHorizontal: 30,
-          }}>
-          <Text
-            style={{
-              marginHorizontal: 10,
-              fontFamily: CustomFonts.medium,
-              fontSize: 14,
-              color: '#6a676a',
-              textAlign: 'center',
-            }}
-            numberOfLines={2}>
-            {'Chưa có tài khoản?'}
-          </Text>
-        </View>
-        <TouchableOpacity
-          onPress={onSignup}
-          style={{
-            flex: 1,
-            marginTop: 15,
-            marginHorizontal: 30,
-            paddingVertical: 20,
-            backgroundColor: '#e1d2fe',
-            borderRadius: 40,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              marginBottom: 1,
-              fontFamily: CustomFonts.semibold,
-              fontSize: 18,
-              color: '#8054ef',
-            }}
-            numberOfLines={1}>
-            Tạo tài khoản
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
   };
 
   const onSignup = async () => {
@@ -295,13 +150,152 @@ const AuthScreen = ({navigation}) => {
           source={require('../../assets/images/welcome.png')}
           resizeMode={FastImage.resizeMode.contain}
         />
-        {/* {showLogin ? (
-          <Login />
-        ) : (
-          <WebView source={{uri: 'https://work.thiendd.com/dang_ky'}} />
-        )} */}
-        <Login />
+        <View>
+          <View
+            style={{
+              marginTop: 10,
+              paddingHorizontal: 25,
+              marginBottom: 20,
+            }}>
+            <Text
+              style={{
+                marginHorizontal: 10,
+                fontFamily: CustomFonts.medium,
+                fontSize: 28,
+                color: '#000000',
+              }}
+              numberOfLines={2}>
+              {'Đăng nhập'}
+            </Text>
+            <Text
+              style={{
+                marginHorizontal: 10,
+                marginTop: 10,
+                fontFamily: CustomFonts.regular,
+                fontSize: 16,
+                color: '#6a676a',
+              }}
+              numberOfLines={2}>
+              {'Sử dụng email đã đăng ký của bạn'}
+            </Text>
+          </View>
+          <View style={styles.textInput}>
+            <MaterialIcons name={'email'} size={24} color={'#cacdd8'} />
+            <TextInput
+              placeholder={'Email'}
+              placeholderTextColor={'#cacdd8'}
+              style={styles.searchBar}
+              value={email}
+              onChangeText={onChangeEmail}
+              keyboardType={'email-address'}
+            />
+          </View>
+          <View style={styles.textInput}>
+            <MaterialIcons name={'lock'} size={24} color={'#cacdd8'} />
+            <TextInput
+              placeholder={'Password'}
+              placeholderTextColor={'#cacdd8'}
+              style={styles.searchBar}
+              value={password}
+              onChangeText={onChangePassword}
+              secureTextEntry={showPassword}
+            />
+            <TouchableOpacity
+              style={{marginRight: 10}}
+              onPress={() => setShowPassword(!showPassword)}>
+              {showPassword ? (
+                <Ionicons name={'eye'} size={24} color={'#cacdd8'} />
+              ) : (
+                <Ionicons name={'eye-off'} size={24} color={'#cacdd8'} />
+              )}
+            </TouchableOpacity>
+          </View>
+          {validate && (
+            <View
+              style={{alignItems: 'center', marginTop: 20, marginBottom: -10}}>
+              <Text
+                style={{
+                  marginHorizontal: 10,
+                  fontFamily: CustomFonts.regular,
+                  fontSize: 16,
+                  color: '#f5222d',
+                }}>
+                {validate}
+              </Text>
+            </View>
+          )}
+          <TouchableOpacity
+            onPress={onValidateBeforeLogin}
+            style={{
+              flex: 1,
+              marginTop: 30,
+              marginHorizontal: 30,
+              paddingVertical: 20,
+              backgroundColor: '#6ecb96',
+              borderRadius: 40,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text
+              style={{
+                marginBottom: 1,
+                fontFamily: CustomFonts.semibold,
+                fontSize: 18,
+                color: '#FFFFFF',
+              }}
+              numberOfLines={1}>
+              Đăng nhập
+            </Text>
+          </TouchableOpacity>
+          <View style={styles.separator} />
+          <View
+            style={{
+              marginTop: 15,
+              alignItems: 'center',
+              marginHorizontal: 30,
+            }}>
+            <Text
+              style={{
+                marginHorizontal: 10,
+                fontFamily: CustomFonts.medium,
+                fontSize: 14,
+                color: '#6a676a',
+                textAlign: 'center',
+              }}
+              numberOfLines={2}>
+              {'Chưa có tài khoản?'}
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={onSignup}
+            style={{
+              flex: 1,
+              marginTop: 15,
+              marginHorizontal: 30,
+              paddingVertical: 20,
+              backgroundColor: '#e1d2fe',
+              borderRadius: 40,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text
+              style={{
+                marginBottom: 1,
+                fontFamily: CustomFonts.semibold,
+                fontSize: 18,
+                color: '#8054ef',
+              }}
+              numberOfLines={1}>
+              Tạo tài khoản
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
+      {loading && (
+        <View style={styles.loading}>
+          <LoadingView />
+        </View>
+      )}
     </KeyboardAwareScrollView>
   );
 };
@@ -341,5 +335,13 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     paddingLeft: 15,
     paddingRight: 10,
+  },
+  loading: {
+    // backgroundColor: '#00000050',
+    position: 'absolute',
+    width: '100%',
+    height: height,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
