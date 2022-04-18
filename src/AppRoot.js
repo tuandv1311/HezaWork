@@ -219,7 +219,7 @@ const AppRoot = () => {
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        {state.userToken == null ? (
+        {/* {state.userToken == null ? (
           <Stack.Navigator>
             <Stack.Screen
               options={{
@@ -229,33 +229,33 @@ const AppRoot = () => {
               component={Auth}
             />
           </Stack.Navigator>
-        ) : (
-          <Stack.Navigator>
-            <Stack.Screen
-              options={{
-                headerShown: false,
-              }}
-              name="BottomTab"
-              component={BottomTab}
-            />
-            <Stack.Screen
-              name={'JobDetail'}
-              component={JobDetail}
-              options={{
-                headerShown: false,
-                tabBarVisible: false,
-              }}
-            />
-            <Stack.Screen
-              name={'New'}
-              component={New}
-              options={{
-                headerShown: false,
-                tabBarVisible: false,
-              }}
-            />
-          </Stack.Navigator>
-        )}
+        ) : ( */}
+        <Stack.Navigator>
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="BottomTab"
+            component={BottomTab}
+          />
+          <Stack.Screen
+            name={'JobDetail'}
+            component={JobDetail}
+            options={{
+              headerShown: false,
+              tabBarVisible: false,
+            }}
+          />
+          <Stack.Screen
+            name={'New'}
+            component={New}
+            options={{
+              headerShown: false,
+              tabBarVisible: false,
+            }}
+          />
+        </Stack.Navigator>
+        {/* )} */}
       </NavigationContainer>
     </AuthContext.Provider>
   );

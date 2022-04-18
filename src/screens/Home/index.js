@@ -34,6 +34,7 @@ const HomeScreen = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState();
   const [userId, setUserId] = useState();
+  const [isSignedin, setIsSignedin] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -63,8 +64,15 @@ const HomeScreen = ({navigation}) => {
   const onGetLoginData = async () => {
     const result = await getLoginData();
     console.log('onGetLoginData', result);
-    setName(result.ho_ten);
-    setUserId(result.id_nguoi_dung);
+    if (result == null) {
+      console.log('isSignedIn false');
+      setIsSignedin(false);
+    } else {
+      console.log('isSignedIn true');
+      setIsSignedin(true);
+      setName(result.ho_ten);
+      setUserId(result.id_nguoi_dung);
+    }
   };
 
   const onSaveJob = async data => await addJobData(data);
@@ -417,16 +425,28 @@ const HomeScreen = ({navigation}) => {
               }}>
               {'Welcome back !'}
             </Text>
-            <Text
-              style={{
-                fontFamily: CustomFonts.medium,
-                fontSize: 18,
-                color: '#FFFFFF',
-                marginTop: 5,
-              }}>
-              {'Chào, '}
-              {name}
-            </Text>
+            {isSignedin ? (
+              <Text
+                style={{
+                  fontFamily: CustomFonts.medium,
+                  fontSize: 18,
+                  color: '#FFFFFF',
+                  marginTop: 5,
+                }}>
+                {'Chào, '}
+                {name}
+              </Text>
+            ) : (
+              <Text
+                style={{
+                  fontFamily: CustomFonts.medium,
+                  fontSize: 14,
+                  color: '#FFFFFF',
+                  marginTop: 5,
+                }}>
+                {'Nhiều cơ hội việc làm đang chờ bạn'}
+              </Text>
+            )}
           </View>
           <TouchableOpacity onPress={() => navigation.navigate('Cá nhân')}>
             {/* <Ionicons name={'newspaper'} size={24} color={'#000000'} /> */}

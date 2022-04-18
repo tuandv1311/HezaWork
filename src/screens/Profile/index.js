@@ -26,6 +26,7 @@ import {
 } from '../../services/helpers';
 import {AuthContext} from '../../AppRoot';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
+import AuthScreen from '../Auth';
 
 const safeAreaHeight = getStatusBarHeight();
 
@@ -33,9 +34,10 @@ const Profile = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
   const [name, setName] = useState();
   const [savedJobs, setSavedJobs] = useState([]);
+  const [showLoginPage, setShowLoginPage] = useState(false);
 
   const {signOut} = useContext(AuthContext);
-
+  console.log('useContext(AuthContext)', useContext(AuthContext));
   useEffect(() => {
     onGetLoginData();
   }, []);
@@ -47,10 +49,17 @@ const Profile = ({navigation}) => {
     return onFocus;
   }, [navigation]);
 
+  useEffect(() => {
+    console.log('showLoginPage', showLoginPage);
+  }, [showLoginPage]);
+
   const onGetLoginData = async () => {
     const result = await getLoginData();
     console.log('onGetLoginData', result);
-    setName(result.ho_ten);
+    if (result == null) {
+      setShowLoginPage(true);
+    }
+    setName(result?.ho_ten);
   };
 
   const getJobsDataLocal = async () => {
@@ -84,6 +93,7 @@ const Profile = ({navigation}) => {
         onPress: async () => {
           await clearAll();
           signOut();
+          setShowLoginPage(true);
         },
         style: 'destructive',
       },
@@ -226,87 +236,91 @@ const Profile = ({navigation}) => {
 
   // const onLogout = async () => await fakeLogout();
 
-  return (
-    <View style={[styles.container, {paddingBottom: tabbarHeight}]}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor="transparent"
-        translucent={true}
-      />
-      <View style={styles.header}>
-        <Text style={styles.title} numberOfLines={1}>
-          {'Hồ sơ'}
-        </Text>
-        <TouchableOpacity onPress={onLogout} style={styles.logout}>
-          <AntDesign
-            name={'logout'}
-            size={20}
-            color={'#000000'}
-            style={{marginLeft: 2}}
-          />
-        </TouchableOpacity>
-      </View>
-      <View
-        style={{
-          paddingHorizontal: 30,
-          // marginTop: 5,
-          marginBottom: 15,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}>
-        <View>
-          <Text style={styles.name} numberOfLines={1}>
-            {name}
+  if (showLoginPage) {
+    return <AuthScreen setShowLoginPage={setShowLoginPage} />;
+  } else {
+    return (
+      <View style={[styles.container, {paddingBottom: tabbarHeight}]}>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor="transparent"
+          translucent={true}
+        />
+        <View style={styles.header}>
+          <Text style={styles.title} numberOfLines={1}>
+            {'Hồ sơ'}
           </Text>
-          <Text style={styles.role} numberOfLines={1}>
-            {'Người tìm việc'}
-          </Text>
+          <TouchableOpacity onPress={onLogout} style={styles.logout}>
+            <AntDesign
+              name={'logout'}
+              size={20}
+              color={'#000000'}
+              style={{marginLeft: 2}}
+            />
+          </TouchableOpacity>
         </View>
         <View
           style={{
-            width: 100,
-            height: 100,
-            borderRadius: 20,
-            overflow: 'hidden',
-            backgroundColor: '#00000010',
-            padding: 5,
+            paddingHorizontal: 30,
+            // marginTop: 5,
+            marginBottom: 15,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
           }}>
-          <FastImage
+          <View>
+            <Text style={styles.name} numberOfLines={1}>
+              {name}
+            </Text>
+            <Text style={styles.role} numberOfLines={1}>
+              {'Người tìm việc'}
+            </Text>
+          </View>
+          <View
             style={{
-              width: '100%',
-              height: '100%',
+              width: 100,
+              height: 100,
+              borderRadius: 20,
+              overflow: 'hidden',
+              backgroundColor: '#00000010',
+              padding: 5,
+            }}>
+            <FastImage
+              style={{
+                width: '100%',
+                height: '100%',
+              }}
+              source={require('../../assets/images/employee.png')}
+              resizeMode={FastImage.resizeMode.cover}
+            />
+          </View>
+        </View>
+        <View style={styles.separator} />
+        <View style={{marginTop: 15}}>
+          <Text
+            style={[
+              styles.name,
+              {marginHorizontal: 30, marginBottom: 15, color: '#6a676a'},
+            ]}
+            numberOfLines={1}>
+            {'Danh sách công việc đã chú ý'}
+          </Text>
+          <FlatList
+            // scrollEnabled={false}
+            contentContainerStyle={{
+              paddingTop: 5,
+              paddingBottom: tabbarHeight + 200,
+              paddingHorizontal: 25,
             }}
-            source={require('../../assets/images/employee.png')}
-            resizeMode={FastImage.resizeMode.cover}
+            data={savedJobs}
+            renderItem={renderSavedJobs}
+            ListEmptyComponent={renderEmptySavedJobs}
+            keyExtractor={item => String(item?.id_viec)}
           />
         </View>
       </View>
-      <View style={styles.separator} />
-      <View style={{marginTop: 15}}>
-        <Text
-          style={[
-            styles.name,
-            {marginHorizontal: 30, marginBottom: 15, color: '#6a676a'},
-          ]}
-          numberOfLines={1}>
-          {'Danh sách công việc đã chú ý'}
-        </Text>
-        <FlatList
-          // scrollEnabled={false}
-          contentContainerStyle={{
-            paddingTop: 5,
-            paddingBottom: tabbarHeight + 200,
-            paddingHorizontal: 25,
-          }}
-          data={savedJobs}
-          renderItem={renderSavedJobs}
-          ListEmptyComponent={renderEmptySavedJobs}
-          keyExtractor={item => String(item?.id_viec)}
-        />
-      </View>
-    </View>
-  );
+    );
+  }
 };
 
 export default Profile;

@@ -37,7 +37,7 @@ const safeAreaHeight = getStatusBarHeight();
 // const emailDummy = 'yenlinh25122008@gmail.com';
 // const passwordDummy = 'phamhaiyen';
 
-const AuthScreen = ({navigation}) => {
+const AuthScreen = ({navigation, setShowLoginPage}) => {
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -66,6 +66,7 @@ const AuthScreen = ({navigation}) => {
       const result = await loginApi(email, password);
       console.log('onLogin result', result, email, password);
       if (result.data !== '') {
+        setShowLoginPage(false);
         signIn(result.data);
         setLoading(false);
       } else {

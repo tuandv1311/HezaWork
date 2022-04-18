@@ -26,6 +26,8 @@ import {
 // import {addJobData} from '../../services/helpers';
 import LoadingView from '../../components/LoadingView';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
+import {getLoginData} from '../../services/helpers';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const safeAreaHeight = getStatusBarHeight();
 const {width} = Dimensions.get('screen');
@@ -35,16 +37,30 @@ const JobDetail = ({navigation, route}) => {
   const [jobDetail, setJobDetail] = useState({});
   const [isSubmited, setIsSubmited] = useState();
   const [loading, setLoading] = useState(false);
+  const [isSignedin, setIsSignedin] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     checkIsJobSubmited();
     getJobDetail();
+    onGetLoginData();
   }, []);
 
   // const onAddJobData = async data => {
   //   await addJobData(data);
   // };
+
+  const onGetLoginData = async () => {
+    const result = await getLoginData();
+    console.log('onGetLoginData', result);
+    if (result == null) {
+      console.log('isSignedIn false');
+      setIsSignedin(false);
+    } else {
+      console.log('isSignedIn true');
+      setIsSignedin(true);
+    }
+  };
 
   const getJobDetail = async () => {
     try {
@@ -372,7 +388,7 @@ const JobDetail = ({navigation, route}) => {
             color={'#000000'}>
             Mô tả công việc
           </Text> */}
-              {jobDetail?.mota_vl && (
+              {jobDetail?.mota_vl?.length ? (
                 <View>
                   <RenderHtml
                     contentWidth={width - 50}
@@ -397,61 +413,116 @@ const JobDetail = ({navigation, route}) => {
                     }}
                   />
                 </View>
-              )}
+              ) : null}
             </View>
           </ScrollView>
         </View>
       )}
 
-      <View
-        style={{
-          position: 'absolute',
-          bottom: 30,
-          width: '100%',
-          flexDirection: 'row',
-          paddingHorizontal: 25,
-          justifyContent: 'center',
-          backgroundColor: isSubmited ? '#ea5f71' : undefined,
-        }}>
-        {isSubmited ? (
-          <Text
-            style={{
-              marginTop: 10,
-              marginHorizontal: 20,
-              marginBottom: 11,
-              fontFamily: CustomFonts.medium,
-              fontSize: 18,
-              color: '#FFFFFF',
-              textAlign: 'center',
-              width: 250,
-            }}>
-            {'Bạn đã ứng tuyển công việc này rồi!'}
-          </Text>
-        ) : (
+      {isSignedin && (
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 30,
+            width: '100%',
+            flexDirection: 'row',
+            paddingHorizontal: 25,
+            justifyContent: 'center',
+            backgroundColor: isSubmited ? '#6ecb96' : undefined,
+          }}>
+          {isSubmited ? (
+            <Text
+              style={{
+                marginTop: 10,
+                marginHorizontal: 20,
+                marginBottom: 11,
+                fontFamily: CustomFonts.medium,
+                fontSize: 18,
+                color: '#FFFFFF',
+                textAlign: 'center',
+                width: 250,
+              }}>
+              {'Bạn đã ứng tuyển công việc này rồi!'}
+            </Text>
+          ) : (
+            <TouchableOpacity
+              onPress={onSubmitCV}
+              style={{
+                flex: 1,
+                height: 60,
+                // width: '70%',
+                backgroundColor: '#8054ef',
+                borderRadius: 30,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={{
+                  marginBottom: 1,
+                  fontFamily: CustomFonts.semibold,
+                  fontSize: 18,
+                  color: '#FFFFFF',
+                }}
+                numberOfLines={1}>
+                ỨNG TUYỂN NGAY
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      )}
+      {!isSignedin && (
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 30,
+            width: '100%',
+            flexDirection: 'row',
+            paddingHorizontal: 25,
+            justifyContent: 'center',
+          }}>
           <TouchableOpacity
-            onPress={onSubmitCV}
             style={{
-              flex: 1,
-              height: 60,
-              // width: '70%',
-              backgroundColor: '#8054ef',
-              borderRadius: 30,
+              width: '100%',
+              paddingVertical: 5,
+              flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
+              backgroundColor: '#ea5f71',
+              borderRadius: 30,
             }}>
             <Text
               style={{
-                marginBottom: 1,
-                fontFamily: CustomFonts.semibold,
-                fontSize: 18,
+                marginTop: 10,
+                marginRight: 15,
+                marginBottom: 11,
+                fontFamily: CustomFonts.medium,
+                fontSize: 16,
                 color: '#FFFFFF',
-              }}
-              numberOfLines={1}>
-              ỨNG TUYỂN NGAY
+                textAlign: 'center',
+                // maxWidth: 350,
+              }}>
+              {'Vui lòng đăng nhập để ứng tuyển!'}
             </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Cá nhân')}
+              style={{
+                width: 30,
+                height: 30,
+                borderRadius: 15,
+                backgroundColor: '#eaeaea',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <AntDesign
+                name={'logout'}
+                size={20}
+                color={'#000000'}
+                style={{marginLeft: 2}}
+              />
+            </TouchableOpacity>
           </TouchableOpacity>
-        )}
-      </View>
+        </View>
+      )}
     </View>
   );
 };
