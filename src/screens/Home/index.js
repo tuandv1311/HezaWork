@@ -75,7 +75,7 @@ const HomeScreen = ({navigation}) => {
     }
   };
 
-  const onSaveJob = async data => await addJobData(data);
+  // const onSaveJob = async data => await addJobData(data);
 
   const renderPopularItem = ({item, index}) => {
     return (

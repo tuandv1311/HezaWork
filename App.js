@@ -11,6 +11,8 @@ import {NativeBaseProvider, extendTheme, StatusBar} from 'native-base';
 import AppRoot from './src/AppRoot';
 import {LogBox} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+import codePush from 'react-native-code-push';
+import ModalUpdateApp from './src/components/ModalUpdateApp';
 
 LogBox.ignoreAllLogs();
 
@@ -37,6 +39,8 @@ const theme = extendTheme({
   },
 });
 
+let codePushOptions = {checkFrequency: codePush.CheckFrequency.ON_APP_START};
+
 const App = () => {
   useEffect(() => {
     setTimeout(() => SplashScreen.hide(), 1000);
@@ -46,8 +50,9 @@ const App = () => {
     <NativeBaseProvider theme={theme}>
       <StatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
       <AppRoot />
+      <ModalUpdateApp />
     </NativeBaseProvider>
   );
 };
 
-export default App;
+export default codePush(codePushOptions)(App);
