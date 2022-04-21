@@ -38,12 +38,12 @@ const HomeScreen = ({navigation}) => {
 
   useEffect(() => {
     setLoading(true);
-    onGetLoginData();
   }, []);
 
   useEffect(() => {
     const onFocus = navigation.addListener('focus', () => {
       getJobsList();
+      onGetLoginData();
     });
     return onFocus;
   }, [navigation]);
@@ -191,7 +191,7 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
 
-        {/* <View
+        <View
           style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
           <View
             style={{
@@ -225,9 +225,9 @@ const HomeScreen = ({navigation}) => {
               {item?.ten_loai_viec}
             </Text>
           </View>
-        </View> */}
+        </View>
 
-        <View
+        {/* <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -277,7 +277,7 @@ const HomeScreen = ({navigation}) => {
               {'Lưu'}
             </Text>
           </TouchableOpacity>
-        </View>
+        </View>*/}
       </TouchableOpacity>
     );
   };
@@ -423,7 +423,7 @@ const HomeScreen = ({navigation}) => {
                 fontSize: 24,
                 color: '#FFFFFF',
               }}>
-              {'Welcome back !'}
+              {isSignedin ? 'Welcome back!' : 'Heza Work xin chào!'}
             </Text>
             {isSignedin ? (
               <Text

@@ -34,13 +34,15 @@ const Profile = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
   const [name, setName] = useState();
   const [savedJobs, setSavedJobs] = useState([]);
-  const [showLoginPage, setShowLoginPage] = useState(false);
+  const [showLoginPage, setShowLoginPage] = useState();
 
   const {signOut} = useContext(AuthContext);
   console.log('useContext(AuthContext)', useContext(AuthContext));
   useEffect(() => {
-    onGetLoginData();
-  }, []);
+    if (!showLoginPage) {
+      onGetLoginData();
+    }
+  }, [showLoginPage]);
 
   useEffect(() => {
     const onFocus = navigation.addListener('focus', () => {
@@ -226,9 +228,13 @@ const Profile = ({navigation}) => {
           resizeMode={FastImage.resizeMode.contain}
         />
         <Text
-          style={{fontFamily: CustomFonts.medium, fontSize: 16, marginTop: -30}}
-          numberOfLines={1}>
-          {'Bạn chưa lưu công việc nào cả'}
+          style={{
+            fontFamily: CustomFonts.medium,
+            fontSize: 16,
+            marginTop: -30,
+            textAlign: 'center',
+          }}>
+          {'Bạn chưa ứng tuyển công việc nào cả'}
         </Text>
       </View>
     );
@@ -301,9 +307,8 @@ const Profile = ({navigation}) => {
             style={[
               styles.name,
               {marginHorizontal: 30, marginBottom: 15, color: '#6a676a'},
-            ]}
-            numberOfLines={1}>
-            {'Danh sách công việc đã chú ý'}
+            ]}>
+            {'Danh sách công việc của bạn'}
           </Text>
           <FlatList
             // scrollEnabled={false}

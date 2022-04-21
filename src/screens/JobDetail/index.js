@@ -481,6 +481,7 @@ const JobDetail = ({navigation, route}) => {
             justifyContent: 'center',
           }}>
           <TouchableOpacity
+            onPress={() => navigation.navigate('Cá nhân')}
             style={{
               width: '100%',
               paddingVertical: 5,
@@ -496,15 +497,14 @@ const JobDetail = ({navigation, route}) => {
                 marginRight: 15,
                 marginBottom: 11,
                 fontFamily: CustomFonts.medium,
-                fontSize: 16,
+                fontSize: 15,
                 color: '#FFFFFF',
                 textAlign: 'center',
                 // maxWidth: 350,
               }}>
               {'Vui lòng đăng nhập để ứng tuyển!'}
             </Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Cá nhân')}
+            <View
               style={{
                 width: 30,
                 height: 30,
@@ -519,7 +519,7 @@ const JobDetail = ({navigation, route}) => {
                 color={'#000000'}
                 style={{marginLeft: 2}}
               />
-            </TouchableOpacity>
+            </View>
           </TouchableOpacity>
         </View>
       )}
