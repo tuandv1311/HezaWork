@@ -105,7 +105,7 @@ const HomeScreen = ({navigation}) => {
               source={{
                 uri: `https://tuyendung.haiphong.vn/assets/uploads/${item?.logo}`,
               }}
-              resizeMode={FastImage.resizeMode.contain}
+              resizeMode={FastImage.resizeMode.cover}
             />
           </View>
           <Text
@@ -319,7 +319,7 @@ const HomeScreen = ({navigation}) => {
               source={{
                 uri: `https://tuyendung.haiphong.vn/assets/uploads/${item?.logo}`,
               }}
-              resizeMode={FastImage.resizeMode.contain}
+              resizeMode={FastImage.resizeMode.cover}
             />
           </View>
           <View style={{flex: 1}}>

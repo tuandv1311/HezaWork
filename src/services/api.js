@@ -47,3 +47,15 @@ export const checkSubmitCVApi = async (jobId, userId) => {
     `https://tuyendung.haiphong.vn/callback/kt_nop_don/${jobId}/${userId}`,
   );
 };
+
+export const checkCompleteCVApi = async userId => {
+  return axiosService.get(
+    `https://tuyendung.haiphong.vn/callback/kt_ho_so/${userId}`,
+  );
+};
+
+export const getAppliedJobsApi = async userId => {
+  return axiosService.get(
+    `https://tuyendung.haiphong.vn/callback/ct_vl_uv/${userId}`,
+  );
+};

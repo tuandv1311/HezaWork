@@ -7,20 +7,20 @@ import {
   StatusBar,
   Text,
 } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import FastImage from 'react-native-fast-image';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { CustomFonts } from '../../constants/AppConstants';
-import { FlatList } from 'native-base';
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { getJobsListApi, jobsSearchApi } from '../../services/api';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import {CustomFonts} from '../../constants/AppConstants';
+import {FlatList} from 'native-base';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {getJobsListApi, jobsSearchApi} from '../../services/api';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 import LoadingView from '../../components/LoadingView';
 
 const safeAreaHeight = getStatusBarHeight();
 
-const JobSearch = ({ navigation }) => {
+const JobSearch = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
   const [jobsList, setJobsList] = useState([]);
   const [searchParam, setSearchParam] = useState();
@@ -42,15 +42,15 @@ const JobSearch = ({ navigation }) => {
       const data = await getJobsListApi();
       console.log('getJobsList', data);
       setJobsList(data?.data);
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       console.log('getJobsList error', error);
       setJobsList([]);
     }
   };
 
-  const onSearchJobs = async (searchParam) => {
+  const onSearchJobs = async searchParam => {
     try {
       const data = await jobsSearchApi(searchParam);
       console.log('onSearchJobs', data);
@@ -61,12 +61,12 @@ const JobSearch = ({ navigation }) => {
     }
   };
 
-  const renderItem = ({ item, index }) => {
+  const renderItem = ({item, index}) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('JobDetail', { item: item })}
+        onPress={() => navigation.navigate('JobDetail', {item: item})}
         style={styles.jobItem}>
-        <View style={{ flex: 1, flexDirection: 'row' }}>
+        <View style={{flex: 1, flexDirection: 'row'}}>
           <View style={styles.logo}>
             <FastImage
               style={{
@@ -76,10 +76,10 @@ const JobSearch = ({ navigation }) => {
               source={{
                 uri: `https://tuyendung.haiphong.vn/assets/uploads/${item?.logo}`,
               }}
-              resizeMode={FastImage.resizeMode.contain}
+              resizeMode={FastImage.resizeMode.cover}
             />
           </View>
-          <View style={{ flex: 1 }}>
+          <View style={{flex: 1}}>
             <Text
               style={{
                 fontFamily: CustomFonts.medium,
@@ -101,10 +101,10 @@ const JobSearch = ({ navigation }) => {
               numberOfLines={2}>
               {item?.ten_dn}
             </Text>
-            <View style={{ marginTop: 10, marginBottom: 5 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{marginTop: 10, marginBottom: 5}}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <FontAwesome5 name={'coins'} size={22} color={'#8054ef'} />
-                <View style={{ marginLeft: 14 }}>
+                <View style={{marginLeft: 14}}>
                   <Text
                     style={{
                       marginBottom: 1,
@@ -123,14 +123,13 @@ const JobSearch = ({ navigation }) => {
                   flexDirection: 'row',
                 }}>
                 <FontAwesome5 name={'building'} size={22} color={'#8054ef'} />
-                <View style={{ marginLeft: 14, flex: 1 }}>
+                <View style={{marginLeft: 14, flex: 1}}>
                   <Text
                     style={{
                       fontFamily: CustomFonts.regular,
                       fontSize: 15,
                       color: '#3d3d3d',
-                    }}
-                  >
+                    }}>
                     {item?.dia_chi}
                   </Text>
                 </View>
@@ -148,7 +147,7 @@ const JobSearch = ({ navigation }) => {
 
   const renderEmptyJobs = () => {
     return (
-      <View style={{ alignItems: 'center' }}>
+      <View style={{alignItems: 'center'}}>
         <FastImage
           style={{
             width: '100%',
@@ -158,8 +157,12 @@ const JobSearch = ({ navigation }) => {
           resizeMode={FastImage.resizeMode.contain}
         />
         <Text
-          style={{ fontFamily: CustomFonts.medium, fontSize: 16, marginTop: -30, textAlign: 'center' }}
-        >
+          style={{
+            fontFamily: CustomFonts.medium,
+            fontSize: 16,
+            marginTop: -30,
+            textAlign: 'center',
+          }}>
           {'Không tìm thấy công việc với từ khóa này'}
         </Text>
       </View>
@@ -196,30 +199,37 @@ const JobSearch = ({ navigation }) => {
           placeholderTextColor={'#cacdd8'}
           style={styles.searchBar}
           value={searchParam}
-          onChangeText={(text) => {
-            console.log(text)
+          onChangeText={text => {
+            console.log(text);
             setSearchParam(text);
-            onSearchJobs(text)
+            onSearchJobs(text);
           }}
         />
-        <TouchableOpacity onPress={() => { setLoading(true); setSearchParam(); getJobsList() }}>
+        <TouchableOpacity
+          onPress={() => {
+            setLoading(true);
+            setSearchParam();
+            getJobsList();
+          }}>
           <Ionicons name={'close-circle'} size={24} color={'#cacdd8'} />
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, marginTop: 20 }}>
+      <View style={{flex: 1, marginTop: 20}}>
         {loading ? (
           <LoadingView />
-        ) : (<FlatList
-          contentContainerStyle={{
-            paddingBottom: 20 + tabbarHeight,
-            paddingHorizontal: 25,
-          }}
-          data={jobsList}
-          renderItem={renderItem}
-          ItemSeparatorComponent={renderSeparator}
-          keyExtractor={item => String(item.id_viec)}
-          ListEmptyComponent={renderEmptyJobs}
-        />)}
+        ) : (
+          <FlatList
+            contentContainerStyle={{
+              paddingBottom: 20 + tabbarHeight,
+              paddingHorizontal: 25,
+            }}
+            data={jobsList}
+            renderItem={renderItem}
+            ItemSeparatorComponent={renderSeparator}
+            keyExtractor={item => String(item.id_viec)}
+            ListEmptyComponent={renderEmptyJobs}
+          />
+        )}
       </View>
     </View>
   );

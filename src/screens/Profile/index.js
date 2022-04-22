@@ -27,17 +27,20 @@ import {
 import {AuthContext} from '../../AppRoot';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import AuthScreen from '../Auth';
+import {checkCompleteCVApi, getAppliedJobsApi} from '../../services/api';
 
 const safeAreaHeight = getStatusBarHeight();
 
 const Profile = ({navigation}) => {
   const tabbarHeight = useBottomTabBarHeight();
   const [name, setName] = useState();
+  const [isCompleteCV, setCompleteCV] = useState(true);
+
   const [savedJobs, setSavedJobs] = useState([]);
   const [showLoginPage, setShowLoginPage] = useState();
 
   const {signOut} = useContext(AuthContext);
-  console.log('useContext(AuthContext)', useContext(AuthContext));
+
   useEffect(() => {
     if (!showLoginPage) {
       onGetLoginData();
@@ -46,7 +49,9 @@ const Profile = ({navigation}) => {
 
   useEffect(() => {
     const onFocus = navigation.addListener('focus', () => {
-      getJobsDataLocal();
+      if (!showLoginPage) {
+        onGetLoginData();
+      }
     });
     return onFocus;
   }, [navigation]);
@@ -55,20 +60,44 @@ const Profile = ({navigation}) => {
     console.log('showLoginPage', showLoginPage);
   }, [showLoginPage]);
 
+  const onCheckCompleteCV = async () => {
+    try {
+      const result = await checkCompleteCVApi();
+      console.log('onCheckCompleteCV', result);
+      setCompleteCV(result?.data);
+    } catch (error) {
+      console.log('onCheckCompleteCV error', error);
+    }
+  };
+
+  const onGetAppliedJobs = async id => {
+    try {
+      const result = await getAppliedJobsApi(id);
+      console.log('onGetAppliedJobs', result);
+      setSavedJobs(result?.data);
+    } catch (error) {
+      console.log('onGetAppliedJobs error', error);
+    }
+  };
+
   const onGetLoginData = async () => {
     const result = await getLoginData();
     console.log('onGetLoginData', result);
     if (result == null) {
       setShowLoginPage(true);
+    } else {
+      setName(result?.ho_ten);
+      // setUserId(result?.id_nguoi_dung);
+      onGetAppliedJobs(result?.id_nguoi_dung);
+      onCheckCompleteCV(result?.id_nguoi_dung);
     }
-    setName(result?.ho_ten);
   };
 
-  const getJobsDataLocal = async () => {
-    const oldData = await getJobsData();
-    setSavedJobs(oldData);
-    console.log('getJobsDataLocal', oldData);
-  };
+  // const getJobsDataLocal = async () => {
+  //   const oldData = await getJobsData();
+  //   setSavedJobs(oldData);
+  //   console.log('getJobsDataLocal', oldData);
+  // };
 
   const removeJobFromLocal = async data => {
     Alert.alert(
@@ -79,7 +108,7 @@ const Profile = ({navigation}) => {
           text: 'Xóa',
           onPress: async () => {
             await removeJobData(data);
-            getJobsDataLocal();
+            // getJobsDataLocal();
           },
           style: 'destructive',
         },
@@ -302,6 +331,23 @@ const Profile = ({navigation}) => {
           </View>
         </View>
         <View style={styles.separator} />
+        <TouchableOpacity
+          style={{
+            marginTop: 15,
+            marginHorizontal: 25,
+            borderRadius: 10,
+            borderWidth: 2,
+            padding: 10,
+            borderColor: '#ea5f7190',
+          }}>
+          <Text style={styles.warning}>
+            Vui lòng{' '}
+            <Text style={[styles.warning, {color: '#6174fa'}]}>
+              hoàn thiện hồ sơ
+            </Text>{' '}
+            xin việc trước khi nộp đơn!
+          </Text>
+        </TouchableOpacity>
         <View style={{marginTop: 15}}>
           <Text
             style={[
@@ -405,5 +451,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.46,
     shadowRadius: 11.14,
     elevation: 5,
+  },
+  warning: {
+    fontFamily: CustomFonts.regular,
+    fontSize: 16,
+    color: '#ea5f71',
+    textAlign: 'center',
   },
 });
