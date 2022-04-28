@@ -172,7 +172,7 @@ const JobDetail = ({navigation, route}) => {
                       color: '#000000',
                     }}
                     numberOfLines={1}>
-                    {item?.ten_dn}
+                    {jobDetail?.ten_dn}
                   </Text>
                   <Text
                     style={{
@@ -182,7 +182,7 @@ const JobDetail = ({navigation, route}) => {
                       color: '#6a676a',
                     }}
                     numberOfLines={3}>
-                    {item?.dia_chi ? item?.dia_chi : jobDetail?.noi_lam_viec}
+                    {jobDetail?.dn_dia_chi}
                   </Text>
                 </View>
                 <View style={styles.logo}>

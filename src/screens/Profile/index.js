@@ -64,7 +64,7 @@ const Profile = ({navigation}) => {
     try {
       const result = await checkCompleteCVApi();
       console.log('onCheckCompleteCV', result);
-      setCompleteCV(result?.data);
+      // setCompleteCV(result?.data);
     } catch (error) {
       console.log('onCheckCompleteCV error', error);
     }
@@ -331,23 +331,25 @@ const Profile = ({navigation}) => {
           </View>
         </View>
         <View style={styles.separator} />
-        <TouchableOpacity
-          style={{
-            marginTop: 15,
-            marginHorizontal: 25,
-            borderRadius: 10,
-            borderWidth: 2,
-            padding: 10,
-            borderColor: '#ea5f7190',
-          }}>
-          <Text style={styles.warning}>
-            Vui lòng{' '}
-            <Text style={[styles.warning, {color: '#6174fa'}]}>
-              hoàn thiện hồ sơ
-            </Text>{' '}
-            xin việc trước khi nộp đơn!
-          </Text>
-        </TouchableOpacity>
+        {!isCompleteCV && (
+          <TouchableOpacity
+            style={{
+              marginTop: 15,
+              marginHorizontal: 25,
+              borderRadius: 10,
+              borderWidth: 2,
+              padding: 10,
+              borderColor: '#ea5f7190',
+            }}>
+            <Text style={styles.warning}>
+              Vui lòng{' '}
+              <Text style={[styles.warning, {color: '#6174fa'}]}>
+                hoàn thiện hồ sơ
+              </Text>{' '}
+              xin việc trước khi nộp đơn!
+            </Text>
+          </TouchableOpacity>
+        )}
         <View style={{marginTop: 15}}>
           <Text
             style={[
