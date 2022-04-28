@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HezaWork</string>
+    <string name="logo_description">HezaWork</string>
+    <!-- Staging -->
+    <string moduleConfig="true" name="CodePushDeploymentKey">IkppRFkSo6APdBZF8wUp86oBnadVEW2YMC6ZL</string>
+    <!-- Production -->
+    <!-- <string moduleConfig="true" name="CodePushDeploymentKey">_QB9qx396DjtoB4bbPsfxuntvwiWqGtXTDhvW</string> -->
 </resources>
