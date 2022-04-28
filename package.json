@@ -9,6 +9,7 @@
     "test": "jest",
     "lint": "eslint .",
     "build-a": "cd android && ./gradlew assembleRelease && cd ..",
+    "build-aab": "cd android && ./gradlew bundleRelease && cd ..",
     "android-cp-staging": "appcenter codepush release-react -a bluescorp1311/HezaWork-Android -d Staging",
     "android-cp-production": "appcenter codepush release-react -a bluescorp1311/HezaWork-Android -d Production",
     "ios-cp-staging": "appcenter codepush release-react -a bluescorp1311/HezaWork-iOS -d Staging",
