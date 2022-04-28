@@ -12,7 +12,7 @@ import {
 import React, {useEffect, useState, useContext} from 'react';
 import FastImage from 'react-native-fast-image';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import {CustomFonts} from '../../constants/AppConstants';
@@ -38,6 +38,7 @@ const Profile = ({navigation}) => {
 
   const [savedJobs, setSavedJobs] = useState([]);
   const [showLoginPage, setShowLoginPage] = useState();
+  const [userId, setUserId] = useState();
 
   const {signOut} = useContext(AuthContext);
 
@@ -87,7 +88,7 @@ const Profile = ({navigation}) => {
       setShowLoginPage(true);
     } else {
       setName(result?.ho_ten);
-      // setUserId(result?.id_nguoi_dung);
+      setUserId(result?.id_nguoi_dung);
       onGetAppliedJobs(result?.id_nguoi_dung);
       onCheckCompleteCV(result?.id_nguoi_dung);
     }
@@ -135,7 +136,9 @@ const Profile = ({navigation}) => {
   const renderSavedJobs = ({item, index}) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('JobDetail', {item: item})}
+        onPress={() =>
+          navigation.navigate('JobDetail', {item: item, userId: userId})
+        }
         style={styles.jobItem}>
         <View style={{flex: 1, flexDirection: 'row', marginBottom: 10}}>
           <View
@@ -160,7 +163,7 @@ const Profile = ({navigation}) => {
             />
           </View>
           <View style={{flex: 1}}>
-            <Text
+            {/* <Text
               style={{
                 marginBottom: 5,
                 fontFamily: CustomFonts.medium,
@@ -169,18 +172,42 @@ const Profile = ({navigation}) => {
               }}
               numberOfLines={1}>
               {item?.ten_loai_viec}
-            </Text>
+            </Text> */}
             <Text
               style={{
                 width: '100%',
                 fontFamily: CustomFonts.medium,
                 fontSize: 16,
                 color: '#000000',
+                marginTop: 2,
               }}
               numberOfLines={1}>
               {item?.ten_cong_viec}
             </Text>
-            <Text
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={{
+                  fontFamily: CustomFonts.regular,
+                  fontSize: 14,
+                  color: '#00000090',
+                  marginRight: 5,
+                  marginBottom: 1,
+                }}
+                numberOfLines={1}>
+                {'Xem chi tiết'}
+              </Text>
+              <MaterialCommunityIcons
+                name={'page-next'}
+                size={18}
+                color={'#8054ef'}
+              />
+            </View>
+            {/* <Text
               style={{
                 marginTop: 5,
                 fontFamily: CustomFonts.regular,
@@ -189,11 +216,11 @@ const Profile = ({navigation}) => {
               }}
               numberOfLines={1}>
               {item?.ten_dn}
-            </Text>
+            </Text> */}
           </View>
         </View>
-        <View style={styles.separator2} />
-        <View
+        {/* <View style={styles.separator2} /> */}
+        {/* <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
@@ -240,7 +267,7 @@ const Profile = ({navigation}) => {
               {'Xóa'}
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </TouchableOpacity>
     );
   };
