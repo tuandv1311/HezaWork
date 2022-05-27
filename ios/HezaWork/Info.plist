@@ -22,12 +22,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<!-- Staging -->
 	<key>CodePushDeploymentKey</key>
 	<string>2qwnthwXYYn52krb0rGc701GvOf7YmuoYcrkl</string>
-	<!-- Production -->
-	<!-- <key>CodePushDeploymentKey</key>
-	<string>43YwTfJq6FMyljnL0B6gFP75wezY2DuXustJt</string> -->
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -39,31 +35,10 @@
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
-<!--      <key>tuyendung.haiphong.vn</key>-->
-<!--      <dict>-->
-<!--          <key>NSExceptionMinimumTLSVersion</key>-->
-<!--          <string>TLSv1.0</string>-->
-<!--          <key>NSExceptionRequiresForwardSecrecy</key>-->
-<!--          <false/>-->
-<!--      </dict>-->
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Fredoka-Bold.ttf</string>
@@ -146,5 +121,19 @@
 		<string>Cabin-SemiBold.ttf</string>
 		<string>Cabin-SemiBoldItalic.ttf</string>
 	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
