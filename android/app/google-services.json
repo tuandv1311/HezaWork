@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "389441215007",
+    "project_id": "hezawork",
+    "storage_bucket": "hezawork.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389441215007:android:d257aaac83649c93b6132a",
+        "android_client_info": {
+          "package_name": "com.hezawork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389441215007-0g4bh6ho2b51at0rft1ec19h3tej6jsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDO_gu7jVYwj58Y6agwosCJdUnQ3agPj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389441215007-0g4bh6ho2b51at0rft1ec19h3tej6jsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

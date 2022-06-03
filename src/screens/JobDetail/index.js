@@ -28,6 +28,37 @@ import LoadingView from '../../components/LoadingView';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {getLoginData} from '../../services/helpers';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import admob, {
+  BannerAd,
+  BannerAdSize,
+  TestIds,
+  MaxAdContentRating,
+} from '@react-native-firebase/admob';
+
+admob()
+  .setRequestConfiguration({
+    // Update all future requests suitable for parental guidance
+    maxAdContentRating: MaxAdContentRating.PG,
+
+    // Indicates that you want your content treated as child-directed for purposes of COPPA.
+    tagForChildDirectedTreatment: true,
+
+    // Indicates that you want the ad request to be handled in a
+    // manner suitable for users under the age of consent.
+    tagForUnderAgeOfConsent: true,
+  })
+  .then(rs => {
+    // Request config successfully set!
+    console.log('result', rs);
+  });
+
+const adUnitIdAndroid = __DEV__
+  ? TestIds.BANNER
+  : 'ca-app-pub-4710174142760302/9135480149';
+const adUnitIdiOS = __DEV__
+  ? TestIds.BANNER
+  : 'ca-app-pub-4710174142760302/9135480149';
+// const adUnitIdAndroid = 'ca-app-pub-4710174142760302/9135480149';
 
 const safeAreaHeight = getStatusBarHeight();
 const {width} = Dimensions.get('screen');
@@ -377,8 +408,27 @@ const JobDetail = ({navigation, route}) => {
             <View style={styles.separator} />
             <View
               style={{
+                marginTop: 10,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <BannerAd
+                unitId={
+                  Platform.OS === 'android' ? adUnitIdAndroid : adUnitIdiOS
+                }
+                size={BannerAdSize.BANNER}
+                requestOptions={{
+                  requestNonPersonalizedAdsOnly: true,
+                }}
+                onAdOpened={e => console.log('onAdOpened', e)}
+                onAdFailedToLoad={e => {
+                  console.log('onAdFailedToLoad', e);
+                }}
+              />
+            </View>
+            <View
+              style={{
                 paddingHorizontal: 25,
-                marginTop: 5,
               }}>
               {/* <Text
             style={{marginBottom: 1}}

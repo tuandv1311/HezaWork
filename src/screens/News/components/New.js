@@ -17,6 +17,37 @@ import {CustomFonts} from '../../../constants/AppConstants';
 import RenderHTML from 'react-native-render-html';
 import {getNewsDetailApi} from '../../../services/api';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
+import admob, {
+  BannerAd,
+  BannerAdSize,
+  TestIds,
+  MaxAdContentRating,
+} from '@react-native-firebase/admob';
+
+admob()
+  .setRequestConfiguration({
+    // Update all future requests suitable for parental guidance
+    maxAdContentRating: MaxAdContentRating.PG,
+
+    // Indicates that you want your content treated as child-directed for purposes of COPPA.
+    tagForChildDirectedTreatment: true,
+
+    // Indicates that you want the ad request to be handled in a
+    // manner suitable for users under the age of consent.
+    tagForUnderAgeOfConsent: true,
+  })
+  .then(rs => {
+    // Request config successfully set!
+    console.log('result', rs);
+  });
+
+const adUnitIdAndroid = __DEV__
+  ? TestIds.BANNER
+  : 'ca-app-pub-4710174142760302/9135480149';
+const adUnitIdiOS = __DEV__
+  ? TestIds.BANNER
+  : 'ca-app-pub-4710174142760302/9135480149';
+// const adUnitIdAndroid = 'ca-app-pub-4710174142760302/9135480149';
 
 const safeAreaHeight = getStatusBarHeight();
 
@@ -113,6 +144,24 @@ const NewsDetail = ({navigation, route}) => {
             },
           }}
         />
+        <View
+          style={{
+            marginTop: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <BannerAd
+            unitId={Platform.OS === 'android' ? adUnitIdAndroid : adUnitIdiOS}
+            size={BannerAdSize.MEDIUM_RECTANGLE}
+            requestOptions={{
+              requestNonPersonalizedAdsOnly: true,
+            }}
+            onAdOpened={e => console.log('onAdOpened', e)}
+            onAdFailedToLoad={e => {
+              console.log('onAdFailedToLoad', e);
+            }}
+          />
+        </View>
       </ScrollView>
     </View>
   );
